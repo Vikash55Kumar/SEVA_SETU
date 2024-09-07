@@ -1,0 +1,49 @@
+
+.swap {
+    /* height: 60vh; */
+}
+  #app {
+    height: 100%;
+  }
+  
+  .swiper {
+    margin-top: 0px;
+    width: 90%;
+    height: 60vh;
+  }
+  
+  .swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    /* transition: transform 0.3s ease-in-out; */
+  }
+  
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    /* transition: transform 0.5s ease-in-out; */
+  }
+  
+  /* .swiper-slide img:hover {
+    transform: scale(1.05);
+  } */
+  
+  .mySwiper {
+    padding: 20px;
+  }
+  
+  .swiper-pagination-fraction,
+  .swiper-button-next, 
+  .swiper-button-prev {
+    color: #0071eb;
+  }
+  

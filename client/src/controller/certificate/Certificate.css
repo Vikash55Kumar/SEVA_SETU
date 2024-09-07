@@ -1,0 +1,84 @@
+.certificate {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 4rem;
+    align-items: center;
+    background-color: #1a171724;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 20rem;
+    height: 6rem;
+    margin: 2rem;
+    background-color: aliceblue;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card a {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #0071eb;
+    /* font-weight: bold; */
+}
+
+.card:hover {
+    transform: scale(1.1);
+    background-color: rgb(74, 175, 237);
+
+}
+.card a:hover {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #0c0f13;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+}
+
+@media (max-width: 895px) {
+    .certificate {
+        margin: 3rem;
+    }
+}
+
+@media (max-width: 863px) {
+    .certificate {
+        margin: 3rem;
+    }
+    .card {
+        width: 15rem;
+        height: 5rem;
+    }
+}
+
+@media (max-width: 703px) {
+    .certificate {
+        margin-top: 0rem;
+        /* margin: 4rem; */
+    }
+    .card {
+        width: 20rem;
+        height: 6rem;
+        margin: 1.1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .certificate {
+        margin: 0rem;
+    }
+    .card {
+        width: 20rem;
+        height: 5rem;
+        margin: 1rem;
+    }
+}
