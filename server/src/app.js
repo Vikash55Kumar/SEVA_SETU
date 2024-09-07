@@ -30,6 +30,7 @@ app.use(session({
   secret: process.env.GOOGLE_CLIENT_SECRET,
   resave: false,
   saveUninitialized: true,
+  store:MongoStore.create({monoUrl:process.env.MONODB_URI}),
   cookie: { secure: process.env.NODE_ENV === 'production' },
 }));
 
