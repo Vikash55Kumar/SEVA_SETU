@@ -14,6 +14,7 @@ export default function Profile({profile = {}}) {
         <div className="profile-container">
           <div className="menu">
             <h2>{fullName || 'Full Name Not Available'}</h2>
+            <div className="button"><a href='/employProgress'>Task Status</a> </div>
             <div className="button">Profile Info</div>
             <div className="button">Edit Details</div>
             <div className="button"><a href='/forgot'>Change Password</a>  </div>

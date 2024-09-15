@@ -1,62 +1,66 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import io from 'socket.io-client';
 import './Map.css';
 
-const data = [
-  { name: 'Cast Certificate', formsReceived: 4200, pendingForms: 2240, processedForms: 2879,  recjectedForms: 81 },
-  { name: 'Income Certificate', formsReceived: 7800, pendingForms: 4200, processedForms: 3579,  recjectedForms: 1021 },
-  { name: 'Birth Certificate', formsReceived: 7000, pendingForms: 5150, processedForms: 3439 ,  recjectedForms: 411},
-  { name: 'Residential Certificate', formsReceived: 6300, pendingForms: 5060, processedForms: 1423 ,  recjectedForms: 234},
-];
-
-const chartOptions = {
-  scales: {
-    y: {
-      title: {
-        display: true,
-        text: 'No. of Forms Received', // Y-axis label
-        font: {
-          size: 22, // Increases the font size of the x-axis label
-        },
-      },
-      beginAtZero: true, // Ensures the y-axis starts at 0
-    },
-  },
-};
+// Initialize socket connection
+const socket = io('http://localhost:5000'); // Adjust this URL to your backend
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const Map = () => {
+  // State to store form types data (array)
+  const [formTypesData, setFormTypesData] = useState([
+    { name: 'Cast Certificate', FormsReceived: 4200, PendingForms: 2240, ProcessedForms: 2879, RecjectedForms: 81 },
+    { name: 'Income Certificate', FormsReceived: 7800, PendingForms: 4200, ProcessedForms: 3579, RecjectedForms: 1021 },
+    { name: 'Birth Certificate', FormsReceived: 7000, PendingForms: 5150, ProcessedForms: 3439, RecjectedForms: 411 },
+    { name: 'Residential Certificate', FormsReceived: 6300, PendingForms: 5060, ProcessedForms: 1423, RecjectedForms: 234 },
+  ]);
+
+  useEffect(() => {
+    // Listen for form statistics update (summary)
+    socket.on('mapformStatisticsUpdate', (data) => {
+      if (Array.isArray(data)) {
+        setFormTypesData(data);
+      } 
+    });
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      socket.off('mapformStatisticsUpdate');
+    };
+  }, []);
+
   return (
     <div className="dashboard-container">
-      <div className="chart-section">
-        <h3>Different Types of Form Recieved</h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={data} options={chartOptions}>
-            <XAxis dataKey="name" />
-             {/* Y-Axis */}
-             <YAxis
-              tick={{ fontSize: 10 }} // Increase Y-axis tick font size
-              label={{ value: 'No. of Forms Received', angle: -90, position: 'Left', fontSize: 18, dx: -22,}} // Label for Y-axis
-            />
 
+      <div className="chart-section">
+        <h3>Different Types of Forms Received</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={formTypesData}>
+            <XAxis dataKey="name" />
+            <YAxis
+              tick={{ fontSize: 10 }}
+              label={{ value: 'No. of Forms Received', angle: -90, position: 'Left', fontSize: 18, dx: -22 }}
+            />
             <Tooltip />
             <Legend />
-            <Bar dataKey="formsReceived" fill="#8884d8" />
-            <Bar dataKey="pendingForms" fill="#ffc658" />
-            <Bar dataKey="processedForms" fill="#82ca9d" />
-            <Bar dataKey="recjectedForms" fill="red" />
+            <Bar dataKey="FormsReceived" fill="#8884d8" />
+            <Bar dataKey="PendingForms" fill="#ffc658" />
+            <Bar dataKey="ProcessedForms" fill="#82ca9d" />
+            <Bar dataKey="RecjectedForms" fill="red" />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       <div className="chart-section">
-        <h3>Different Types of Forms</h3>
+        <h3>Different Types of Forms (Pie Chart)</h3>
         <ResponsiveContainer width="100%" height={500}>
           <PieChart>
             <Pie
-              data={data}
-              dataKey="formsReceived"
+              data={formTypesData}
+              dataKey="FormsReceived"
               nameKey="name"
               cx="50%"
               cy="50%"
@@ -64,7 +68,7 @@ const Map = () => {
               fill="#8884d8"
               label
             >
-              {data.map((entry, index) => (
+              {formTypesData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
@@ -72,9 +76,10 @@ const Map = () => {
           </PieChart>
         </ResponsiveContainer>
       </div>
-      <br/><br/>
+      <br /><br />
     </div>
   );
 };
 
 export default Map;
+

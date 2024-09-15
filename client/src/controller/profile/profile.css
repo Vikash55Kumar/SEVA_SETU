@@ -225,6 +225,36 @@ b {
   color: #333;
 }
 
+/* Task Progress Section */
+.task-progress {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.task-progress h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+
+}
+
+.progress-bar-success {
+  background-color: #4caf50 !important; /* Green color for success */
+}
+
+.progress-bar-danger {
+  height: 100%;
+  background-color: #f44336; /* Red color for danger */
+}
+
 /* Animation Keyframes */
 @keyframes fadeIn {
   from {

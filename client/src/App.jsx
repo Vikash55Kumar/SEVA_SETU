@@ -23,6 +23,9 @@ import { getUserDetails, loadUsers } from './actions/userAction';
 import GoogleLogin from './utility/GoogleLogin';
 import Home from './controller/home/Home';
 import Profile from './controller/profile/Profile';
+import { SocketProvider } from './utility/SocketContext';
+import EmployeeProgress from './controller/profile/EmployStatus';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -43,33 +46,35 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/dashboard' element={isAuthenticated ? <Dashboard /> : <Login />} />
-          <Route path='/certificate' element={<Certificate />} />
-          <Route path='/certificateForm' element={<CertificateForm />} />
- 
-          <Route path='/profile' element={
-              isAuthenticated 
-              ? (loading ? <div>Loading...</div> : user && user.data 
-                ? <Profile profile={user.data} />
-                  : <div>Profile not found</div>)
-              : <HomePage />} 
-          />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/login' element={!isAuthenticated ? <Login /> : <Home/>} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path="/google-login" element={<GoogleLogin />} />
-          <Route path='/forgot' element={<ForgotPassword /> } />
-          <Route path='/term' element={<TermService />} />
-          <Route path='/privacy' element={<PrivacyPolicy />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </Router>
-
+      <SocketProvider>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/dashboard' element={isAuthenticated ? <Dashboard /> : <Login />} />
+            <Route path='/certificate' element={<Certificate />} />
+            <Route path='/certificateForm' element={<CertificateForm />} />
+  
+            <Route path='/profile' element={
+                isAuthenticated 
+                ? (loading ? <div>Loading...</div> : user && user.data 
+                  ? <Profile profile={user.data} />
+                    : <div>Profile not found</div>)
+                : <HomePage />} 
+            />
+            <Route path='/employProgress' element={isAuthenticated  ? <EmployeeProgress profile={user.data} /> : <Home />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/login' element={!isAuthenticated ? <Login /> : <Home/>} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path="/google-login" element={<GoogleLogin />} />
+            <Route path='/forgot' element={<ForgotPassword /> } />
+            <Route path='/term' element={<TermService />} />
+            <Route path='/privacy' element={<PrivacyPolicy />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </SocketProvider>
       <Notification open={open} handleClose={handleClose} message={message} severity={severity} />
     </>
   );

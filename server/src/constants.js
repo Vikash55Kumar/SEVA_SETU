@@ -1,1 +1,1 @@
-export const DB_NAME="StreamVideo"
+export const DB_NAME="SevaSetu"
