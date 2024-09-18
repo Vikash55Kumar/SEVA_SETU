@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config({path: './.env'});
 import { Server } from 'socket.io';
 
 // Mock employee data
@@ -26,7 +28,7 @@ export function SocketHandler(server) {
   const io = new Server(server, {
     cors: {
     //   origin: process.env.CORS_ORIGIN,
-        origin:"http://localhost:5173",
+      origin:process.env.CORES_ORIGIN,
       methods: ['GET', 'POST'],
       credentials: true,
     },
