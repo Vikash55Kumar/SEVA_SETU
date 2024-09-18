@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import "./LoginSignup.css"
 import { useDispatch } from 'react-redux';
 import { forgetPassword } from '../../actions/userAction';
-import Notification from '../../utility/Notification';
-import useNotification from '../../utility/useNotification';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function ForgotPassword() {
     const dispatch = useDispatch();
     const nevigate = useNavigate();
-    const {open, message, severity, showNotification, handleClose} = useNotification();
     
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("")
@@ -29,7 +27,7 @@ export default function ForgotPassword() {
             if (response?.data?.success) {
                 // Extract the success message
                 const successMessage = response.data.message ;
-                showNotification(successMessage, 'success');
+                toast.success(successMessage, 'success');
                 // Clear form
                 setOldPassword('');
                 setNewPassword('');
@@ -38,13 +36,13 @@ export default function ForgotPassword() {
             } else {
                 // Handle the case where response indicates failure
                 const errorMessage = response?.data?.message || err.message;
-                showNotification(errorMessage, 'error');
+                toast.error(errorMessage, 'error');
             }
            
         } catch (err) {
             // Extract the error message
             const errorMessage = err.response?.data?.message || err.message || 'Forget password failed!';
-            showNotification(errorMessage, 'error');
+            toast.error(errorMessage, 'error');
         }
 };
 
@@ -88,12 +86,6 @@ export default function ForgotPassword() {
             <div className="form-group-2">
                 <button type="submit">Submit</button>
             </div>
-            <Notification 
-                open={open}
-                handleClose={handleClose}
-                message={message}
-                severity={severity}
-            />
         </form>
     </div>
   );

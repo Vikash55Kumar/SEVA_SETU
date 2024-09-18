@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import './Map.css';
 
 // Initialize socket connection
-const socket = io('http://localhost:5000'); // Adjust this URL to your backend
+const socket = io(`${import.meta.env.VITE_SOCKET_URL}`); // Adjust this URL to your backend
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 

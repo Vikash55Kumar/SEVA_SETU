@@ -12,7 +12,7 @@ const RealTimeStatus = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:5173');
+    const socket = new WebSocket(`${import.meta.env.VITE_WEBSOCKET_URL}`);
 
     socket.onmessage = (event) => {
       const message = JSON.parse(event.data);

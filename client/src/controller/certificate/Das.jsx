@@ -81,7 +81,7 @@ import 'chart.js/auto';
 import io from 'socket.io-client'; // Import socket.io-client
 import './das.css';
 
-const socket = io('http://localhost:5000'); // Ensure this is your backend URL
+const socket = io(`${import.meta.env.VITE_SOCKET_URL}`); // Ensure this is your backend URL
 
 const MetricCard = ({ title, value }) => (
   <div className="metric-card">

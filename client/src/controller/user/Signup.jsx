@@ -2,16 +2,13 @@ import React, {useState} from 'react'
 import "./auth.css"
 import { useDispatch} from 'react-redux';
 import { register } from '../../actions/userAction';
-import Notification from '../../utility/Notification';
-import useNotification from '../../utility/useNotification';
 import { useNavigate } from 'react-router-dom';
 import googleImg from "../../assets/google.png"
+import { toast } from 'react-toastify';
 
 export default function Signup() {
     const dispatch = useDispatch();
     const nevigate = useNavigate()
-    const {open, message, severity, showNotification, handleClose} = useNotification();
-    
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -38,7 +35,7 @@ export default function Signup() {
             if (response?.data?.success) {
                 
                 const successMessage = response.data.message ;
-                showNotification(successMessage, 'success');
+                toast.success(successMessage, 'success');
                 // clear form
                 setName('');
                 setEmail('');
@@ -52,13 +49,13 @@ export default function Signup() {
             } else {
                 const errorMessage = response?.data?.message || err.message;
                 console.log("error 1 ", errorMessage);
-                showNotification(errorMessage, 'error');
+                toast.error(errorMessage, 'error');
             }
 
         } catch (err) {
             const errorMessage = err.response?.data?.message || err.message || 'Regestration failed!';
             console.log("error 2 ", errorMessage);
-            showNotification(errorMessage, 'error');
+            toast.error(errorMessage, 'error');
         }
 
     };
@@ -71,6 +68,7 @@ export default function Signup() {
         <h4 className="mt-2 mb-3">Have an account? <a href="/login">Log In</a></h4>
         <div id="auth-account">
           <a onClick={() => window.location.href = '/api/v1/users/auth/google'}>
+
             <img src={googleImg} alt="Google Icon" />
             <div>Continue with Google</div>
           </a>
@@ -147,12 +145,6 @@ export default function Signup() {
           <div className="form-group-2">
             <button type="submit">Sign Up</button>
           </div>
-          <Notification
-            open={open}
-            handleClose={handleClose}
-            message={message}
-            severity={severity}
-          />
         </form>
       </div>
     </div>

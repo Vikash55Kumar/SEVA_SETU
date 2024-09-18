@@ -5,12 +5,16 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { ProgressBar } from 'react-bootstrap'; // Ensure this is installed and properly imported
 import "./profile.css";
 
-const socket = io('http://localhost:5000'); // Connect to your backend
+
+const socket = io(`${import.meta.env.VITE_SOCKET_URL}`); // Connect to your backend
 
 const EmployeeProgress = ({ profile = {} }) => {
   const { fullName, email, avatar } = profile || {};
   
   const [employees, setEmployees] = useState([]);
+
+  const [previousProgress, setPreviousProgress] = useState([]);
+
 
   useEffect(() => {
     // Listen for real-time employee updates
@@ -22,6 +26,41 @@ const EmployeeProgress = ({ profile = {} }) => {
     return () => {
       socket.disconnect();
     };
+  }, []);
+
+
+  //previous
+
+
+
+  const generateLast5Days = () => {
+    const days = [];
+    for (let i = 0; i < 4; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      days.push(date);
+    }
+    return days;
+  };
+
+
+  useEffect(() => {
+    // Simulating data for the last 5 days for employees
+    const last5Days = generateLast5Days();
+
+    // Example data for multiple employees
+    const employeesData = [
+      {
+        id: 1,
+        progress: last5Days.map((date, index) => ({
+          date: date.toISOString().split('T')[0], // Format date as YYYY-MM-DD
+          verified: 85 + index * 5,
+          target: 100, 
+        })),
+      },
+    ];
+
+    setPreviousProgress(employeesData);
   }, []);
 
   return (
@@ -74,6 +113,45 @@ const EmployeeProgress = ({ profile = {} }) => {
                 );
               })}
             </div>
+
+            {/* multiplel display */}
+
+
+          <div className="contact">
+            <h3>PREVIOUS PROGRESS</h3>
+            {previousProgress.map((employee) => (
+              <div key={employee.id}>
+                {employee.progress.map((dayProgress, index) => {
+                  const flagColor = dayProgress.verified === dayProgress.target ? 'green' : 'red';
+
+                  return (
+                    <div key={index} style={{ marginBottom: '20px' }}>
+                      <p>{new Date(dayProgress.date).toLocaleDateString()}</p>
+                      <ProgressBar
+                        className={`progress-bar ${dayProgress.verified >= dayProgress.target ? 'progress-bar-success' : 'progress-bar-danger'}`}
+                        now={(dayProgress.verified / dayProgress.target) * 100}
+                        label={`${dayProgress.verified}/${dayProgress.target}`}
+                        style={{ height: '30px' }}
+                      />
+                      {dayProgress.verified < dayProgress.target ? (
+                        <span>
+                          <FontAwesomeIcon style={{ color: flagColor }} icon={faFlag} /> &nbsp; Not Completed
+                        </span>
+                      ) : (
+                        <span>
+                          <FontAwesomeIcon style={{ color: flagColor }} icon={faFlag} /> &nbsp; Completed
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+            <br/>
+            <br/>
+            <br/>
+          </div>
+
           </div>
         </div>
       </div>

@@ -3,9 +3,7 @@ import './profile.css';
 
 export default function Profile({profile = {}}) {
   // export default function Profile({ profile = {} }) {
-    const { fullName, email, phoneNumber, provider, createdAt, image, avatar } = profile || {}; // Ensure proper destructuring
-    console.log('Profile props:', profile);
-    console.log('Image URL:', avatar);
+    const { fullName, email, phoneNumber, provider, createdAt, image, avatar } = profile || {}; 
 
   return (
     <div className='body3'>

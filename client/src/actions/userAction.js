@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAccessToken, setAccessToken } from '../utility/tokenUtils';
 import Cookies from 'js-cookie';
 import { deleteAllCookies } from '../utility/tokenUtils';
-
+import { toast } from 'react-toastify';
 import { 
 
     GET_USER_REQUEST,
@@ -92,12 +92,15 @@ export const login = (credentials) => async (dispatch) => {
     try {
       const response = await axios.post('/api/v1/users/login', credentials);
       const { token } = response.data;
-  
+        
       // Save token in cookies
       Cookies.set('token', token, { expires: 7, path: '/' }); // Token will be stored for 7 days
       dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+      return response;
     } catch (error) {
       dispatch({ type: LOGIN_FAIL, payload: error.response?.data?.message || error.message });
+
+      throw error;
     }
   };
 
@@ -127,11 +130,11 @@ export const logout = () => async (dispatch) => {
       dispatch({ type: LOGOUT_SUCCESS });
 
       setTimeout(() => {
-          console.log('Logout successful');
+          toast.success('Logout successful');
       }, 2000);
 
   } catch (error) {
-      console.error('Logout error:', error.response?.data?.message || error.message);
+      toast.error('Logout error:', error.response?.data?.message || error.message);
       dispatch({
           type: LOGOUT_FAIL,
           payload: error.response?.data?.message || error.message,
@@ -214,33 +217,23 @@ export const googleLogin = (tokens) => async (dispatch) => {
 
       const response = await axios.post('/api/v1/users/googleLogin', tokens, config);
 
-      // Log the entire response for verification
-      console.log('API Response:', response.data);
-
-      // Extract tokens and user from the response
       const { accessToken, refreshToken, user } = response.data.data;
-
-      // Log the extracted tokens
-      console.log('Extracted Access Token:', accessToken);
-      console.log('Extracted Refresh Token:', refreshToken);
 
       // Store tokens in localStorage
       localStorage.setItem('accessToken', accessToken);
-      console.log('Access token saved:', localStorage.getItem('accessToken'));
 
       localStorage.setItem('refreshToken', refreshToken);
-      console.log('Refresh token saved:', localStorage.getItem('refreshToken'));
 
       // Dispatch success with user data
       dispatch({
           type: GOOGLE_LOGIN_SUCCESS,
-          payload: user
+          payload: user,
       });
-
+      toast.success("Login Successfully!")
       return response;
 
   } catch (error) {
-      console.error('Google Login Error:', error.response.data.message || error.message);
+      toast.error('Google Login Error:', error.response.data.message || error.message);
       dispatch({
           type: GOOGLE_LOGIN_FAIL,
           payload: error.response.data.message || error.message,

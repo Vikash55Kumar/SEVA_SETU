@@ -4,8 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Correct component names
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
-import Notification from './utility/Notification';
-import { hideNotification } from './reducer/notificationReducer';
 import Navbar from './controller/navbar/Navbar';
 import Footer from './controller/footer/Footer';
 import HomePage from './controller/homePage/HomePage';
@@ -25,7 +23,8 @@ import Home from './controller/home/Home';
 import Profile from './controller/profile/Profile';
 import { SocketProvider } from './utility/SocketContext';
 import EmployeeProgress from './controller/profile/EmployStatus';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,16 +35,10 @@ function App() {
   }, [dispatch]);
 
   const { isAuthenticated, user, loading } = useSelector((state) => state.user);
-  const { open, message, severity } = useSelector((state) => state.notification);
-
-  const handleClose = () => {
-    dispatch(hideNotification());
-  };
-
-  console.log('User:', user);
 
   return (
     <>
+      <ToastContainer />
       <SocketProvider>
         <Router>
           <Navbar />
@@ -75,7 +68,6 @@ function App() {
           <Footer />
         </Router>
       </SocketProvider>
-      <Notification open={open} handleClose={handleClose} message={message} severity={severity} />
     </>
   );
 }
