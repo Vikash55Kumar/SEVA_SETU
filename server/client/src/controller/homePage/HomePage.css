@@ -1,0 +1,157 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0%;
+}
+.welcomeSection {
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  .welcomeSection h1 {
+    font-size: 2rem;
+  }
+
+  .welcomeSection p {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+
+
+
+  /* Real time status */
+  /* .real-time-status {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin: 20px; 
+  } */
+  
+  /* .real-time-status:hover {
+    transform: scale(0.95); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  } */
+  
+  /* .real-time-status h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+  } */
+  
+  /* Keyframes for the fade-in animation */
+  /* @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  } */
+  
+
+  /* Quick Access */
+
+  .quick-access {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    height: 50vh;
+    margin-top: 0rem;
+  }
+
+  h4 > a {
+    font-size: 1.1rem;
+  }
+  .links {
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  
+  .links > a {
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border-radius: 2rem;
+    padding: 1rem;
+    border: .2rem solid white;
+    margin: 1rem;
+    color: black;
+    text-align: center;
+    width: 190px;
+    height: 80px;
+    animation: blink 3s infinite alternate;
+  }
+  
+  @keyframes blink {
+    10% {
+      opacity: 1;
+      background-color: rgb(231, 231, 98);
+    }
+    100% {
+        opacity: 0.8;
+        background-color: rgb(27, 159, 235);
+    }
+  }
+
+  /* Announcment */
+.announcement {
+  background-image: linear-gradient(0deg, rgb(245, 248, 255) 50%, rgb(213, 221, 242) 100%);
+  display: flex;
+  width: 100%;
+  height: 2.1rem;
+  align-items: center;
+}
+
+.latest {
+  height: 100%; 
+  width: 140px;
+  background-color: #00a651;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.latest > h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.marquee-container {
+  flex: 1;
+  display: flex;
+  align-items: center; 
+  overflow: hidden;
+}
+
+.marquee-container marquee {
+  width: 100%;
+}
+
+.marquee-container h4 {
+  margin: 0;
+}
+
+.marquee-container a {
+  color: red;
+  text-decoration: none;
+}
+.marquee-container a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.marquee-container span {
+  margin: 0 1rem; /* Adds spacing between alerts */
+}

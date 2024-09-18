@@ -1,0 +1,25 @@
+.not-found-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    text-align: center;
+  }
+  
+ .not-found-container h2 {
+    font-size: 2rem;
+    margin-bottom: 7rem;
+    color: #333;
+  }
+  
+  .not-found-container .MuiButton-root {
+    background-color: #0071eb;
+    color: white;
+  }
+  
+  .not-found-container .MuiButton-root:hover {
+    background-color: #005bb5;
+  }
+  

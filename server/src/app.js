@@ -8,10 +8,15 @@ import { createServer } from 'http';
 import { SocketHandler } from './utils/socketHandler.js';  // Import the WebSocket handler
 import MongoStore from 'connect-mongo';
 const app = express();
+import path from "path";
+import { fileURLToPath } from "url";
 const server = createServer(app); // Create a server instance
 
 // Setup WebSocket
 SocketHandler(server);
+
+const __filename=fileURLToPath(import.meta.url)
+const __dirname=path.dirname(__filename)
 
 // CORS Setup
 app.use(cors({
@@ -19,6 +24,7 @@ app.use(cors({
   methods: 'DELETE, POST, GET, PUT',
   credentials: true,
 }));
+
 
 // Body parsers and other middleware
 app.use(express.json({ limit: '20kb' }));
@@ -47,6 +53,15 @@ app.use(passport.session());
 // Routers import
 import userRouter from './routes/user.route.js';
 app.use('/api/v1/users', userRouter);
+
+// rsolving dirname for ES module
+
+app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'dist', 'index.html'));
+});
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {

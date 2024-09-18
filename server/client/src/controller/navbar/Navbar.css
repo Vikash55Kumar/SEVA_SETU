@@ -1,0 +1,190 @@
+/* General Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(245, 248, 255, 0.3);
+}
+
+.logo {
+    width: 12rem;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-links.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(245, 248, 255, 0.9);
+    width: 100%;
+    z-index: 1;
+}
+
+.nav-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #0c6ade;
+    padding: 0.3rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    align-items: center;
+    position: absolute;
+    top: 100%;
+    background-color: rgb(216, 221, 61, 0.9);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    flex-direction: column;
+    width: 200px;
+}
+
+.dropdown-menu a {
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #10acea;
+}
+
+/* Show the dropdown menu when hovering over the Services link */
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+/* Responsive Styles */
+.menu-toggle {
+    display: none; /* Hidden by default */
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.menu-toggle.open .fa-bars {
+    display: none;
+}
+
+.menu-toggle.open .fa-times {
+    display: block;
+}
+
+@media (max-width: 750px) {
+    .nav-links {
+        position: static;
+        background-color: rgb(225, 231, 245);
+        display: none; 
+        flex-direction: column;
+    }
+    
+    .nav-links.active {
+        display: flex; /* Show links when active */
+    }
+    
+    .menu-toggle {
+        display: block; /* Show menu toggle */
+    }
+    
+    .menu-toggle .fa-times {
+        display: none;
+    }
+    
+    .dropdown-menu {
+        position: static; /* Make dropdown menu static */
+        display: none; /* Hide dropdown menu by default */
+    }
+
+    .dropdown.open .dropdown-menu {
+        display: flex; /* Show dropdown menu when open */
+        animation: slideDown 0.3s ease-in-out;
+    }
+    
+    @keyframes slideDown {
+        from {
+            transform: translateY(-10px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+/* Other Styles */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+}
+
+.notifications {
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.user-profile {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.user-profile:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #343a40;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: rgb(110, 223, 36);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background-color: #495057;
+}
