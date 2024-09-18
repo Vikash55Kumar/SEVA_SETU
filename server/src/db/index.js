@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 import { DB_NAME } from "../constants.js";
 import { User } from "../models/user.model.js"; // Correct path to your User model
