@@ -53,6 +53,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import passport from './utils/passport.js';
+import { MemoryStore } from 'express-session';
 import { createServer } from 'http';
 import { SocketHandler } from './utils/socketHandler.js';  // Import the WebSocket handler
 
@@ -81,6 +82,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: { secure: process.env.NODE_ENV === 'production' },
+  store: new MemoryStore({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  }),
 }));
 
 // Initialize Google passport
