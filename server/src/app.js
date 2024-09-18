@@ -57,7 +57,6 @@ import { createServer } from 'http';
 import { SocketHandler } from './utils/socketHandler.js';  // Import the WebSocket handler
 import MongoStore from 'connect-mongo';
 import mongoose from 'mongoose';
-
 const app = express();
 const server = createServer(app); // Create a server instance
 
@@ -83,29 +82,23 @@ app.use(bodyParser.json());
 //   resave: false,
 //   saveUninitialized: true,
 //   cookie: { secure: process.env.NODE_ENV === 'production' },
-//   store: new MemoryStore({
-//     checkPeriod: 86400000 // prune expired entries every 24h
-//   }),
 // }));
-
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
 
 app.use(session({
   secret: process.env.GOOGLE_CLIENT_SECRET,
   resave: false,
-  saveUninitialized: false,  // Avoid saving uninitialized sessions
+  saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URI,
-    ttl: 14 * 24 * 60 * 60,  // Session expiration time (14 days)
+    mongoUrl: process.env.MONODB_URI,  // Provide the mongoUrl here
+    ttl: 14 * 24 * 60 * 60,  // Sessions expire after 14 days
   }),
   cookie: {
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 1000 * 60 * 60 * 24 * 14, // 14 days
-  }
+    maxAge: 1000 * 60 * 60 * 24 * 14,  // 14 days
+  },
 }));
+
+
 
 // Initialize Google passport
 app.use(passport.initialize());
