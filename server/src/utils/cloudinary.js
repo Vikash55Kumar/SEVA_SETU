@@ -44,6 +44,21 @@ const deleteFromCloudinary = async (publicIdOfFile, resourceType) => {
         return false; // Return false on error
     }
 };
+// const deleteFromCloudinary = async (publicIdOfFile, resourceType) => {
+//     try {
+//         console.log(`Attempting to delete ${resourceType} with publicId: ${publicIdOfFile}`);
+//         const result = await cloudinary.uploader.destroy(publicIdOfFile, {
+//             resource_type: resourceType
+//         });
+
+//         console.log("Cloudinary Deletion Result:", result.url);
+//         return result
+//     } catch (error) {
+//         console.error("Error while deleting file from Cloudinary:", error);
+//         return false;
+//     }
+// };
+
 
 export { uploadOnCloudinary,deleteFromCloudinary };
 
