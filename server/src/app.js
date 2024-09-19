@@ -8,8 +8,8 @@ import { createServer } from 'http';
 import { SocketHandler } from './utils/socketHandler.js';  // Import the WebSocket handler
 import MongoStore from 'connect-mongo';
 const app = express();
-import path from "path";
-import { fileURLToPath } from "url";
+// import path from "path";
+// import { fileURLToPath } from "url";
 const server = createServer(app); // Create a server instance
 
 // Setup WebSocket
@@ -56,11 +56,11 @@ app.use('/api/v1/users', userRouter);
 
 // rsolving dirname for ES module
 
-app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
+// app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'client', 'dist', 'index.html'));
+// });
 
 
 // Error handling middleware
