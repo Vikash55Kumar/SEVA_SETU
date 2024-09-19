@@ -15,8 +15,8 @@ const server = createServer(app); // Create a server instance
 // Setup WebSocket
 SocketHandler(server);
 
-const __filename=fileURLToPath(import.meta.url)
-const __dirname=path.dirname(__filename)
+// const __filename=fileURLToPath(import.meta.url)
+// const __dirname=path.dirname(__filename)
 
 // CORS Setup
 app.use(cors({
