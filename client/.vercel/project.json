@@ -1,6 +1,13 @@
 {
     "orgId":"team_T77333ZXhAeFgERjM9QmHbj4","projectId":"prj_vwplKIeXDSINortjo1679K877RaM",
     
+    "builds": [
+        {
+          "src": "dist/**/*",
+          "use": "@vercel/static"
+        }
+      ],
+      
     "rewrites": [
     {
       "source": "/(.*)",
