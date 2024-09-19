@@ -27,8 +27,8 @@ let formData = [
 export function SocketHandler(server) {
   const io = new Server(server, {
     cors: {
-      origin: process.env.CORS_ORIGIN,
-      methods: ['GET', 'POST'],
+      origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
       credentials: true,
     },
   });
@@ -66,8 +66,6 @@ export function SocketHandler(server) {
         form.RecjectedForms = Math.min(form.FormsReceived, form.RecjectedForms + Math.floor(Math.random() * 2)); // Rejected forms
         return form;
       });
-
-
 
 
       // Send updated data to all clients
