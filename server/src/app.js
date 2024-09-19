@@ -20,7 +20,7 @@ const __dirname=path.dirname(__filename)
 
 // CORS Setup
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'https://projectsevasetu.up.railway.app',
+  origin: process.env.CORS_ORIGIN,
   methods: 'DELETE, POST, GET, PUT',
   credentials: true,
 }));

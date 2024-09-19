@@ -38,14 +38,24 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
+       <ToastContainer 
+        position="top-center"  // This will show the toast in the center of the screen
+        autoClose={4000}  // Toast will disappear after 4 seconds
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <SocketProvider>
         <Router>
           <Navbar />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/dashboard' element={isAuthenticated ? <Dashboard /> : <Login />} />
-            <Route path='/certificate' element={<Certificate />} />
+            <Route path='/dashboard' element={<Dashboard /> } />
+            <Route path='/certificate' element={isAuthenticated ? <Certificate /> : <Login />} />
             <Route path='/certificateForm' element={<CertificateForm />} />
   
             <Route path='/profile' element={

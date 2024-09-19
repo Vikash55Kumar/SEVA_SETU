@@ -4,6 +4,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    margin-left: .5rem;
+    margin-right: .5rem;
     background-color: rgba(245, 248, 255, 0.3);
 }
 

@@ -11,30 +11,58 @@ const RealTimeStatus = () => {
   const [labels, setLabels] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const socket = new WebSocket(`${import.meta.env.VITE_WEBSOCKET_URL}`);
+  // useEffect(() => {
+  //   const socket = new WebSocket(`${import.meta.env.VITE_WEBSOCKET_URL}`);
 
-    socket.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      setData((prevData) => [...prevData, message.value]);
-      setLabels((prevLabels) => [...prevLabels, message.timestamp]);
+  //   socket.onmessage = (event) => {
+  //     const message = JSON.parse(event.data);
+  //     setData((prevData) => [...prevData, message.value]);
+  //     setLabels((prevLabels) => [...prevLabels, message.timestamp]);
 
-      // Keep only the last 10 data points
-      if (data.length > 10) {
-        setData((prevData) => prevData.slice(1));
-        setLabels((prevLabels) => prevLabels.slice(1));
-      }
-    };
+  //     // Keep only the last 10 data points
+  //     if (data.length > 10) {
+  //       setData((prevData) => prevData.slice(1));
+  //       setLabels((prevLabels) => prevLabels.slice(1));
+  //     }
+  //   };
 
-    socket.onerror = (error) => {
-      console.error('WebSocket Error:', error);
-      setError('Failed to connect to WebSocket server.');
-    };
+  //   socket.onerror = (error) => {
+  //     console.error('WebSocket Error:', error);
+  //     setError('Failed to connect to WebSocket server.');
+  //   };
 
-    return () => {
-      socket.close();
-    };
-  }, [data]);
+  //   return () => {
+  //     socket.close();
+  //   };
+  // }, [data]);
+
+  // import { io } from 'socket.io-client';
+
+useEffect(() => {
+  const socket = io(import.meta.env.VITE_WEBSOCKET_URL, {
+    transports: ['websocket'],
+    withCredentials: true,
+  });
+
+  socket.on('data', (message) => {
+    setData((prevData) => [...prevData, message.value]);
+    setLabels((prevLabels) => [...prevLabels, message.timestamp]);
+
+    // Keep only the last 10 data points
+    if (data.length > 10) {
+      setData((prevData) => prevData.slice(1));
+      setLabels((prevLabels) => prevLabels.slice(1));
+    }
+  });
+
+  socket.on('connect_error', (error) => {
+    setError('Failed to connect to the server.');
+  });
+
+  return () => {
+    socket.disconnect();
+  };
+}, []);
 
   const chartData = {
     labels: labels,
