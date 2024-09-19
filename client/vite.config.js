@@ -9,8 +9,8 @@ export default defineConfig({
         // target: 'http://projectsevasetu.up.railway.app',
         target: "https://seva-setu.onrender.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1'),
-        // ws:true,
+        // rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1'),
+        ws:true,
       }
     }
   },
