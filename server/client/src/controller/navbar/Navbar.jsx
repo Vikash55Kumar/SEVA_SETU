@@ -62,7 +62,7 @@ const Navbar = () => {
                             </a>
                             {isSubDropdownOpen && (
                                 <div className="dropdown-menu nested-dropdown">
-                                    <a href="/dashboard">Jodhpur</a>
+                                    <a href="/certificate">Jodhpur</a>
                                     <a href="/service2">Jaipur</a>
                                     <a href="/service3">Kota</a>
                                     <a href="/service3">Udaipur</a>

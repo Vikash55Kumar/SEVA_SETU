@@ -9,7 +9,8 @@ export default defineConfig({
         target: 'http://localhost:4000',
         // target: "https://seva-setu.onrender.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1')
+        rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1'),
+        ws:true,
       }
     }
   },
