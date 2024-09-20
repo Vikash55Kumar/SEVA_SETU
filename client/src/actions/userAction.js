@@ -33,6 +33,11 @@ import {
     
 } from '../constants/userConstants';
 
+import apiClient from '../utility/apiService';
+
+const API_URL = import.meta.env.VITE_API_URL || "https://seva-setu.onrender.com/api/v1/users";
+
+
 export const getUserDetails = () => async (dispatch) => {
     try {
       dispatch({ type: GET_USER_REQUEST });
@@ -48,7 +53,7 @@ export const getUserDetails = () => async (dispatch) => {
         },
       };
   
-      const {data} = await axios.get('/api/v1/users/getUserDetails', config); // Adjust the endpoint if necessary
+      const {data} = await axios.get(`${API_URL}/getUserDetails`, config); // Adjust the endpoint if necessary
   
       dispatch({
         type: GET_USER_SUCCESS,
@@ -90,7 +95,7 @@ export const register = (formData) => async (dispatch) => {
 
 export const login = (credentials) => async (dispatch) => {
     try {
-      const response = await axios.post('/api/v1/users/login', credentials);
+      const response = await axios.post(`${API_URL}/login`, credentials);
       const { token } = response.data;
         
       // Save token in cookies
@@ -125,7 +130,7 @@ export const logout = () => async (dispatch) => {
       sessionStorage.clear();
 
       // Optionally, call your backend to log out
-      await axios.post('/api/v1/users/logout');
+      await axios.post(`${API_URL}/logout`);
 
       dispatch({ type: LOGOUT_SUCCESS });
 
@@ -187,7 +192,7 @@ export const loadUsers = () => async (dispatch) => {
             }
         };
 
-        const { data } = await axios.get('/api/v1/users/getUser', config);
+        const { data } = await axios.get(`${API_URL}/getUser`, config);
         console.log('API response:', data);
 
         dispatch({
