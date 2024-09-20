@@ -15,7 +15,6 @@ const EmployeeProgress = ({ profile = {} }) => {
 
   const [previousProgress, setPreviousProgress] = useState([]);
 
-
   useEffect(() => {
     // Listen for real-time employee updates
     socket.on('employeeUpdate', (data) => {

@@ -25,6 +25,10 @@ import { SocketProvider } from './utility/SocketContext';
 import EmployeeProgress from './controller/profile/EmployStatus';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Oval } from 'react-loader-spinner';
+// import SpinnerLoader from './utility/SpinnerLoader';
+
+
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +44,7 @@ function App() {
     <>
        <ToastContainer 
         position="top-center"  // This will show the toast in the center of the screen
-        autoClose={4000}  // Toast will disappear after 4 seconds
+        autoClose={3000}  // Toast will disappear after 4 seconds
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -49,6 +53,7 @@ function App() {
         draggable
         pauseOnHover
       />
+      {/* <SpinnerLoader /> */}
       <SocketProvider>
         <Router>
           <Navbar />
@@ -57,7 +62,6 @@ function App() {
             <Route path='/dashboard' element={<Dashboard /> } />
             <Route path='/certificate' element={isAuthenticated ? <Certificate /> : <Login />} />
             <Route path='/certificateForm' element={<CertificateForm />} />
-  
             <Route path='/profile' element={
                 isAuthenticated 
                 ? (loading ? <div>Loading...</div> : user && user.data 

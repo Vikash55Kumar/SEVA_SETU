@@ -39,8 +39,22 @@
     transition: color 0.3s ease-in-out;
 }
 
+.prf {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #0c6ade;
+    padding: 0.3rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.prf:hover {
+    color: black;
+    cursor: pointer;
+}
+
 .nav-links a:hover {
-    color: #007bff;
+    color: black;
+    cursor: pointer;
 }
 
 /* Dropdown Styles */
@@ -70,11 +84,13 @@
 
 .dropdown-menu a:hover {
     background-color: #10acea;
+    cursor: pointer;
 }
 
 /* Show the dropdown menu when hovering over the Services link */
 .dropdown:hover .dropdown-menu {
     display: flex;
+    cursor: pointer;
 }
 
 /* Responsive Styles */

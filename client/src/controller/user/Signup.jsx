@@ -5,6 +5,8 @@ import { register } from '../../actions/userAction';
 import { useNavigate } from 'react-router-dom';
 import googleImg from "../../assets/google.png"
 import { toast } from 'react-toastify';
+import SpinnerLoader from '../../utility/SpinnerLoader';
+
 
 export default function Signup() {
     const dispatch = useDispatch();
@@ -16,9 +18,11 @@ export default function Signup() {
     const [conformPassword, setConformPassword] = useState('');
     const [phone, setPhone] = useState('');
     const [avatar, setAvatar] = useState('');
+    const [loading, setLoading] = useState(false); // Loading state to manage spinner visibility
 
     const handleSignUp = async (e) => {
         e.preventDefault();
+        setLoading(true); 
         
         const myForm = new FormData();
 
@@ -44,6 +48,7 @@ export default function Signup() {
                 setPhone('');
                 setAvatar('');
 
+                setLoading(false); 
                 nevigate("/login")
                 
             } else {
@@ -64,88 +69,94 @@ export default function Signup() {
 
     <div className="account-set-main">
       <div className="signup-container">
-      <h2>SignUp on SevaSetu</h2>
-        <h4 className="mt-2 mb-3">Have an account? <a href="/login">Log In</a></h4>
-        <div id="auth-account">
-          <a onClick={() => window.location.href = '/api/v1/users/auth/google'}>
+      {loading ? (
+          <SpinnerLoader /> 
+      ) : (
+        <>
+          <h2>SignUp on SevaSetu</h2>
+            <h4 className="mt-2 mb-3">Have an account? <a href="/login">Log In</a></h4>
+            <div id="auth-account">
+              <a onClick={() => window.location.href = '/api/v1/users/auth/google'}>
 
-            <img src={googleImg} alt="Google Icon" />
-            <div>Continue with Google</div>
-          </a>
-          <p className="mt-2">—— <b>Or</b> ——</p>
-        </div>
-        <form onSubmit={handleSignUp} className='form'>
-          <div className="form-group-2">
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              placeholder="* Enter Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group-2">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="* Enter Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group-2">
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="* Enter Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group-2">
-            <label htmlFor="confirm-password">Confirm Password:</label>
-            <input
-              type="password"
-              id="confirm-password"
-              placeholder="* Enter Confirm Password"
-              value={conformPassword}
-              onChange={(e) => setConformPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group-2">
-            <label htmlFor="phone">Phone Number:</label>
-            <input
-              type="text"
-              id="phone"
-              placeholder="* Enter Valid Phone Number"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </div>
+                <img src={googleImg} alt="Google Icon" />
+                <div>Continue with Google</div>
+              </a>
+              <p className="mt-2">—— <b>Or</b> ——</p>
+            </div>
+            <form onSubmit={handleSignUp} className='form'>
+              <div className="form-group-2">
+                <label htmlFor="name">Name:</label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="* Enter Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group-2">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="* Enter Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group-2">
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="* Enter Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group-2">
+                <label htmlFor="confirm-password">Confirm Password:</label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  placeholder="* Enter Confirm Password"
+                  value={conformPassword}
+                  onChange={(e) => setConformPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group-2">
+                <label htmlFor="phone">Phone Number:</label>
+                <input
+                  type="text"
+                  id="phone"
+                  placeholder="* Enter Valid Phone Number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+              </div>
 
-          <div className="form-group-2">
-            <label htmlFor="avatar">Profile Image</label>
-            <input
-              type="file"
-              id="avatar"
-              name="avatar"
-              onChange={(e) => setAvatar(e.target.files[0])}
-              required
-            />
-          </div>
+              <div className="form-group-2">
+                <label htmlFor="avatar">Profile Image</label>
+                <input
+                  type="file"
+                  id="avatar"
+                  name="avatar"
+                  onChange={(e) => setAvatar(e.target.files[0])}
+                  required
+                />
+              </div>
 
-          <div className="form-group-2">
-            <button type="submit">Sign Up</button>
-          </div>
-        </form>
+              <div className="form-group-2">
+                <button type="submit">Sign Up</button>
+              </div>
+            </form>
+        </>
+      )}
       </div>
     </div>
     
