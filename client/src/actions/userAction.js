@@ -33,9 +33,9 @@ import {
     
 } from '../constants/userConstants';
 
-import apiClient from '../utility/apiService';
+// import apiClient from '../utility/apiService';
 
-const API_URL = import.meta.env.VITE_API_URL || "https://seva-setu.onrender.com/api/v1/users";
+const API_URL = "https://seva-setu.onrender.com/api/v1/users";
 
 
 export const getUserDetails = () => async (dispatch) => {
