@@ -27,7 +27,7 @@ let formData = [
 export function SocketHandler(server) {
   const io = new Server(server, {
     cors: {
-      origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+      origin: process.env.CORS_ORIGIN || "https://seva-setu.netlify.app",
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       credentials: true,
     },
