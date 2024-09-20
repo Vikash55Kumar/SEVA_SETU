@@ -283,9 +283,6 @@ import {
 
 import api from '../utility/api';
 
-// con"= import.meta.env.VI"
-// console.log("hell"
-
 
 export const getUserDetails = () => async (dispatch) => {
     try {
@@ -321,7 +318,7 @@ export const register = (formData) => async (dispatch) => {
     try {
         dispatch({ type: SIGNUP_REQUEST });
 
-        const response =await axios.post("/api/v1/users/register", formData, {
+        const response =await api.post("/users/register", formData, {
             headers: {
                 "Content-Type" :"multipart/form-data",
             }
@@ -406,7 +403,7 @@ export const forgetPassword = (userData) => async (dispatch) => {
             }
         };
 
-        const response = await axios.post('/api/v1/users/forgetPassword', userData, config);
+        const response = await api.post('/users/forgetPassword', userData, config);
 
         dispatch({
             type: FORGOTPASSWORD_SUCCESS,
@@ -470,7 +467,7 @@ export const googleLogin = (tokens) => async (dispatch) => {
           }
       };
 
-      const response = await axios.post('/api/v1/users/googleLogin', tokens, config);
+      const response = await api.post('/users/googleLogin', tokens, config);
 
       const { accessToken, refreshToken, user } = response.data.data;
 
