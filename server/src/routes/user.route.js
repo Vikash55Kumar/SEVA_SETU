@@ -64,22 +64,22 @@ router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 
 router.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: `${process.env.CORES_ORIGIN}/login` }), 
   async (req, res) => {
-    console.log('Google user data:', req.user); // Add this
-    if (!req.user) {
-      return res.redirect(`${process.env.CORES_ORIGIN}/login`);
-    }
-
     const user = req.user;
+
+    console.log("User received after Google authentication:", user);
+
     const accessToken = user.generateAccessToken();
     const refreshToken = user.generateRefreshToken();
 
     user.refreshToken = refreshToken;
     await user.save();
 
-    console.log('Redirecting with tokens...'); // Add this
+    console.log("Redirecting with accessToken and refreshToken");
+    
     res.redirect(`${process.env.CORES_ORIGIN}/google-login?accessToken=${accessToken}&refreshToken=${refreshToken}`);
   }
 );
+
 
 
 

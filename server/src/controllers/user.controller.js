@@ -65,52 +65,52 @@ const generateAccessAndRefreshTokens = async (userId) => {
 const googleAuth = asyncHandler(async (req, res) => {
     const { accessToken, refreshToken } = req.body;
 
+    console.log("Received accessToken:", accessToken);
+    console.log("Received refreshToken:", refreshToken);
+
     if (!accessToken || !refreshToken) {
+        console.log("Tokens are missing");
         return res.status(400).json(new ApiResponse(400, null, "Tokens are required"));
     }
 
     try {
-        // Verify access token for validity (checks expiration and signature)
         const decodedAccessToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+        console.log("Decoded Access Token:", decodedAccessToken);
 
-        // Decode the refresh token (don't verify expiration for refresh token)
         const decodedRefreshToken = jwt.decode(refreshToken);
+        console.log("Decoded Refresh Token:", decodedRefreshToken);
 
-        // Find user by ID from the decoded access token
         const user = await User.findById(decodedAccessToken._id);
 
         if (!user) {
+            console.log("User not found");
             return res.status(401).json(new ApiResponse(401, null, "User not found"));
         }
 
         console.log('Stored Refresh Token:', user.refreshToken);
 
-        // Compare stored refresh token with the provided one
         if (user.refreshToken !== refreshToken) {
+            console.log("Invalid refresh token");
             return res.status(401).json(new ApiResponse(401, null, "Invalid refresh token"));
         }
 
-        // If everything is valid, generate new access and refresh tokens
         const newAccessToken = user.generateAccessToken();
         const newRefreshToken = user.generateRefreshToken();
 
-        // Update user record with new refresh token
         user.refreshToken = newRefreshToken;
         await user.save();
 
-        // Return the new tokens and basic user info
+        console.log("Tokens generated and saved");
+
         return res.status(200).json(
-            new ApiResponse(200, { 
-                user: { _id: user._id, email: user.email, username: user.username }, 
-                accessToken: newAccessToken, 
-                refreshToken: newRefreshToken 
-            }, "User logged in successfully")
+            new ApiResponse(200, { user, accessToken: newAccessToken, refreshToken: newRefreshToken }, "User logged in successfully")
         );
     } catch (error) {
         console.error('Token verification error:', error);
         return res.status(401).json(new ApiResponse(401, null, "Invalid tokens"));
     }
 });
+
 
 const registerUser = asyncHandler(async (req, res) => {
     const { fullName, email, phoneNumber, password, conformPassword } = req.body;
