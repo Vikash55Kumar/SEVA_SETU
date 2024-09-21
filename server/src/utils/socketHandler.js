@@ -46,7 +46,7 @@ export function SocketHandler(server) {
 
       employeeData = employeeData.map(employee => {
         // Simulate changes in verified forms
-        employee.verified = Math.min(employee.verified + Math.floor(Math.random() * 5), employee.target);
+        employee.verified = Math.min(employee.verified + Math.floor(Math.random() * 2), employee.target);
         return employee;
       });
 

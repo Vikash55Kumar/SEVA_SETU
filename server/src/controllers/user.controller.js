@@ -121,28 +121,59 @@ const registerUser = asyncHandler(async (req, res) => {
     );
 });
 
-const logoutUser = asyncHandler( async (req, res) => {
-    User.findByIdAndUpdate(
+// const logoutUser = asyncHandler( async (req, res) => {
+//     User.findByIdAndUpdate(
+//         req.user._id,
+//         {
+//             $set: {
+//                 refreshToken: undefined
+//             }
+//         }, 
+//         {
+//             new: true
+//         }
+//     )
+//     const options = {
+//         httpOnly : true,
+//         secure: true
+//     }
+//     return res
+//     .status(200)
+//     .clearCookie("accessToken", options)
+//     .clearCookie("refreshToken", options)
+//     .json(new ApiResponse(200,{},"User logout Successfully"))
+// })
+
+const logoutUser = asyncHandler(async (req, res) => {
+    // Find the user and remove the refreshToken
+    await User.findByIdAndUpdate(
         req.user._id,
         {
             $set: {
                 refreshToken: undefined
             }
-        }, 
+        },
         {
             new: true
         }
-    )
+    );
+
+    // Cookie options
     const options = {
-        httpOnly : true,
-        secure: true
-    }
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // Only secure cookies in production
+        sameSite: "None", // If using cross-site requests
+        path: "/",
+    };
+
+    // Clear both access and refresh tokens from cookies
     return res
-    .status(200)
-    .clearCookie("accessToken", options)
-    .clearCookie("refreshToken", options)
-    .json(new ApiResponse(200,{},"User logout Successfully"))
-})
+        .status(200)
+        .clearCookie("accessToken", options)
+        .clearCookie("refreshToken", options)
+        .json(new ApiResponse(200, {}, "User logged out successfully"));
+});
+
 
 async function loginUser(req, res) {
     const { email, password } = req.body;
