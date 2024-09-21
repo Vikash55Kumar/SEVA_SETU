@@ -339,22 +339,6 @@ export const register = (formData) => async (dispatch) => {
     }
 };
 
-// export const login = (credentials) => async (dispatch) => {
-//     try {
-//       const response = await api.post("/users/login", credentials);
-//       const { token } = response.data;
-        
-//       // Save token in cookies
-//       Cookies.set('token', token, { expires: 7, path: '/' }); // Token will be stored for 7 days
-//       dispatch({ type: LOGIN_SUCCESS, payload: response.data });
-//       return response;
-//     } catch (error) {
-//       dispatch({ type: LOGIN_FAIL, payload: error.response?.data?.message || error.message });
-
-//       throw error;
-//     }
-//   };
-
 export const login = (credentials) => async (dispatch) => {
     try {
         const response = await api.post("/users/login", credentials);
@@ -375,44 +359,89 @@ export const login = (credentials) => async (dispatch) => {
     }
 };
 
+// export const logout = () => async (dispatch) => {
+//   try {
+//       // Clear cookies
+//       const deleteAllCookies = () => {
+//           const cookies = document.cookie.split(";");
+
+//           for (let i = 0; i < cookies.length; i++) {
+//               const cookie = cookies[i];
+//               const eqPos = cookie.indexOf("=");
+//               const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+//               document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+//           }
+//       };
+//       deleteAllCookies();
+
+//       // Clear tokens from storage
+//       localStorage.removeItem('accessToken');
+//       localStorage.removeItem('refreshToken');
+//       sessionStorage.clear();
+
+//       // Optionally, call your backend to log out
+//       await api.post("/users/logout");
+
+//       dispatch({ type: LOGOUT_SUCCESS });
+
+//       setTimeout(() => {
+//           toast.success('Logout successful');
+//       }, 2000);
+
+//   } catch (error) {
+//       toast.error('Logout error:', error.response?.data?.message || error.message);
+//       dispatch({
+//           type: LOGOUT_FAIL,
+//           payload: error.response?.data?.message || error.message,
+//       });
+//   }
+// };
 
 export const logout = () => async (dispatch) => {
-  try {
-      // Clear cookies
-      const deleteAllCookies = () => {
-          const cookies = document.cookie.split(";");
+    try {
+        // Clear cookies
+        const deleteAllCookies = () => {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i];
+                const eqPos = cookie.indexOf("=");
+                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+            }
+        };
+        deleteAllCookies();
 
-          for (let i = 0; i < cookies.length; i++) {
-              const cookie = cookies[i];
-              const eqPos = cookie.indexOf("=");
-              const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-              document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-          }
-      };
-      deleteAllCookies();
+        // Get token before clearing it
+        const accessToken = localStorage.getItem('accessToken');
+        
+        // Clear tokens from storage
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        sessionStorage.clear();
 
-      // Clear tokens from storage
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      sessionStorage.clear();
+        // Send logout request with token to backend (optional)
+        await api.post("/users/logout", {}, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
 
-      // Optionally, call your backend to log out
-      await api.post("/users/logout");
+        dispatch({ type: LOGOUT_SUCCESS });
 
-      dispatch({ type: LOGOUT_SUCCESS });
+        setTimeout(() => {
+            toast.success('Logout successful');
+        }, 2000);
 
-      setTimeout(() => {
-          toast.success('Logout successful');
-      }, 2000);
-
-  } catch (error) {
-      toast.error('Logout error:', error.response?.data?.message || error.message);
-      dispatch({
-          type: LOGOUT_FAIL,
-          payload: error.response?.data?.message || error.message,
-      });
-  }
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message;
+        toast.error(`Logout error: ${errorMessage}`);
+        dispatch({
+            type: LOGOUT_FAIL,
+            payload: errorMessage,
+        });
+    }
 };
+
 
 export const forgetPassword = (userData) => async (dispatch) => {
     try {
