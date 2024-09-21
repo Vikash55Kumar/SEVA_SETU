@@ -1,4 +1,8 @@
 /* Container styling */
+body {
+  height: 100%;
+  margin: 0;
+}
 .body3 {
   font-family: 'Arial', sans-serif;
   padding: 20px;
