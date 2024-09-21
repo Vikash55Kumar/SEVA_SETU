@@ -64,30 +64,24 @@ router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 
 router.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: `${process.env.CORES_ORIGIN}/login` }), 
   async (req, res) => {
-    const user = req.user;
-
-    if (!user) {
-      console.error('User not founds after Google authentication');
+    console.log('Google user data:', req.user); // Add this
+    if (!req.user) {
       return res.redirect(`${process.env.CORES_ORIGIN}/login`);
     }
 
-    try {
-      // Generate tokens
-      const accessToken = user.generateAccessToken();
-      const refreshToken = user.generateRefreshToken();
+    const user = req.user;
+    const accessToken = user.generateAccessToken();
+    const refreshToken = user.generateRefreshToken();
 
-      // Store the refresh token in the database
-      user.refreshToken = refreshToken;
-      await user.save();
+    user.refreshToken = refreshToken;
+    await user.save();
 
-      // Redirect back to frontend with the tokens
-      res.redirect(`${process.env.CORES_ORIGIN}/google-login?accessToken=${accessToken}&refreshToken=${refreshToken}`);
-    } catch (error) {
-      console.error('Error during token generation or redirection:', error);
-      res.redirect(`${process.env.CORES_ORIGIN}/login`);
-    }
+    console.log('Redirecting with tokens...'); // Add this
+    res.redirect(`${process.env.CORES_ORIGIN}/google-login?accessToken=${accessToken}&refreshToken=${refreshToken}`);
   }
 );
+
+
 
 
 export default router;

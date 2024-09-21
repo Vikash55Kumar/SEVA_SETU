@@ -23,6 +23,45 @@ const generateAccessAndRefreshTokens = async (userId) => {
     }
 };
 
+// const googleAuth = asyncHandler(async (req, res) => {
+//     const { accessToken, refreshToken } = req.body;
+
+//     if (!accessToken || !refreshToken) {
+//         return res.status(400).json(new ApiResponse(400, null, "Tokens are required"));
+//     }
+
+//     try {
+//         const decodedAccessToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+//         const decodedRefreshToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+
+//         const user = await User.findById(decodedAccessToken._id);
+
+//         if (!user) {
+//             return res.status(401).json(new ApiResponse(401, null, "User not found"));
+//         }
+
+//         console.log('Stored Refresh Token:', user.refreshToken);
+
+//         if (user.refreshToken !== refreshToken) {
+//             return res.status(401).json(new ApiResponse(401, null, "Invalid refresh token"));
+//         }
+
+//         const newAccessToken = user.generateAccessToken();
+//         const newRefreshToken = user.generateRefreshToken();
+
+//         user.refreshToken = newRefreshToken;
+//         await user.save();
+
+//         return res.status(200).json(
+//             new ApiResponse(200, { user, accessToken: newAccessToken, refreshToken: newRefreshToken }, "User logged in successfully")
+//         );
+//     } catch (error) {
+//         console.error('Token verification error:', error);
+//         return res.status(401).json(new ApiResponse(401, null, "Invalid tokens"));
+//     }
+// });
+
+
 const googleAuth = asyncHandler(async (req, res) => {
     const { accessToken, refreshToken } = req.body;
 
@@ -31,9 +70,13 @@ const googleAuth = asyncHandler(async (req, res) => {
     }
 
     try {
+        // Verify access token for validity (checks expiration and signature)
         const decodedAccessToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-        const decodedRefreshToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
 
+        // Decode the refresh token (don't verify expiration for refresh token)
+        const decodedRefreshToken = jwt.decode(refreshToken);
+
+        // Find user by ID from the decoded access token
         const user = await User.findById(decodedAccessToken._id);
 
         if (!user) {
@@ -42,18 +85,26 @@ const googleAuth = asyncHandler(async (req, res) => {
 
         console.log('Stored Refresh Token:', user.refreshToken);
 
+        // Compare stored refresh token with the provided one
         if (user.refreshToken !== refreshToken) {
             return res.status(401).json(new ApiResponse(401, null, "Invalid refresh token"));
         }
 
+        // If everything is valid, generate new access and refresh tokens
         const newAccessToken = user.generateAccessToken();
         const newRefreshToken = user.generateRefreshToken();
 
+        // Update user record with new refresh token
         user.refreshToken = newRefreshToken;
         await user.save();
 
+        // Return the new tokens and basic user info
         return res.status(200).json(
-            new ApiResponse(200, { user, accessToken: newAccessToken, refreshToken: newRefreshToken }, "User logged in successfully")
+            new ApiResponse(200, { 
+                user: { _id: user._id, email: user.email, username: user.username }, 
+                accessToken: newAccessToken, 
+                refreshToken: newRefreshToken 
+            }, "User logged in successfully")
         );
     } catch (error) {
         console.error('Token verification error:', error);
