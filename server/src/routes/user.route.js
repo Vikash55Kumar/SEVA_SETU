@@ -62,7 +62,10 @@ router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 
 // );
 
 router.get('/auth/google/callback', 
-  console.log("request come to backend server", process.env.CORES_ORIGIN),
+  (req, res, next) => {
+    console.log("request come to backend server", process.env.CORES_ORIGIN);
+    next();
+  },
   passport.authenticate('google', { failureRedirect: `${process.env.CORES_ORIGIN}/login` }), 
   async (req, res) => {
     const user = req.user;
