@@ -129,6 +129,11 @@ export default function Login() {
         }
     };
 
+    const handleGoogleLogin = () => {
+        setLoading(true);
+        window.location.href = 'https://seva-setu.onrender.com/api/v1/users/auth/google';
+    };
+
     return (
         <div className="account-set-main">
             <div className="login-container">
@@ -140,10 +145,15 @@ export default function Login() {
                         <h4 className="mt-2 mb-3">Don't have an account? <a href="/signup">Sign Up</a></h4>
 
                         <div id="auth-account">
-                            <a onClick={() => window.location.href = '/api/v1/users/auth/google'}>
+                            {/* <a onClick={() => window.location.href = 'https://seva-setu.onrender.com/api/v1/users/auth/google'}>
+                                <img src={googleImg} alt="Google Icon" />
+                                <div>Continue with Google</div>
+                            </a> */}
+                            <a onClick={handleGoogleLogin}>
                                 <img src={googleImg} alt="Google Icon" />
                                 <div>Continue with Google</div>
                             </a>
+
                             <p className="mt-2">—— <b>Or</b> ——</p>
                         </div>
 
