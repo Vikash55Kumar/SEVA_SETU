@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { ProgressBar } from 'react-bootstrap'; // Ensure this is installed and properly imported
-import "./profile.css";
+import "./employ.css";
 
 
 const socket = io(`${import.meta.env.VITE_SOCKET_URL}`); // Connect to your backend
