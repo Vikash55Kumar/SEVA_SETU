@@ -145,57 +145,24 @@ const registerUser = asyncHandler(async (req, res) => {
 // })
 
 const logoutUser = asyncHandler(async (req, res) => {
-    try {
-        // Log the user info for debugging
-        console.log("User trying to logout:", req.user);
-
-        // Check if req.user exists and contains _id
-        if (!req.user || !req.user._id) {
-            console.error("No user found in request");
-            return res.status(400).json({ message: "User not authenticated" });
-        }
-
-        // Log before attempting to update
-        console.log("Attempting to update user:", req.user._id);
-
-        // Find the user and remove the refreshToken
-        const updatedUser = await User.findByIdAndUpdate(
-            req.user._id,
-            {
-                $set: { refreshToken: undefined }
-            },
-            { new: true }
-        );
-
-        // Log the updated user result
-        console.log("User updated:", updatedUser);
-
-        // Cookie options
-        const options = {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production", // Ensure secure in production
-            sameSite: "None", // Needed for cross-site requests
-            path: "/",
-        };
-
-        // Log before clearing cookies
-        console.log("Clearing cookies");
-
-        // Clear both access and refresh tokens from cookies
-        return res
-            .status(200)
-            .clearCookie("accessToken", options)
-            .clearCookie("refreshToken", options)
-            .json({ message: "User logged out successfully" });
-
-    } catch (error) {
-        // Catch and log any server errors
-        console.error("Logout error:", error);
-        return res.status(500).json({ message: "Logout failed", error: error.message });
+    if (!req.user || !req.user._id) {
+        return res.status(400).json({ message: "User not found or already logged out." });
     }
+
+    await User.findByIdAndUpdate(req.user._id, { $set: { refreshToken: null } }, { new: true });
+
+    const options = {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None' // Add this to allow cross-origin cookies
+    };
+
+    return res
+        .status(200)
+        .clearCookie("accessToken", options)
+        .clearCookie("refreshToken", options)
+        .json({ message: "User logged out successfully." });
 });
-
-
 
 async function loginUser(req, res) {
     const { email, password } = req.body;
