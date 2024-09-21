@@ -339,21 +339,44 @@ export const register = (formData) => async (dispatch) => {
     }
 };
 
+// export const login = (credentials) => async (dispatch) => {
+//     try {
+//       const response = await api.post("/users/login", credentials);
+//       const { token } = response.data;
+        
+//       // Save token in cookies
+//       Cookies.set('token', token, { expires: 7, path: '/' }); // Token will be stored for 7 days
+//       dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+//       return response;
+//     } catch (error) {
+//       dispatch({ type: LOGIN_FAIL, payload: error.response?.data?.message || error.message });
+
+//       throw error;
+//     }
+//   };
+
 export const login = (credentials) => async (dispatch) => {
     try {
-      const response = await api.post("/users/login", credentials);
-      const { token } = response.data;
-        
-      // Save token in cookies
-      Cookies.set('token', token, { expires: 7, path: '/' }); // Token will be stored for 7 days
-      dispatch({ type: LOGIN_SUCCESS, payload: response.data });
-      return response;
-    } catch (error) {
-      dispatch({ type: LOGIN_FAIL, payload: error.response?.data?.message || error.message });
+        const response = await api.post("/users/login", credentials);
+        console.log("Login response:", response.data); // Log the full response
 
-      throw error;
+        const token = response.data.token; // Ensure this matches your API response structure
+
+        if (token) {
+            Cookies.set('token', token, { expires: 7, path: '/' });
+            dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+        } else {
+            console.error("Token is undefined. Cannot set cookie.");
+        }
+
+        return response;
+    } catch (error) {
+        console.error("Login error:", error);
+        dispatch({ type: LOGIN_FAIL, payload: error.response?.data?.message || error.message });
+        throw error;
     }
-  };
+};
+
 
 export const logout = () => async (dispatch) => {
   try {
@@ -455,7 +478,6 @@ export const loadUsers = () => async (dispatch) => {
       }
       
 };
-
 
 export const googleLogin = (tokens) => async (dispatch) => {
   try {

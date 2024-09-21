@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,  // The base URL is taken from environment variables
   headers: {
     'Content-Type': 'application/json',
-     // Add Authorization header with token
+    //  Add Authorization header with token
   },
 });
 
