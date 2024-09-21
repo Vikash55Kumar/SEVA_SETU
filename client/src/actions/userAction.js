@@ -389,7 +389,7 @@ export const logout = () => async (dispatch) => {
       }, 2000);
 
   } catch (error) {
-      toast.error('Logout error:', error.response?.data?.message || error.message);
+      toast.error('Logout error: Please refresh the page to logout');
       dispatch({
           type: LOGOUT_FAIL,
           payload: error.response?.data?.message || error.message,

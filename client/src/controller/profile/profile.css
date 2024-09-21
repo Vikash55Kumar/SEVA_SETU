@@ -1,8 +1,5 @@
 /* Container styling */
-body {
-  height: 100%;
-  margin: 0;
-}
+
 .body3 {
   font-family: 'Arial', sans-serif;
   padding: 20px;
@@ -271,6 +268,9 @@ b {
 
 /* Responsive Styles */
 @media (max-width: 750px) {
+  .body3 {
+    height: 110vh;
+  }
   .profile-container {
       flex-direction: column;
   }
