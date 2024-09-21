@@ -515,7 +515,9 @@ export const googleLogin = (tokens) => async (dispatch) => {
               'Content-Type': 'application/json'
           }
       };
-
+      console.log("Making POST request to /users/googleLogin with tokens:", tokens);
+    //   const response = await api.post('/users/googleLogin', tokens, config);
+      
       const response = await api.post('/users/googleLogin', tokens, config);
 
       const { accessToken, refreshToken, user } = response.data.data;
