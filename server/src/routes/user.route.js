@@ -47,17 +47,45 @@ router.route("/refresh-token").post(refreshAccessToken)
 //Google Authenticaton Routes
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
+// router.get('/auth/google/callback', 
+//   passport.authenticate('google', { failureRedirect: `${process.env.CORES_ORIGIN}/login` }), 
+//   async (req, res) => {
+//     const user = req.user;
+//     const accessToken = user.generateAccessToken();
+//     const refreshToken = user.generateRefreshToken();
+
+//     user.refreshToken = refreshToken;
+//     await user.save();
+
+//     res.redirect(`${process.env.CORES_ORIGIN}/google-login?accessToken=${accessToken}&refreshToken=${refreshToken}`);
+//   }
+// );
+
 router.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: `${process.env.CORES_ORIGIN}/login` }), 
   async (req, res) => {
     const user = req.user;
-    const accessToken = user.generateAccessToken();
-    const refreshToken = user.generateRefreshToken();
 
-    user.refreshToken = refreshToken;
-    await user.save();
+    if (!user) {
+      console.error('User not founds after Google authentication');
+      return res.redirect(`${process.env.CORES_ORIGIN}/login`);
+    }
 
-    res.redirect(`${process.env.CORES_ORIGIN}/google-login?accessToken=${accessToken}&refreshToken=${refreshToken}`);
+    try {
+      // Generate tokens
+      const accessToken = user.generateAccessToken();
+      const refreshToken = user.generateRefreshToken();
+
+      // Store the refresh token in the database
+      user.refreshToken = refreshToken;
+      await user.save();
+
+      // Redirect back to frontend with the tokens
+      res.redirect(`${process.env.CORES_ORIGIN}/google-login?accessToken=${accessToken}&refreshToken=${refreshToken}`);
+    } catch (error) {
+      console.error('Error during token generation or redirection:', error);
+      res.redirect(`${process.env.CORES_ORIGIN}/login`);
+    }
   }
 );
 
