@@ -47,38 +47,39 @@ router.route("/refresh-token").post(refreshAccessToken)
 //Google Authenticaton Routes
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-router.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: `${process.env.CORES_ORIGIN}/login` }), 
-  async (req, res) => {
-    const user = req.user;
-    const accessToken = user.generateAccessToken();
-    const refreshToken = user.generateRefreshToken();
-
-    user.refreshToken = refreshToken;
-    await user.save();
-
-    res.redirect(`${process.env.CORES_ORIGIN}/google-login?accessToken=${accessToken}&refreshToken=${refreshToken}`);
-  }
-);
-
 // router.get('/auth/google/callback', 
 //   passport.authenticate('google', { failureRedirect: `${process.env.CORES_ORIGIN}/login` }), 
 //   async (req, res) => {
 //     const user = req.user;
-
-//     console.log("User received after Google authentication:", user);
-
 //     const accessToken = user.generateAccessToken();
 //     const refreshToken = user.generateRefreshToken();
 
 //     user.refreshToken = refreshToken;
 //     await user.save();
 
-//     console.log("Redirecting with accessToken and refreshToken");
-    
 //     res.redirect(`${process.env.CORES_ORIGIN}/google-login?accessToken=${accessToken}&refreshToken=${refreshToken}`);
 //   }
 // );
+
+router.get('/auth/google/callback', 
+  console.log("request come to backend server", process.env.CORES_ORIGIN),
+  passport.authenticate('google', { failureRedirect: `${process.env.CORES_ORIGIN}/login` }), 
+  async (req, res) => {
+    const user = req.user;
+
+    console.log("User received after Google authentication:", user);
+
+    const accessToken = user.generateAccessToken();
+    const refreshToken = user.generateRefreshToken();
+
+    user.refreshToken = refreshToken;
+    await user.save();
+
+    console.log("Redirecting with accessToken and refreshToken");
+    
+    res.redirect(`${process.env.CORES_ORIGIN}/google-login?accessToken=${accessToken}&refreshToken=${refreshToken}`);
+  }
+);
 
 
 
