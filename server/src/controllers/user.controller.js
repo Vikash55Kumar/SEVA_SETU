@@ -145,34 +145,43 @@ const registerUser = asyncHandler(async (req, res) => {
 // })
 
 const logoutUser = asyncHandler(async (req, res) => {
-    // Find the user and remove the refreshToken
-    await User.findByIdAndUpdate(
-        req.user._id,
-        {
-            $set: {
-                refreshToken: undefined
-            }
-        },
-        {
-            new: true
+    try {
+        // Check if req.user exists and contains _id
+        if (!req.user || !req.user._id) {
+            return res.status(400).json({ message: "User not authenticated" });
         }
-    );
 
-    // Cookie options
-    const options = {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // Only secure cookies in production
-        sameSite: "None", // If using cross-site requests
-        path: "/",
-    };
+        // Find the user and remove the refreshToken
+        await User.findByIdAndUpdate(
+            req.user._id,
+            {
+                $set: { refreshToken: undefined }
+            },
+            { new: true }
+        );
 
-    // Clear both access and refresh tokens from cookies
-    return res
-        .status(200)
-        .clearCookie("accessToken", options)
-        .clearCookie("refreshToken", options)
-        .json(new ApiResponse(200, {}, "User logged out successfully"));
+        // Cookie options
+        const options = {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production", // Secure cookies in production
+            sameSite: "None", // Needed for cross-site requests
+            path: "/",
+        };
+
+        // Clear both access and refresh tokens from cookies
+        return res
+            .status(200)
+            .clearCookie("accessToken", options)
+            .clearCookie("refreshToken", options)
+            .json({ message: "User logged out successfully" });
+
+    } catch (error) {
+        // Catch and send any server errors
+        console.error("Logout error:", error.message);
+        return res.status(500).json({ message: "Logout failed", error: error.message });
+    }
 });
+
 
 
 async function loginUser(req, res) {
@@ -398,84 +407,6 @@ const updateAccountDetails = asyncHandler( async(req, res) => {
 
 // })
 
-// const getUserChannelProfile = asyncHandler(async(req, res) => {
-//     const {username} = req.body
-
-//     if(!username?.trim()) {
-//         throw new ApiError(400, "Username is missing")
-//     }
-
-//     const channel = await User.aggregate([
-//         {
-//             $match: {
-//                 username: username?.toLowerCase()
-//             }
-//         },
-//         {
-//             $lookup: {
-//                 from: "subscriptions",
-//                 localField:"_id",
-//                 foreignField:"channel",
-//                 as:"subscribers"
-//             }
-//         },
-//         {
-//             $lookup: {
-//                 from: "subscriptions",
-//                 localField:"_id",
-//                 foreignField:"suscriber",
-//                 as:"subscribedTo"
-//             }
-//         },
-//         {
-//             $addFields: {
-//                 subscribersCount: {
-//                     $size: "$subscribers"
-//                 },
-//                 channelsSubscribedToCount: {
-//                     $size: "$subscribedTo"
-//                 },
-//                 isSubscribed: {
-//                     $cond: {
-//                         if: {$in: [req.user?._id, "$subscribers.subscriber"]},
-//                         then: true,
-//                         else: false
-//                     }
-//                 }
-//             }
-//         },
-//         {
-//             $project: {
-//                 fullName: 1,
-//                 username: 1,
-//                 subscribersCount: 1,
-//                 channelsSubscribedToCount: 1,
-//                 isSubscribed: 1,
-//                 avatar: 1,
-//                 email: 1,
-//                 coverImage: 1,
-//             }
-//         }
-//     ])
-//     if (channel?.length) {
-//         const {
-//             fullName, 
-//             email, 
-//             subscribersCount, 
-//             channelsSubscribedToCount, 
-//             isSubscribed
-//         } =channel[0];
-//         console.log(fullName, email, subscribersCount, channelsSubscribedToCount, isSubscribed)
-//     } else {
-//         throw new ApiError(404, "channel does not exist")
-//     }
-
-//     return res
-//     .status(200)
-//     .json(
-//         new ApiError(404, "channel does not exists")
-//     )
-// })
 
 
 export { 
