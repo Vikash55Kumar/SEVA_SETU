@@ -47,13 +47,10 @@ app.use(session({
   },
 }));
 
-
-
-console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
-console.log("GOOGLE_CLIENT_SECRET:", process.env.GOOGLE_CLIENT_SECRET);
-console.log("GOOGLE_CALLBACK_URL:", process.env.GOOGLE_CALLBACK_URL);
-console.log("CORS_ORIGIN:", process.env.CORES_ORIGIN);
-console.log("MONODB_URI:", process.env.MONODB_URI);
+app.use((req, res, next) => {
+  console.log(`Request received: ${req.method} ${req.url}`);
+  next();
+});
 
 // Initialize Google passport
 app.use(passport.initialize());
