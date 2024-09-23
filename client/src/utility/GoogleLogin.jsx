@@ -34,6 +34,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { googleLogin } from '../actions/userAction';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const GoogleLogin = () => {
     const dispatch = useDispatch();
@@ -57,11 +58,11 @@ const GoogleLogin = () => {
                     navigate('/dashboard');
                 })
                 .catch((error) => {
-                    console.error('Login failed:', error);
+                    toast.error('Login failed:', error);
                     navigate('/login');
                 });
         } else {
-            console.log("No tokens found, redirecting to login");
+            toast.error("No tokens found, redirecting to login");
             navigate('/login');
         }
     }, [dispatch, navigate]);

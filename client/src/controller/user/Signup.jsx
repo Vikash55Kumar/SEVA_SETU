@@ -68,6 +68,7 @@ export default function Signup() {
     const handleGoogleLogin = () => {
       setLoading(true);
       window.location.href = 'https://seva-setu.onrender.com/api/v1/users/auth/google';
+      // window.location.href = '/api/v1/users/auth/google'
     };
 
   return (
@@ -81,11 +82,6 @@ export default function Signup() {
           <h2>SignUp on SevaSetu</h2>
             <h4 className="mt-2 mb-3">Have an account? <a href="/login">Log In</a></h4>
             <div id="auth-account">
-              {/* <a onClick={() => window.location.href = '/api/v1/users/auth/google'}>
-
-                <img src={googleImg} alt="Google Icon" />
-                <div>Continue with Google</div>
-              </a> */}
                <a onClick={handleGoogleLogin}>
                     <img src={googleImg} alt="Google Icon" />
                     <div>Continue with Google</div>

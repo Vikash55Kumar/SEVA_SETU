@@ -25,8 +25,6 @@ import { SocketProvider } from './utility/SocketContext';
 import EmployeeProgress from './controller/profile/EmployStatus';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Oval } from 'react-loader-spinner';
-// import SpinnerLoader from './utility/SpinnerLoader';
 
 
 
