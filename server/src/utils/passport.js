@@ -94,6 +94,7 @@ async function(request, accessToken, refreshToken, profile, done) {
 
 
 passport.serializeUser((user, done) => {
+  console.log("Serializing user:", user);
   done(null, user.id);
 });
 
