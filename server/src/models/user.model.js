@@ -17,9 +17,9 @@ const userSchema = new mongoose.Schema(
             trim: true,
         },
         phoneNumber: {
-            type: Number,
-            unique: true,
-            sparse: true,
+            type: String,
+            // unique: true,
+            // sparse: true,
           },
         password: {
             type: String,
