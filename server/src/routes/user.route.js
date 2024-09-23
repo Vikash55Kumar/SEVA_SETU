@@ -63,7 +63,7 @@ router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 
 console.log("GOOGLE_CLIENT_ID2:", process.env.GOOGLE_CLIENT_ID);
 console.log("GOOGLE_CLIENT_SECRET2:", process.env.GOOGLE_CLIENT_SECRET);
 console.log("GOOGLE_CALLBACK_URL2:", process.env.GOOGLE_CALLBACK_URL);
-console.log("CORES_ORIGIN2:", process.env.CORS_ORIGIN);
+console.log("CORES_ORIGIN2:", process.env.CORES_ORIGIN);
 console.log("MONODB_URI2:", process.env.MONODB_URI);
 
 router.get('/auth/google/callback', 
