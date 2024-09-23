@@ -20,7 +20,7 @@ SocketHandler(server);
 
 // CORS Setup
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || "https://seva-setu.netlify.app",
+  origin: process.env.CORES_ORIGIN || "https://seva-setu.netlify.app",
   methods: 'DELETE, POST, GET, PUT',
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'], 
   credentials: true,
