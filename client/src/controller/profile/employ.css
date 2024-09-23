@@ -1,6 +1,6 @@
 /* Container styling */
 
-.body3 {
+.body4 {
     font-family: 'Arial', sans-serif;
     padding: 20px;
     height: 80vh;
@@ -268,7 +268,7 @@
   
   /* Responsive Styles */
   @media (max-width: 750px) {
-    .body3 {
+    .body4 {
       height: 160vh;
     }
     .profile-container {

@@ -63,7 +63,7 @@ const EmployeeProgress = ({ profile = {} }) => {
   }, []);
 
   return (
-    <div className='body3'>
+    <div className='body4'>
       <div className="profile-background">
         <h2>Details of Employees</h2>
         <div className="profile-container">
