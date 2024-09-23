@@ -58,11 +58,11 @@ const GoogleLogin = () => {
                     navigate('/dashboard');
                 })
                 .catch((error) => {
-                    toast.error('Login failed:', error);
+                    console.log('Login failed:', error);
                     navigate('/login');
                 });
         } else {
-            toast.error("No tokens found, redirecting to login");
+            console.log("No tokens found, redirecting to login");
             navigate('/login');
         }
     }, [dispatch, navigate]);
