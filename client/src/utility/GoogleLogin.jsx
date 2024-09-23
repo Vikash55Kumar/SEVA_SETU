@@ -55,7 +55,7 @@ const GoogleLogin = () => {
             dispatch(googleLogin({ accessToken, refreshToken }))
                 .then(() => {
                     console.log("Google login successful, navigating to dashboard");
-                    navigate('/dashboard');
+                    navigate('/');
                 })
                 .catch((error) => {
                     console.log('Login failed:', error);

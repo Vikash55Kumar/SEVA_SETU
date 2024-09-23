@@ -11,55 +11,87 @@ passport.use(new GoogleStrategy({
   callbackURL: process.env.GOOGLE_CALLBACK_URL || "https://seva-setu.netlify.app/api/v1/users/auth/google/callback",
   passReqToCallback: true
 },
+// async function(request, accessToken, refreshToken, profile, done) {
+//   console.log("profile : ", profile);
+//   try {
+//     const existingUser = await User.findOne({ email: profile.emails[0].value });
+//     if (existingUser) {
+//       // If user exists, update their information
+//       existingUser.providerId = profile.id;
+//       existingUser.fullName = profile.displayName;
+//       existingUser.image = {
+//         url: profile.photos[0].value,
+//         filename: `google${profile.id}`,
+//       };
+//       await existingUser.save();
+//       return done(null, existingUser);
+//     } else {
+//       console.log("Creating a new user");
+//       const newUser = new User({
+//         providerId: profile.id,
+//         provider: 'google',
+//         fullName: profile.displayName,
+//         email: profile.emails[0].value,
+//         image: {
+//           url: profile.photos[0].value,
+//           filename: `google${profile.id}`,
+//         },
+//         password: null, // Set password to null for Google OAuth users
+//       });
+
+//       // Save the new user and handle potential errors
+//       try {
+//         await newUser.save();
+//         console.log("New user created:", newUser);
+//         return done(null, newUser);
+        
+//       } catch (err) {
+//         if (err.code === 11000) {
+//           // Handle duplicate key error
+//            console.error("Error saving new user:", err);
+//           console.error('User with this email already exists.');
+//           const existingUser = await User.findOne({ email: profile.emails[0].value });
+//           return done(null, existingUser); // Return the existing user
+//         } else {
+//           // Handle other errors
+//           console.error(err);
+//           return done(err, null);
+//         }
+//       }
+//     }
+//   } catch (err) {
+//     console.error("Error during authentication: ", err);
+//     return done(err, null);
+//   }
+// }));
+
 async function(request, accessToken, refreshToken, profile, done) {
-  console.log("profile : ", profile);
   try {
     const existingUser = await User.findOne({ email: profile.emails[0].value });
     if (existingUser) {
-      // If user exists, update their information
+      // Update user info if they exist
       existingUser.providerId = profile.id;
-      existingUser.fullName = profile.displayName;
-      existingUser.image = {
-        url: profile.photos[0].value,
-        filename: `google${profile.id}`,
-      };
       await existingUser.save();
-      return done(null, existingUser);
+      return done(null, existingUser, { accessToken, refreshToken });
     } else {
+      // Create a new user
       const newUser = new User({
         providerId: profile.id,
-        provider: 'google',
         fullName: profile.displayName,
         email: profile.emails[0].value,
         image: {
           url: profile.photos[0].value,
           filename: `google${profile.id}`,
-        },
-        password: null, // Set password to null for Google OAuth users
-      });
-
-      // Save the new user and handle potential errors
-      try {
-        await newUser.save();
-        return done(null, newUser);
-      } catch (err) {
-        if (err.code === 11000) {
-          // Handle duplicate key error
-          console.error('User with this email already exists.');
-          const existingUser = await User.findOne({ email: profile.emails[0].value });
-          return done(null, existingUser); // Return the existing user
-        } else {
-          // Handle other errors
-          console.error(err);
-          return done(err, null);
         }
-      }
+      });
+      await newUser.save();
+      return done(null, newUser, { accessToken, refreshToken });
     }
   } catch (err) {
-    console.error("Error during authentication: ", err);
     return done(err, null);
   }
 }));
+
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
