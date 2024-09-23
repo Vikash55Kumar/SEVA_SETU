@@ -90,7 +90,7 @@ async function(request, accessToken, refreshToken, profile, done) {
           url: profile.photos[0].value,
           filename: `google${profile.id}`,
         },
-        ...(profile.phoneNumber ? { phoneNumber: profile.phoneNumber } : {}),
+        phoneNumber: profile.phoneNumber || undefined,
         password: null, // Set password to null for Google OAuth users
       });
 
