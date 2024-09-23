@@ -136,8 +136,9 @@ export default function Signup() {
               <div className="form-group-2">
                 <label htmlFor="phone">Phone Number:</label>
                 <input
-                  type="text"
+                  type="tel"
                   id="phone"
+                  pattern="[0-9]{10,14}"
                   placeholder="* Enter Valid Phone Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}

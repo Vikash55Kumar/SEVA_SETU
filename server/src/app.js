@@ -8,15 +8,10 @@ import { createServer } from 'http';
 import { SocketHandler } from './utils/socketHandler.js';  // Import the WebSocket handler
 import MongoStore from 'connect-mongo';
 const app = express();
-// import path from "path";
-// import { fileURLToPath } from "url";
 const server = createServer(app); // Create a server instance
 
 // Setup WebSocket
 SocketHandler(server);
-
-// const __filename=fileURLToPath(import.meta.url)
-// const __dirname=path.dirname(__filename)
 
 // CORS Setup
 app.use(cors({
@@ -47,11 +42,6 @@ app.use(session({
   },
 }));
 
-app.use((req, res, next) => {
-  console.log(`Request received: ${req.method} ${req.url}`);
-  next();
-});
-
 // Initialize Google passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -59,15 +49,6 @@ app.use(passport.session());
 // Routers import
 import userRouter from './routes/user.route.js';
 app.use('/api/v1/users', userRouter);
-
-// rsolving dirname for ES module
-
-// app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
-
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '..', 'client', 'dist', 'index.html'));
-// });
-
 
 // Error handling middleware
 app.use((err, req, res, next) => {

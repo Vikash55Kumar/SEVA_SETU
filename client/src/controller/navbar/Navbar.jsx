@@ -65,7 +65,7 @@ const Navbar = () => {
             
             <div className={`nav-links ${isNavOpen ? "active" : ""}`}>
                 <a href="/">Home</a>
-                {isAuthenticated ? <a className="prf" onClick={(e) => handleNavigation(e, "/profile")}>Profile</a> : ""}
+                {isAuthenticated ? <a className="prf" onClick={(e) => handleNavigation(e, "/profile")}>Profile</a> : "/profile"}
                 
                 <div className={`dropdown ${isDropdownOpen ? "open" : ""}`}>
                     <a href="#!" className="dropdown-toggle" onClick={toggleDropdown}>
