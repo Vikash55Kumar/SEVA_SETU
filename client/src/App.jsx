@@ -57,7 +57,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/dashboard' element={<Dashboard /> } />
+            <Route path='/dashboard' element={isAuthenticated ? <Dashboard /> : <Login /> } />
             <Route path='/certificate' element={isAuthenticated ? <Certificate /> : <Login />} />
             <Route path='/certificateForm' element={<CertificateForm />} />
             <Route path='/profile' element={
