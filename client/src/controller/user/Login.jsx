@@ -43,7 +43,8 @@ export default function Login() {
 
     const handleGoogleLogin = () => {
         setLoading(true);
-        window.location.href = 'https://seva-setu.onrender.com/api/v1/users/auth/google';
+        // window.location.href = 'https://seva-setu.onrender.com/api/v1/users/auth/google';
+        window.location.href=`${import.meta.env.VITE_GOOGLE_URL}`
     };
 
     return (
