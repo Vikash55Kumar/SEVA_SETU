@@ -122,13 +122,10 @@ function resetData() {
   formData = JSON.parse(JSON.stringify(initialFormData));
 }
 
-// Mock employee data (mutable)
 let employeeData = [...initialEmployeeData];
 
-// Form statistics (mutable)
 let formStatistics = { ...initialFormStatistics };
 
-// Form data (mutable)
 let formData = [...initialFormData];
 
 // Schedule data reset at midnight every day (00:00)
