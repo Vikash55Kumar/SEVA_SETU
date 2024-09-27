@@ -122,7 +122,7 @@ function resetData() {
 }
 
 // Schedule the reset to occur at midnight every day
-cron.schedule('*/1 * * * *', () => {
+cron.schedule('0 */12 * * *', () => {
   console.log('Resetting data to initial state at midnight');
   resetData();
 });
@@ -149,7 +149,7 @@ export function SocketHandler(server) {
     setInterval(() => {
       employeeData = employeeData.map(employee => {
         // Simulate changes in verified forms
-        employee.verified = Math.min(employee.verified + Math.floor(Math.random() * 2), employee.target);
+        employee.verified = Math.min(employee.verified + Math.floor(Math.random() * 1), employee.target);
         return employee;
       });
 
