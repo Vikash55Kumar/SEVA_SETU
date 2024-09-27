@@ -82,15 +82,8 @@
 
 
 
-
-
-
-
-
-
-
 import dotenv from 'dotenv';
-dotenv.config({path: './.env'});
+dotenv.config({ path: './.env' });
 import { Server } from 'socket.io';
 import cron from 'node-cron';
 
@@ -115,25 +108,26 @@ const initialFormData = [
   { name: 'Residential Certificate', FormsReceived: 6300, PendingForms: 5060, ProcessedForms: 1423, RecjectedForms: 234 },
 ];
 
+// Mutable data that will change during the day
+let employeeData = [...initialEmployeeData];
+let formStatistics = { ...initialFormStatistics };
+let formData = [...initialFormData];
+
 // Function to reset data
 function resetData() {
   employeeData = JSON.parse(JSON.stringify(initialEmployeeData));
   formStatistics = JSON.parse(JSON.stringify(initialFormStatistics));
   formData = JSON.parse(JSON.stringify(initialFormData));
+  console.log('Data reset to initial state');
 }
 
-let employeeData = [...initialEmployeeData];
-
-let formStatistics = { ...initialFormStatistics };
-
-let formData = [...initialFormData];
-
-// Schedule data reset at midnight every day (00:00)
-cron.schedule('0 0 * * *', () => {
+// Schedule the reset to occur at midnight every day
+cron.schedule('*/1 * * * *', () => {
   console.log('Resetting data to initial state at midnight');
   resetData();
 });
 
+// Setup WebSocket connection for real-time updates
 export function SocketHandler(server) {
   const io = new Server(server, {
     cors: {
@@ -149,15 +143,17 @@ export function SocketHandler(server) {
     // Send the initial employee data and form statistics when a client connects
     socket.emit('employeeUpdate', employeeData);
     socket.emit('formStatisticsUpdate', formStatistics);
-    socket.emit('mapformStatisticsUpdate', formData);
+    // socket.emit('mapformStatisticsUpdate', formData);
 
-    // Update employee data and broadcast changes every 5 seconds
+    // Example: Update employee data and broadcast changes every 5 seconds
     setInterval(() => {
       employeeData = employeeData.map(employee => {
+        // Simulate changes in verified forms
         employee.verified = Math.min(employee.verified + Math.floor(Math.random() * 2), employee.target);
         return employee;
       });
 
+      // Simulate dynamic updates for form statistics
       formStatistics = {
         totalForms: formStatistics.totalForms + Math.floor(Math.random() * 10),
         pendingForms: formStatistics.pendingForms + Math.floor(Math.random() * 5),
@@ -165,15 +161,16 @@ export function SocketHandler(server) {
         recjectedForms: formStatistics.recjectedForms + Math.floor(Math.random() * 2),
       };
 
+      // Simulate dynamic updates for form statistics
       formData = formData.map(form => {
-        form.FormsReceived += Math.floor(Math.random() * 10);
-        form.PendingForms = Math.max(0, form.PendingForms + Math.floor(Math.random() * 5 - 2));
-        form.ProcessedForms = Math.min(form.FormsReceived, form.ProcessedForms + Math.floor(Math.random() * 5));
-        form.RecjectedForms = Math.min(form.FormsReceived, form.RecjectedForms + Math.floor(Math.random() * 2));
+        form.FormsReceived += Math.floor(Math.random() * 10);  // Randomly increase FormsReceived
+        form.PendingForms = Math.max(0, form.PendingForms + Math.floor(Math.random() * 5 - 2)); // Random updates to pending forms
+        form.ProcessedForms = Math.min(form.FormsReceived, form.ProcessedForms + Math.floor(Math.random() * 5)); // Processed forms
+        form.RecjectedForms = Math.min(form.FormsReceived, form.RecjectedForms + Math.floor(Math.random() * 2)); // Rejected forms
         return form;
       });
 
-      // Emit the updated data to all clients
+      // Send updated data to all clients
       io.emit('employeeUpdate', employeeData);
       io.emit('formStatisticsUpdate', formStatistics);
       io.emit('mapformStatisticsUpdate', formData);
