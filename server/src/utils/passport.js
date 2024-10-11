@@ -100,11 +100,9 @@ import { User } from '../models/user.model.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
+console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
+console.log("Google Callback URL:", process.env.GOOGLE_CALLBACK_URL);
 passport.use(
-  console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID),
-console.log("Google Callback URL:", process.env.GOOGLE_CALLBACK_URL),
-
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
