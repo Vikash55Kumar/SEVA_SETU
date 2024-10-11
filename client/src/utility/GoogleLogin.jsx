@@ -55,14 +55,17 @@ const GoogleLogin = () => {
             dispatch(googleLogin({ accessToken, refreshToken }))
                 .then(() => {
                     console.log("Google login successful, navigating to dashboard");
+                    toast.success("Login successful!");
                     navigate('/');
                 })
                 .catch((error) => {
                     console.log('Login failed:', error);
+                    toast.error('Google login failed. Please try again.');
                     navigate('/login');
                 });
         } else {
             console.log("No tokens found, redirecting to login");
+            toast.error('Invalid login attempt. No tokens provided.');
             navigate('/login');
         }
     }, [dispatch, navigate]);
