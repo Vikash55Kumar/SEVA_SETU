@@ -51,13 +51,8 @@ router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: `${process.env.CORES_ORIGIN}/login` }), 
   async (req, res) => {
 
-    console.log("Google OAuth callback triggered");
-    
     const user = req.user;
-    if (!user) {
-      console.log("No user found in request");
-      return res.redirect(`${process.env.CORES_ORIGIN}/login`);
-    }
+
     const accessToken = user.generateAccessToken();
     const refreshToken = user.generateRefreshToken();
 

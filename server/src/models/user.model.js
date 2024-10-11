@@ -28,6 +28,8 @@ const userSchema = new mongoose.Schema(
         },
         providerId: {
             type: String,
+            unique: true,
+            sparse: true,
         },
         provider: {
             type: String,

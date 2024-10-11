@@ -100,8 +100,6 @@ import { User } from '../models/user.model.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
-console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
-console.log("Google Callback URL:", process.env.GOOGLE_CALLBACK_URL);
 passport.use(
   new GoogleStrategy(
     {
@@ -150,7 +148,7 @@ passport.use(
               url: profile.photos[0].value,
               filename: `google${profile.id}`,
             },
-            phoneNumber: null, // Default value for phone
+            phoneNumber: "Null", // Default value for phone
             password: null, // No password for OAuth users
           });
 
