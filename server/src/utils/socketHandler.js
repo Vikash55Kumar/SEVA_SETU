@@ -149,7 +149,7 @@ export function SocketHandler(server) {
     setInterval(() => {
       employeeData = employeeData.map(employee => {
         // Simulate changes in verified forms
-        employee.verified = Math.min(employee.verified + Math.floor(Math.random() * 1), employee.target);
+        employee.verified = Math.min(employee.verified + Math.floor(Math.random() * 2), employee.target);
         return employee;
       });
 

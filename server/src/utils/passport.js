@@ -15,18 +15,25 @@ passport.use(new GoogleStrategy({
 async function(request, accessToken, refreshToken, profile, done) {
   // console.log("profile : ", profile);
   try {
-    const existingUser = await User.findOne({ email: profile.emails[0].value });
+    const existingUser = await User.findOne({ providerId: profile.id });
+    // if (existingUser) {
+    //   // If user exists, update their information
+    //   existingUser.providerId = profile.id;
+    //   existingUser.fullName = profile.displayName;
+    //   existingUser.image = {
+    //     url: profile.photos[0].value,
+    //     filename: `google${profile.id}`,
+    //   };
+    //   await existingUser.save();
+    //   return done(null, existingUser);
+    // }
+
     if (existingUser) {
-      // If user exists, update their information
-      existingUser.providerId = profile.id;
-      existingUser.fullName = profile.displayName;
-      existingUser.image = {
-        url: profile.photos[0].value,
-        filename: `google${profile.id}`,
-      };
-      await existingUser.save();
       return done(null, existingUser);
-    } else {
+    }
+
+
+     else {
       console.log("Creating a new user");
       const newUser = new User({
         providerId: profile.id,
