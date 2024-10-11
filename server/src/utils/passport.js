@@ -15,26 +15,26 @@ passport.use(new GoogleStrategy({
 async function(request, accessToken, refreshToken, profile, done) {
   console.log("profile : ", profile);
   try {
-    const existingUser = await User.findOne({ providerId : profile.id });
-    console.log("existingUser : ",existingUser);
+    // const existingUser = await User.findOne({ providerId : profile.id });
+    // console.log("existingUser : ",existingUser);
+    // // if (existingUser) {
+    // //   // If user exists, update their information
+    // //   existingUser.providerId = profile.id;
+    // //   existingUser.fullName = profile.displayName;
+    // //   existingUser.image = {
+    // //     url: profile.photos[0].value,
+    // //     filename: `google${profile.id}`,
+    // //   };
+    // //   await existingUser.save();
+    // //   return done(null, existingUser);
+    // // }
+
     // if (existingUser) {
-    //   // If user exists, update their information
-    //   existingUser.providerId = profile.id;
-    //   existingUser.fullName = profile.displayName;
-    //   existingUser.image = {
-    //     url: profile.photos[0].value,
-    //     filename: `google${profile.id}`,
-    //   };
-    //   await existingUser.save();
     //   return done(null, existingUser);
     // }
 
-    if (existingUser) {
-      return done(null, existingUser);
-    }
 
-
-     else {
+    //  else {
       console.log("Creating a new user");
       const newUser = new User({
         providerId: profile.id,
@@ -68,7 +68,7 @@ async function(request, accessToken, refreshToken, profile, done) {
           return done(err, null);
         }
       }
-    }
+    // }
   } catch (err) {
     console.error("Error during authentication: ", err);
     return done(err, null);
