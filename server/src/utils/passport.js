@@ -148,20 +148,13 @@ passport.use(
               url: profile.photos[0].value,
               filename: `google${profile.id}`,
             },
-            phoneNumber: "Null", // Default value for phone
+            phoneNumber: null, // Default value for phone
             password: null, // No password for OAuth users
           });
 
-          // await newUser.save();
-          // console.log("New user created:", newUser);
-          // return done(null, newUser);
-          try {
-            await newUser.save();
-            console.log("New user created:", newUser);
-          } catch (error) {
-            console.error("Error saving new user:", error);
-            return done(error, null);
-          }
+          await newUser.save();
+          console.log("New user created:", newUser);
+          return done(null, newUser);
           
         }
       } catch (err) {
