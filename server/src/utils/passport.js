@@ -148,7 +148,7 @@ passport.use(
               url: profile.photos[0].value,
               filename: `google${profile.id}`,
             },
-            phoneNumber: null, // Default value for phone
+            // phoneNumber: null, // Default value for phone
             password: null, // No password for OAuth users
           });
 
