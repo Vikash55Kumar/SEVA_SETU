@@ -110,6 +110,8 @@ passport.use(
       passReqToCallback: true,
     },
     async function (request, accessToken, refreshToken, profile, done) {
+      console.log('Google Profile:', profile);
+
       try {
         // Check if user exists by Google ID first
         let existingUser = await User.findOne({ providerId: profile.id });
@@ -149,9 +151,17 @@ passport.use(
             password: null, // No password for OAuth users
           });
 
-          await newUser.save();
-          console.log("New user created:", newUser);
-          return done(null, newUser);
+          // await newUser.save();
+          // console.log("New user created:", newUser);
+          // return done(null, newUser);
+          try {
+            await newUser.save();
+            console.log("New user created:", newUser);
+          } catch (error) {
+            console.error("Error saving new user:", error);
+            return done(error, null);
+          }
+          
         }
       } catch (err) {
         console.error("Error during authentication:", err);
