@@ -139,6 +139,7 @@ passport.use(
           return done(null, existingUser);
         } else {
           // No user exists, create a new one
+          const number = Math.floor(Math.random() * 1000000);
           const newUser = new User({
             providerId: profile.id,
             provider: 'google',
@@ -148,7 +149,7 @@ passport.use(
               url: profile.photos[0].value,
               filename: `google${profile.id}`,
             },
-            phoneNumber: null, // Default value for phone
+            phoneNumber: number, // Default value for phone
             password: null, // No password for OAuth users
           });
 
