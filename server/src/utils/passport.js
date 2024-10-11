@@ -102,6 +102,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 passport.use(
+  console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID),
+console.log("Google Callback URL:", process.env.GOOGLE_CALLBACK_URL),
+
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
@@ -113,7 +116,7 @@ passport.use(
       console.log('Google Profile:', profile);
       console.log("AccessToken:", accessToken);
       console.log("RefreshToken:", refreshToken);
-      
+
       try {
         // Check if user exists by Google ID first
         let existingUser = await User.findOne({ providerId: profile.id });
