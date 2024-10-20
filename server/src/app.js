@@ -61,7 +61,6 @@ app.use(passport.session());
 
 // Routers import
 import userRouter from './routes/user.route.js';
-import path from 'path';
 app.use('/api/v1/users', userRouter);
 
 // Error handling middleware
