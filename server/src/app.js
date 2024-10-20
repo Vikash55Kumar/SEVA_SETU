@@ -8,6 +8,7 @@ import { createServer } from 'http';
 import { SocketHandler } from './utils/socketHandler.js';  // Import the WebSocket handler
 import MongoStore from 'connect-mongo';
 import path from 'path';
+
 const app = express();
 const server = createServer(app); // Create a server instance
 
@@ -30,12 +31,12 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 // build
+const __dirname = path.resolve();
+
 const buildPath = path.join(__dirname, '../../client/dist');
 
-// Serve static files from the dist folder
 app.use(express.static(buildPath));
 
-// Handle all other routes to serve the React app
 app.get('*', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
