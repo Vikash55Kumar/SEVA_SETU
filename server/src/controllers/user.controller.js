@@ -268,9 +268,9 @@ const refreshAccessToken = asyncHandler(async(req, res) => {
 })
 
 const changeCurrentPassword = asyncHandler(async(req, res) => {
-    const {oldPassword, newPassword, confirmPassword}=req.body
+    const {oldPassword, newPassword, conformPassword}=req.body
     
-    if(!(newPassword ===confirmPassword)) {
+    if(!(newPassword ===conformPassword)) {
         throw new ApiError(400, "Conform password not match")
     }
     // req.id from auth.middleware

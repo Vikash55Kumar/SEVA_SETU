@@ -7,6 +7,7 @@ import passport from './utils/passport.js';
 import { createServer } from 'http';
 import { SocketHandler } from './utils/socketHandler.js';  // Import the WebSocket handler
 import MongoStore from 'connect-mongo';
+import path from 'path';
 const app = express();
 const server = createServer(app); // Create a server instance
 
@@ -28,6 +29,18 @@ app.use(express.urlencoded({ extended: true, limit: '20kb' }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+// build
+const buildPath = path.join(__dirname, '../../client/dist');
+
+// Serve static files from the dist folder
+app.use(express.static(buildPath));
+
+// Handle all other routes to serve the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
+});
+
+
 app.use(session({
   secret: process.env.GOOGLE_CLIENT_SECRET,
   resave: false,
@@ -48,6 +61,7 @@ app.use(passport.session());
 
 // Routers import
 import userRouter from './routes/user.route.js';
+import path from 'path';
 app.use('/api/v1/users', userRouter);
 
 // Error handling middleware
