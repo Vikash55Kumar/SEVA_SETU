@@ -96,10 +96,14 @@ Seva Setu is a real-time monitoring system designed to streamline the issuance o
 </h3>
 
 ![Screenshot 2024-10-22 081406](https://github.com/user-attachments/assets/3908ae7e-362c-448f-83d4-d7a0c2ed056f)
-<br/>
+<br/> <br/>
 ![Screenshot 2024-10-22 081346](https://github.com/user-attachments/assets/830ef057-458b-4305-ba67-c136e514ec61)
 
+https://github.com/user-attachments/assets/2401e85d-d844-495f-84af-b92355d30ee9
+
+
 <hr/>
+
 
 <h1 align="center"> 💡 Innovation & Uniqueness </h1>
 
