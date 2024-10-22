@@ -16,8 +16,54 @@
 
 💬 Ask me about **Node.js, React, JavaScript, Express.js, MpngoDb, Passport.js (Google OAuth), Google Map Api or anything [here](https://github.com/salesp07/salesp07/issues)**
 
-
  </div>
+
+<div align=center>
+  <img width=390 src="https://github-readme-streak-stats.herokuapp.com/?user=vikash55kumar&count_private=true&theme=react&border_radius=10" alt="streak stats"/>
+  <img width=390 src="https://github-readme-stats.vercel.app/api?username=vikash55kumar&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10" alt="readme stats" />
+  <br/>
+  <img width=325 align="center" src="https://github-readme-stats-salesp07.vercel.app/api/top-langs/?username=salesp07&hide=HTML&langs_count=8&layout=compact&theme=react&border_radius=10&size_weight=0.5&count_weight=0.5&exclude_repo=github-readme-stats" alt="top langs" />
+</div>
+    
+# Seva Setu – Real-Time Monitoring System 
+
+Seva Setu is a real-time monitoring system designed to streamline the issuance of caste and other certificates by the Revenue Department. It provides dynamic resource allocation, real-time alerts, and predictive analytics to improve efficiency and reduce backlogs across subdivisions.
+
+![sevaSetu](https://github.com/user-attachments/assets/042d11ed-b205-47bb-a894-8ee0dc1c2d00)
+
+# Key Features
+**📊 Real-Time Monitoring:** Continuously tracks application loads in subdivisions.
+
+**🔄 Dynamic Resource Allocation:** Redistributes resources automatically to high-demand areas.
+
+**🚨 Automated Alerts:** Notifies authorities when application loads exceed predefined thresholds.
+
+**📈 Predictive Analytics:** Forecasts future demand trends to optimize resource distribution.
+
+**🖥️ Centralized Dashboard:** Provides a user-friendly interface for monitoring and managing resources at both district and central levels.
+
+# 🛠️ Technical Approach
+**Data Collection:** Pull data from existing certificate issuance platforms.
+
+**Real-Time Processing:** Use data pipelines for live analysis.
+
+**Dashboard Development:** Build a centralized dashboard for monitoring.
+
+**Dynamic Resource Allocation:** Implement real-time algorithms to adjust resource distribution.
+
+**Testing & Deployment:** Comprehensive system testing and deployment in government environments.
+
+# How the system Works?
+![Assign tasks](https://github.com/user-attachments/assets/1f73aada-7c43-4f9e-afb2-1ee7610219b1)
+
+<h2 align="center">⚒️ Languages-Frameworks-Tools ⚒️</h2>
+<br/>
+<div align="center">
+    <img src="https://skillicons.dev/icons?i=react,bootstrap,mui,html,css,vscode,github,git,r" />
+    <img src="https://skillicons.dev/icons?i=nodejs,javascript,express,mongodb," /><br>
+</div>
+
+
  
 <div align="center"> 
   <a href="https://vikashmernportfolio.up.railway.app/contact">
@@ -33,12 +79,7 @@
 
  <hr/>
  
-<h2 align="center">⚒️ Languages-Frameworks-Tools ⚒️</h2>
-<br/>
-<div align="center">
-    <img src="https://skillicons.dev/icons?i=react,bootstrap,mui,html,css,vscode,github,git,r" />
-    <img src="https://skillicons.dev/icons?i=nodejs,javascript,express,mongodb," /><br>
-</div>
+
 
 <br/>
 <hr/>
@@ -55,12 +96,7 @@
 
 <h2 align="center">⚡ Stats ⚡</h2>
 <br>
-<div align=center>
-  <img width=390 src="https://github-readme-streak-stats.herokuapp.com/?user=vikash55kumar&count_private=true&theme=react&border_radius=10" alt="streak stats"/>
-  <img width=390 src="https://github-readme-stats.vercel.app/api?username=vikash55kumar&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10" alt="readme stats" />
-  <br/>
-  <img width=325 align="center" src="https://github-readme-stats-salesp07.vercel.app/api/top-langs/?username=salesp07&hide=HTML&langs_count=8&layout=compact&theme=react&border_radius=10&size_weight=0.5&count_weight=0.5&exclude_repo=github-readme-stats" alt="top langs" />
-</div>
+
 
 <br/><br/>
 
