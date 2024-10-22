@@ -4,7 +4,7 @@
     <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&center=true&vCenter=true&width=500&height=70&duration=4000&lines=Hi+There!+👋;+I'm+Vikash+Kumar!;" />
 </h1>
 
-<h2 align="center">A passionate software developer from India</h2>
+<h2 align="center">A passionate Full Stack Developer from India</h2>
 
 <br/>
 
@@ -12,7 +12,7 @@
 
  🌱 I’m currently learning **AWS,NEXT.js**
 
-💬 Ask me about **Node.js, React, JavaScript, Express.js, MpngoDb, Passport.js (Google OAuth), Google Map Api or anything [here](https://github.com/salesp07/salesp07/issues)**
+💬 Ask me about **Node.js, React, JavaScript, Express.js, MpngoDb, Passport.js (Google OAuth), Google Map Api or anything [here](https://vikashmernportfolio.up.railway.app/contact)**
 
  </div>
  
@@ -20,10 +20,9 @@
 <div align=center>
   <img width=390 src="https://github-readme-streak-stats.herokuapp.com/?user=vikash55kumar&count_private=true&theme=react&border_radius=10" alt="streak stats"/>
   <img width=390 src="https://github-readme-stats.vercel.app/api?username=vikash55kumar&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10" alt="readme stats" />
-  <br/>
-  
 </div>
 
+  ## - 🔭 Projects Link: [Seva Setu](https://seva-setu.netlify.app/)
 <hr/>    
 
 <h1 align=center> 
@@ -84,8 +83,6 @@ Seva Setu is a real-time monitoring system designed to streamline the issuance o
     🛠️ How the system Works?
 </h1>
 
-## ⚙️ System Features
-
 ![login](https://github.com/user-attachments/assets/4b3aa205-93ae-4ebb-a01e-e20482efe9b0)
 
 ![Screenshot 2024-10-22 081123](https://github.com/user-attachments/assets/9e620693-2b57-4848-a020-14f92a9c4c67)
@@ -99,14 +96,12 @@ Seva Setu is a real-time monitoring system designed to streamline the issuance o
 </h3>
 
 ![Screenshot 2024-10-22 081406](https://github.com/user-attachments/assets/3908ae7e-362c-448f-83d4-d7a0c2ed056f)
+<br/>
 ![Screenshot 2024-10-22 081346](https://github.com/user-attachments/assets/830ef057-458b-4305-ba67-c136e514ec61)
-
-
-
 
 <hr/>
 
-# 💡 Innovation & Uniqueness
+<h1 align="center"> 💡 Innovation & Uniqueness </h1>
 
 **Predictive Analytics:** Uses data to forecast demand and adjust resource allocation in real-time, reducing manual interventions.
 
@@ -116,7 +111,18 @@ Seva Setu is a real-time monitoring system designed to streamline the issuance o
 
 <hr/>
 
-<h2 align="center">⚒️ Languages-Frameworks-Tools ⚒️</h2>
+<h1 align="center"> 📈 Impact </h1>
+
+**30% reduction in processing time** for certificate issuance.
+
+**20% faster response times** through real-time data collection and monitoring.
+
+**Increased citizen satisfaction** through quicker service delivery.
+
+**Balanced workloads** across subdivisions, reducing staff overburden.
+
+
+<h1 align="center">⚒️ Languages-Frameworks-Tools ⚒️</h1>
 <br/>
 <div align="center">
     <img src="https://skillicons.dev/icons?i=react,bootstrap,mui,html,css,vscode,github,git,r" />
@@ -125,50 +131,58 @@ Seva Setu is a real-time monitoring system designed to streamline the issuance o
 </div>
 
 <hr/> 
-<br/> <br/>
 
- 
+<h1 align="center">🚀 How to Run the Project </h1>
+
+Clone the Repository::
+
+```bash
+  https://github.com/Vikash55Kumar/SEVA_SETU.git
+
+```
+
+   Install Dependencies:
+
+```bash
+  cd server
+  npm install
+```
+```bash
+  cd client
+  npm install
+```
+Set Up Environment Variables::
+
+```bash
+.env.example .env
+
+``` 
+
+   Start the Server:
+
+```bash
+  npm run dev
+
+```
+
+   Start the Client:
+
+```bash
+  npm run dev
+
+```
+
+<hr/>
+
 <div align="center"> 
   <a href="https://vikashmernportfolio.up.railway.app/contact">
     <img src="https://img.shields.io/badge/Gmail-333333?style=for-the-badge&logo=gmail&logoColor=red" />
-  </a>
+  </a>  &nbsp; &nbsp; 
   <a href="https://www.linkedin.com/in/software-enginner-vikash/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank" />
-  </a>
+  </a> &nbsp; &nbsp; 
   <a href="https://vikashmernportfolio.up.railway.app/" target="_blank">
      <img src="https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=todoist&logoColor=white" target="_blank" /> <!-- sqlite, safari, google-chrome are other good icon options -->
   </a>
 </div>
 
- <hr/>
- 
-
-
-<br/>
-<hr/>
-
-<div align="center">
-  <h2>🐍 My Contributions 🐍</h2>
-  <br>
-  <img alt="snake eating my contributions" src="https://raw.githubusercontent.com/salesp07/salesp07/output/github-contribution-grid-snake.svg" />
-  
-  <br/><br/><br/>
-</div>
-
-<hr/>
-
-
-<br>
-
-
-<br/><br/>
-
-<hr/>
-
-<br/>
-
-<div align="center">
-<a href='https://ko-fi.com/V7V4RAK9C' target='_blank'><img height='64' style='border:0px;height:64px;' src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-</div>
-
-<br/>
