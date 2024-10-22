@@ -4,14 +4,12 @@
     <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&center=true&vCenter=true&width=500&height=70&duration=4000&lines=Hi+There!+👋;+I'm+Vikash+Kumar!;" />
 </h1>
 
-<h3 align="center">A passionate software developer from India 🇨🇦</h3>
+<h2 align="center">A passionate software developer from India</h2>
 
 <br/>
 
 <div align="center">
- 
- 🔭 I’m currently working on **a marketplace**
- 
+
  🌱 I’m currently learning **AWS,NEXT.js**
 
 💬 Ask me about **Node.js, React, JavaScript, Express.js, MpngoDb, Passport.js (Google OAuth), Google Map Api or anything [here](https://github.com/salesp07/salesp07/issues)**
@@ -32,6 +30,18 @@
     🛠️ Seva Setu – Real-Time Monitoring System 
 </h1>
 
+<h2 align=center>
+    🚀 Smart India Hackathon 2024
+</h2>
+
+**Team Name:** Team ASCENT
+
+**Theme:** Smart Automation
+
+**Category:** Software
+
+# 📝 Project Overview
+
 Seva Setu is a real-time monitoring system designed to streamline the issuance of caste and other certificates by the Revenue Department. It provides dynamic resource allocation, real-time alerts, and predictive analytics to improve efficiency and reduce backlogs across subdivisions.
 
 ![sevaSetu](https://github.com/user-attachments/assets/042d11ed-b205-47bb-a894-8ee0dc1c2d00)
@@ -39,8 +49,9 @@ Seva Setu is a real-time monitoring system designed to streamline the issuance o
 <hr/>
 
 <h1 align=center> 
-    🛠️ Key Features
+    🌟 Key Features
 </h1>
+
 **📊 Real-Time Monitoring:** Continuously tracks application loads in subdivisions.
 
 **🔄 Dynamic Resource Allocation:** Redistributes resources automatically to high-demand areas.
@@ -56,6 +67,7 @@ Seva Setu is a real-time monitoring system designed to streamline the issuance o
 <h1 align=center> 
     🛠️ Technical Approach
 </h1>
+
 **Data Collection:** Pull data from existing certificate issuance platforms.
 
 **Real-Time Processing:** Use data pipelines for live analysis.
@@ -66,11 +78,41 @@ Seva Setu is a real-time monitoring system designed to streamline the issuance o
 
 **Testing & Deployment:** Comprehensive system testing and deployment in government environments.
 
+![Assign tasks](https://github.com/user-attachments/assets/1f73aada-7c43-4f9e-afb2-1ee7610219b1)
+
 <h1 align=center> 
     🛠️ How the system Works?
 </h1>
 
-![Assign tasks](https://github.com/user-attachments/assets/1f73aada-7c43-4f9e-afb2-1ee7610219b1)
+## ⚙️ System Features
+
+![login](https://github.com/user-attachments/assets/4b3aa205-93ae-4ebb-a01e-e20482efe9b0)
+
+![Screenshot 2024-10-22 081123](https://github.com/user-attachments/assets/9e620693-2b57-4848-a020-14f92a9c4c67)
+
+![Screenshot 2024-10-22 081145](https://github.com/user-attachments/assets/8c6c5536-3c5d-4b4a-98af-9ca416b9aeed)
+
+![alert](https://github.com/user-attachments/assets/46345dab-b17b-49ad-8ed2-372a2db01431)
+
+<h3 align=center>
+    Employ Tracking System
+</h3>
+
+![Screenshot 2024-10-22 081406](https://github.com/user-attachments/assets/3908ae7e-362c-448f-83d4-d7a0c2ed056f)
+![Screenshot 2024-10-22 081346](https://github.com/user-attachments/assets/830ef057-458b-4305-ba67-c136e514ec61)
+
+
+
+
+<hr/>
+
+# 💡 Innovation & Uniqueness
+
+**Predictive Analytics:** Uses data to forecast demand and adjust resource allocation in real-time, reducing manual interventions.
+
+**Real-Time Adjustments:** Dynamic redistribution of resources based on live data, unlike traditional periodic adjustments.
+
+**User-Friendly Interface:** Enables fast and effective decision-making with minimal training required.
 
 <hr/>
 
