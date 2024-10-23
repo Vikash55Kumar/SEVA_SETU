@@ -15,7 +15,7 @@
 
 </p>
 
-# 📝 Project Overview
+<h2 align="center"> 📝 Project Overview </h2>
 
 Seva Setu is a real-time monitoring system designed to streamline the issuance of caste and other certificates by the Revenue Department. It provides dynamic resource allocation, real-time alerts, and predictive analytics to improve efficiency and reduce backlogs across subdivisions.
 
