@@ -22,8 +22,8 @@ SocketHandler(server);
 
 // CORS Setup
 app.use(cors({
-  origin: "http://localhost:5173",
-  // origin: process.env.CORES_ORIGIN || "https://seva-setu.netlify.app" || "https://localhost:5173",
+  // origin: "http://localhost:5173",
+  origin: process.env.CORES_ORIGIN || "https://seva-setu.netlify.app" || "https://localhost:5173",
   methods: 'DELETE, POST, GET, PUT',
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'], 
   credentials: true,
