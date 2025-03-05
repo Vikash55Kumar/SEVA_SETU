@@ -1,0 +1,86 @@
+.certificate1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    align-items: center;
+    background-color: #1a171724;
+}
+
+.card1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 20rem;
+    height: 6rem;
+    margin: 2rem;
+    background-color: aliceblue;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card1 a {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #0071eb;
+    /* font-weight: bold; */
+}
+
+.card1:hover {
+    transform: scale(1.1);
+    background-color: rgb(74, 175, 237);
+
+}
+.card1 a:hover {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #0c0f13;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+h2 {
+    text-align: center;
+}
+
+@media (max-width: 895px) {
+    .certificate1 {
+        margin: 3rem;
+    }
+}
+
+@media (max-width: 863px) {
+    .certificate1 {
+        margin: 3rem;
+    }
+    .card1 {
+        width: 15rem;
+        height: 5rem;
+    }
+}
+
+@media (max-width: 703px) {
+    .certificate1 {
+        margin-top: 0rem;
+        /* margin: 4rem; */
+    }
+    .card1 {
+        width: 20rem;
+        height: 6rem;
+        margin: 1.1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .certificate1 {
+        margin: 0rem;
+    }
+    .card1 {
+        width: 20rem;
+        height: 5rem;
+        margin: 1rem;
+    }
+}

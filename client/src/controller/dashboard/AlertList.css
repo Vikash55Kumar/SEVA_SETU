@@ -1,0 +1,25 @@
+.alert-list {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+  }
+  
+  .alert-list h3 {
+    margin-top: 0;
+  }
+  
+  .alert-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid #f5c6cb;
+  }
+  
+  .alert-item:last-child {
+    border-bottom: none;
+  }
+  
+  .alert-item strong {
+    color: #721c24;
+  }
+  /* const socket = new WebSocket('ws://localhost:5173'); */

@@ -1,0 +1,45 @@
+.overview {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .overview:hover {
+    transform: translateY(-5px);
+  }
+  
+  .overview-title {
+    font-size: 24px;
+    color: #0071eb; /* Modern blue */
+    margin-bottom: 10px;
+  }
+  
+  .overview-description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .chart-container {
+    height: 400px;
+    max-width: 100%;
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .chart-container {
+      height: 300px;
+    }
+  
+    .overview-title {
+      font-size: 20px;
+    }
+  
+    .overview-description {
+      font-size: 14px;
+    }
+  }
+  
