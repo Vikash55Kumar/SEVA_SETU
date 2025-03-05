@@ -19,9 +19,9 @@ const UserVerificatioinModel = ({isOpen, onClose, user={}}) => {
         const response = await dispatch(updateVerificationStatus({ otrId: user.otrId, isVerified: "Verified" }));
         if (response.status === 200) {
             toast.success(response.message || "User Verification Status Update Successfully!");
-            setLoading(false); // Hide spinner after successful login
             onClose();
             await dispatch(sendSMS({otrId:user.otrId, phoneNumber:user.phoneNumber, userName:user.fullName }))
+            setLoading(false); // Hide spinner after successful login
         } else {
             toast.error(response?.data?.message || "Verification failed!", 'error');
             setLoading(false); // Hide spinner if login fails

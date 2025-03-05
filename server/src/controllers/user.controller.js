@@ -316,7 +316,7 @@ const getUserDetails = asyncHandler(async (req, res) => {
 
 const sendMail = asyncHandler(async (req, res) => {
     const { email, fullName, certificateNumber,issueDate, certificatePath } = req.body;
-console.log(email, fullName, certificateNumber,issueDate, certificatePath);
+    console.log(email, fullName, certificateNumber,issueDate, certificatePath);
 
     const transporter = nodemailer.createTransport({
        service: "gmail",
@@ -359,7 +359,11 @@ console.log(email, fullName, certificateNumber,issueDate, certificatePath);
 
 const sendSMS = asyncHandler(async (req, res) => {
     const { phoneNumber, userName, otrId } = req.body;
-console.log(phoneNumber, userName, otrId);
+    console.log(phoneNumber, userName, otrId);
+    
+    console.log("Twilio Account SID:", process.env.TWILIO_ACCOUNT_SID);
+    console.log("Twilio Auth Token:", process.env.TWILIO_AUTH_TOKEN ? "Exists" : "Missing");
+
 
     const client = new twilio(process.env.TWILIO_SMS_SID, process.env.TWILIO_SMS_AUTH_TOKEN);
 

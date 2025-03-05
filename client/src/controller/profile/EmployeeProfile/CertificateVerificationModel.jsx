@@ -61,11 +61,11 @@ const CertificateVerificationModel = ({isOpen, onClose, certificateData={}}) => 
               certificatePath: response?.data?.data?.certificatePdf, // ✅ Use the received value directly
             };          
             onClose();
-            setLoading(false); // Hide spinner after successful login            
             
             console.log(emailForm);
             
             await dispatch(sendMail(emailForm))
+            setLoading(false); // Hide spinner after successful login            
         } else {
             toast.error(response?.data?.message || "Verification failed!", 'error');
             setLoading(false); // Hide spinner if login fails
