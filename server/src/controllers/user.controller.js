@@ -360,10 +360,6 @@ const sendMail = asyncHandler(async (req, res) => {
 const sendSMS = asyncHandler(async (req, res) => {
     const { phoneNumber, userName, otrId } = req.body;
     console.log(phoneNumber, userName, otrId);
-    
-    console.log("Twilio Account SID:", process.env.TWILIO_ACCOUNT_SID);
-    console.log("Twilio Auth Token:", process.env.TWILIO_AUTH_TOKEN ? "Exists" : "Missing");
-
 
     const client = new twilio(process.env.TWILIO_SMS_SID, process.env.TWILIO_SMS_AUTH_TOKEN);
 

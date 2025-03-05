@@ -1,10 +1,56 @@
 import React, { useState, useEffect } from "react";
 import { Dialog } from "@headlessui/react";
-import JoyzChatbot from "./Testing2";
 
 const ResourceReallocationDashboard = ({ employeeData, reportData }) => {
-  const [divisions, setDivisions] = useState([]);
+  // const [divisions, setDivisions] = useState([]);
   const [employees, setEmployees] = useState([]);
+  const [divisions, setDivisions] = useState([
+    {
+      id: 1,
+      name: "North-East",
+      state: "Delhi",
+      totalForms: 92998,
+      pendingForms: 12000,
+      processedForms: 78000,
+      rejectedForms: 5000,
+      current_employee: 1,
+      employees: 1,
+    },
+    {
+      id: 2,
+      name: "North",
+      state: "Delhi",
+      totalForms: 135777,
+      pendingForms: 18000,
+      processedForms: 110000,
+      rejectedForms: 7700,
+      current_employee: 1,
+      employees: 1,
+    },
+    {
+      id: 3,
+      name: "South-West",
+      state: "Delhi",
+      totalForms: 173795,
+      pendingForms: 25000,
+      processedForms: 145000,
+      rejectedForms: 10795,
+      current_employee: 2,
+      employees: 1,
+    },
+    {
+      id: 4,
+      name: "West",
+      state: "Delhi",
+      totalForms: 18100,
+      pendingForms: 4475,
+      processedForms: 8608,
+      rejectedForms: 1832,
+      current_employee: 1,
+      employees: 1,
+    },
+  ]);
+  
 
   useEffect(() => {
     // Format and set report data into divisions
@@ -68,7 +114,6 @@ const ResourceReallocationDashboard = ({ employeeData, reportData }) => {
         return div;
       })
     );
-
     setShowModal(false);
   };
 
@@ -92,7 +137,8 @@ const ResourceReallocationDashboard = ({ employeeData, reportData }) => {
             <p className="text-red-600 font-semibold">⏳ Pending: {division.pendingForms}</p>
             <p className="text-green-600">✅ Processed: {division.processedForms}</p>
             <p className="text-gray-600">❌ Rejected: {division.rejectedForms}</p>
-            <p className="text-blue-600">👷 Employees: {division.employees}</p>
+            <p className="text-blue-600">Required Employees: {division.employees}</p>
+            <p className="text-blue-600">Current Employees: {division.current_employee}</p>
           </div>
         ))}
       </div>
@@ -171,7 +217,6 @@ const ResourceReallocationDashboard = ({ employeeData, reportData }) => {
           </div>
         </Dialog>
       )}
-      {/* <JoyzChatbot /> */}
     </div>
   );
 };

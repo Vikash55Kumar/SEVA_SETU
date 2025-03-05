@@ -17,8 +17,6 @@ const Navbar = ({adminProfile = {}, employeeProfile={}, userProfile={}}) => {
     const navigate = useNavigate()
 
     const { provider } = adminProfile || employeeProfile || userProfile; 
-    console.log(provider, userProfile);
-    
 
     const { isAuthenticated } = useSelector((state) => ({
         isAuthenticated: state.admin?.isAuthenticated || state.employee?.isAuthenticated || state.user?.isAuthenticated,
@@ -116,7 +114,10 @@ const Navbar = ({adminProfile = {}, employeeProfile={}, userProfile={}}) => {
                     :"" 
                 }
 
-                {/* <a href="/testing">Employee Tracker</a> */}
+                <a href="/testing">Resource Allocation</a>
+                <a href="/EmployCertificateDashboard">List</a>
+                <a href="/certificateDashboard">List2</a>
+                
 
                 { provider=="Employee" ? <a href="/profile"> EmployeeDashboard</a> : "" }
                 { userProfile.provider=="User" ? <a href="/userDashboard"> UserDashboard</a> : "" }
