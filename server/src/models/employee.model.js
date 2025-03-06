@@ -16,6 +16,9 @@ const employeeSchema = new mongoose.Schema(
             lowercase: true,
             trim: true,
         },
+        division: {
+            type: String,
+        },
         employeeId: {
             type: String,
             required: true,

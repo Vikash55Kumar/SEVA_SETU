@@ -46,7 +46,7 @@ import FinalCertificate from './dwnCert/FinalCertificate';
 import ReportModelView from './controller/report/ReportModelView';
 import EmployeeTracker from './controller/profile/AdminProfile/EmployeeTracker.jsx';
 import EmployeeModel from './controller/profile/AdminProfile/EmployeeModel.jsx';
-import ResourceAllocationComponent from './controller/Testing/TestingResource.jsx';
+import ResourceAllocationComponent from './controller/resourceDashboard/ResourceAllocation.jsx';
 import { getUserDetails, loadUser } from './actions/userAction.js';
 import UserTracker from './controller/profile/EmployeeProfile/UserTracker.jsx';
 import UserDashboard from './controller/profile/UserProfile/UserDashboard.jsx';
@@ -265,7 +265,7 @@ function App() {
             <Route path='/certificateDashboard' element={<CertificateDashboard adminProfile={admin?.data} states={states} districts={districts} cases={cases} /> } />
             <Route path='/EmployCertificateDashboard' element={<EmployCertificateDashboard employeeProfile={employee?.data} states={states} districts={districts} cases={cases} /> } />
             <Route path='/ReportModel' element={<ReportModelView />} />
-            <Route path='/testing' element={<ResourceAllocationComponent employeeData={employeeDetail?.data} reportData={report?.data} />} />
+            <Route path='/resourceAllocation' element={<ResourceAllocationComponent employeeData={employeeDetail?.data} reportData={report?.data} />} />
             <Route path='/userDashboard' element={<UserDashboard userProfile={user?.data} certificateDetail={certificateDetail?.data} />} />
             <Route path='/certificateTracker' element={<CertificateTracker employeeProfile={employee?.data} certificateDetail={certificateDetail?.data} />} />
             <Route path="*" element={<NotFound />} />

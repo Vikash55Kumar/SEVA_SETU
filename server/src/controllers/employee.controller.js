@@ -23,7 +23,6 @@ const generateAccessAndRefreshTokens = async (employeeId) => {
     }
 };
 
-
 const googleAuth = asyncHandler(async (req, res) => {
     console.log("Received request for Google auth");
     console.log("Request body:", req.body);
@@ -68,7 +67,6 @@ const googleAuth = asyncHandler(async (req, res) => {
         return res.status(401).json(new ApiResponse(401, null, "Invalid tokens"));
     }
 });
-
 
 const registerEmployee = asyncHandler(async (req, res) => {
     const { fullName, email, employeeId, phoneNumber, password, conformPassword } = req.body;
@@ -268,6 +266,26 @@ const getEmployeeDetails = asyncHandler(async (req, res) => {
     return res.status(200).json(new ApiResponse(200, employee, "Current employee data sent successfully"));
 });
 
+const updateResourceAllocation = asyncHandler( async(req, res) => {
+    const {newDivision, employeeId} = req.body
+    console.log(newDivision, employeeId);
+
+    if(!newDivision || !employeeId) {
+        throw new ApiError(400, "required employeeId or newDivision")
+    }
+
+    const allocationUpdate = await Employee.findByIdAndUpdate(
+        employeeId,
+        { $set: { division: newDivision } }, 
+        { new: true, runValidators: true } 
+    ).select("-password").exec(); // Exclude password field
+    
+    return res
+    .status(200)
+    .json(new ApiResponse(200, allocationUpdate, "resource allocation updated successfully"))
+
+})
+
 const updateAccountDetails = asyncHandler( async(req, res) => {
     const {phoneNumber, employeeId} = req.body
 
@@ -298,6 +316,7 @@ export {
     changeCurrentPassword,
     getCurrentEmployee,
     getEmployeeDetails,
+    updateResourceAllocation,
     updateAccountDetails,
     googleAuth,
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { changeCurrentPassword, refreshAccessToken, updateAccountDetails, googleAuth, registerEmployee, loginEmployee, getCurrentEmployee, getEmployeeDetails, logoutEmployee } from "../controllers/employee.controller.js";
+import { changeCurrentPassword, refreshAccessToken, updateAccountDetails, googleAuth, registerEmployee, loginEmployee, getCurrentEmployee, getEmployeeDetails, logoutEmployee, updateResourceAllocation } from "../controllers/employee.controller.js";
 import {upload} from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/employeeAuth.middleware.js";
 import passport from "../utils/passport.js";
@@ -15,6 +15,8 @@ router.route("/forgetPassword").post(verifyJWT, changeCurrentPassword)
 router.route("/getUser").get(verifyJWT, getCurrentEmployee)
 
 router.route("/getUserDetails").get(getEmployeeDetails)
+
+router.route("/updateResource").post(updateResourceAllocation)
 
 router.route("/updateAccount").patch(verifyJWT, updateAccountDetails)
 

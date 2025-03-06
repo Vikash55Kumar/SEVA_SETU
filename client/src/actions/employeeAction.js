@@ -30,6 +30,9 @@ import {
     LOAD_EMPLOYEE_REQUEST,
     LOAD_EMPLOYEE_SUCCESS,
     LOAD_EMPLOYEE_FAIL,
+    RESOURECE_ALLOCATION_REQUEST,
+    RESOURECE_ALLOCATION_SUCCESS,
+    RESOURECE_ALLOCATION_FAIL,
     
 } from '../constants/userConstants';
 
@@ -160,6 +163,28 @@ export const forgetPassword = (userData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: FORGOTPASSWORD_FAIL,
+            payload: error.response.data.message || error.message,
+        });
+        throw error;
+    }
+};
+
+export const updateResourceAllocation = (employeeId, newDivision) => async (dispatch) => {
+    try {
+        dispatch({ type: RESOURECE_ALLOCATION_REQUEST });
+
+        const response = await api.post('/employee/updateResource', employeeId, newDivision);
+        const {data} = response
+        
+        dispatch({
+            type: RESOURECE_ALLOCATION_SUCCESS,
+            payload: data.data
+        });
+        return data;
+
+    } catch (error) {
+        dispatch({
+            type: RESOURECE_ALLOCATION_FAIL,
             payload: error.response.data.message || error.message,
         });
         throw error;

@@ -50,7 +50,7 @@ const CertificateStatus = React.memo(function CertificateStatus({ certificateDet
           <span className="flex justify-center text-3xl">Certificate Status</span>
           <Table hoverable className="w-full border border-gray-400 mt-4">
               <TableHead>
-                  <TableHeadCell>Register Id</TableHeadCell>
+                  <TableHeadCell>Certificate NO.</TableHeadCell>
                   <TableHeadCell>Register Date</TableHeadCell>
                   <TableHeadCell>Full Name</TableHeadCell>
                   <TableHeadCell>Certificate Type</TableHeadCell>
@@ -62,7 +62,7 @@ const CertificateStatus = React.memo(function CertificateStatus({ certificateDet
               <TableBody className="divide-y ">              
                   {certificateDetail.slice().reverse().map((certificate, index) => (
                       <TableRow key={index} className="bg-white border-gray-300">
-                          <TableCell className="text-black text-center">{certificate._id}</TableCell>
+                          <TableCell className="text-black text-center">{certificate.certificateNumber || "N/A"}</TableCell>
                           <TableCell className="text-black font-bold">{moment(certificate.createdAt).format('DD-MM-YYYY')}</TableCell>
                           <TableCell className="text-black text-center">{certificate.fullName}</TableCell>
                           <TableCell className="text-black font-medium">{certificate.certificateType}</TableCell>

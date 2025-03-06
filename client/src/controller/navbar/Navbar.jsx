@@ -76,7 +76,7 @@ const Navbar = ({adminProfile = {}, employeeProfile={}, userProfile={}}) => {
 
                 {provider === "Officer" ?
                     <>  
-                        <a href="/certificateDashboard" > Admin Resource</a>
+                        <a href="/resourceAllocation">Resource Allocation</a>
                         <a href="/profile">Officer Dashboard</a>
                         <div className={`dropdown ${isDropdownOpen ? "open" : ""}`}>
                             <a href="#!" className="dropdown-toggle" onClick={toggleDropdown}>Services</a>
@@ -114,9 +114,8 @@ const Navbar = ({adminProfile = {}, employeeProfile={}, userProfile={}}) => {
                     :"" 
                 }
 
-                <a href="/testing">Resource Allocation</a>
-                <a href="/EmployCertificateDashboard">List</a>
-                <a href="/certificateDashboard">List2</a>
+                {/* <a href="/EmployCertificateDashboard">List</a>
+                <a href="/certificateDashboard">List2</a> */}
                 
 
                 { provider=="Employee" ? <a href="/profile"> EmployeeDashboard</a> : "" }

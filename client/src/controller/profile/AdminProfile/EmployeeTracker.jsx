@@ -53,7 +53,7 @@ const EmployeeTracker = React.memo(function Profile({profile = {}, adminProfile 
 
                 <div className="name">
                   <h2>{fullName} ({officerId || employeeId}) </h2>
-                  <h5>{email || 'Email Not Available'}</h5>
+                  <h5>{email}</h5>
                 </div>
 
               </div>
@@ -69,6 +69,7 @@ const EmployeeTracker = React.memo(function Profile({profile = {}, adminProfile 
                       <TableHeadCell>Full Name</TableHeadCell>
                       <TableHeadCell>Email</TableHeadCell>
                       <TableHeadCell>Employee ID</TableHeadCell>
+                      <TableHeadCell>Deginated At</TableHeadCell>
                       <TableHeadCell> View </TableHeadCell>
                   </TableHead>
 
@@ -80,6 +81,7 @@ const EmployeeTracker = React.memo(function Profile({profile = {}, adminProfile 
                             <TableCell className="text-black">{employee.fullName}</TableCell>
                             <TableCell className="text-black font-medium">{employee.email}</TableCell>
                             <TableCell className="text-black text-center">{employee.employeeId}</TableCell>
+                            <TableCell className="text-black text-center">{employee.division}</TableCell>
                             <TableCell>
                                 <a className="font-medium text-cyan-600 hover:underline cursor-pointer" onClick={() => handleEditClick(employee)}  >
                                     View
