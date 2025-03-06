@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { generateAadharOtp, register, verifyAadhar } from "../../actions/userAction";
 import PhoneInput from "react-phone-input-2";
+import SpinnerLoader from "../../utility/SpinnerLoader";
 
 const OtrRegestration = () => {
   const dispatch = useDispatch();
@@ -198,7 +199,10 @@ const OtrRegestration = () => {
   };
 
   return (
-    <div className="bod">
+    <div className="bod" style={{marginBottom:"7rem"}}>
+      {loading ? (
+          <SpinnerLoader /> // Show spinner if loading is true
+      ) : (
       <div className="form-container">
         <header className="form-header">
           <div id="auth-account">
@@ -208,7 +212,6 @@ const OtrRegestration = () => {
         </header>
 
         <form onSubmit={handleOtrSubmit}>
-
           <fieldset>
             <div style={{padding:"1rem"}}>
               <legend>Personal Details</legend>
@@ -394,7 +397,7 @@ const OtrRegestration = () => {
   
                   <div className="input-row">
                     <div className="input-container">
-                      <label htmlFor="avatar">Profile Image:</label>
+                      <label htmlFor="avatar">*Profile Image:</label>
                       <input
                         type="file"
                         id="avatar"
@@ -491,13 +494,13 @@ const OtrRegestration = () => {
                   </div>
                 </div>
               </fieldset>
-  
+              <br/>
               <fieldset>
                 <div style={{padding:"1rem"}}>
                   <legend>Document Uploads</legend>
   
                   <div className="input-container">
-                    <label htmlFor="avatarAdharCard">Aadhar Card:</label>
+                    <label htmlFor="avatarAdharCard">*Aadhar Card:</label>
                     <input
                       type="file"
                       id="avatarAdharCard"
@@ -574,7 +577,7 @@ const OtrRegestration = () => {
                   <h9>(* Upload file maximum number of file )</h9>
                 </div>
               </fieldset>
-  
+              <br/>
               <fieldset>
                 <div style={{padding:"1rem"}}>
                   <legend>Set Security Key</legend>
@@ -600,16 +603,16 @@ const OtrRegestration = () => {
                       />
                     </div>
                   </div>
-                </div>
-              </fieldset>
-              {/* <button type="submit">Submit</button> */}
-              <button className="btn2" type="submit">
+                  <button className="btn2" type="submit">
                   {disableOTR ? "Register to Officer" : "Submit"}
               </button>
+                </div>
+                
+              </fieldset>
+              {/* <button type="submit">Submit</button> */}
+
             </div>
           : ""}
-
-
         </form>
 
         {/* Popup for Phone Number Entry */}
@@ -654,6 +657,7 @@ const OtrRegestration = () => {
           </div>
         )}
       </div>
+      )};
     </div>
   );
 };

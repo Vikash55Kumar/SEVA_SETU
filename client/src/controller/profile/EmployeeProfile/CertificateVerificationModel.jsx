@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import SpinnerLoader from "../../../utility/SpinnerLoader";
 import FinalCertificate from "../../../dwnCert/FinalCertificate";
 import { updateCertificateVerification } from "../../../actions/certificateReportAction";
-const CertificateVerificationModel = ({isOpen, onClose, certificateData={}}) => {
+const CertificateVerificationModel = ({isOpen, onClose, certificateData={}, userData={}}) => {
 
   if (!isOpen) return null;
   const date= Date()
@@ -145,10 +145,18 @@ const CertificateVerificationModel = ({isOpen, onClose, certificateData={}}) => 
                 {/* Uploaded Documents */}
                 <h3 className="text-lg font-semibold text-gray-800 border-b pb-2 mt-4">Uploaded Documents</h3>
                 <div className="grid grid-cols-3 gap-4 mt-3">
+                  {certificateData.avatarAffidavit && (
+                    <div className="text-center">
+                      <p className="text-sm font-bold">Affidavite Document</p>
+                      <a href={certificateData.avatarAffidavit} target="_blank" rel="noopener noreferrer" className="flex justify-center">
+                        <img src={certificateData.avatarAffidavit} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition bg-red-400 p-1" />
+                      </a>
+                    </div>
+                  )}
                   {certificateData.avatarAdharCard && (
                     <div className="text-center">
                       <p className="text-sm font-bold">Aadhar Card</p>
-                      <a href={certificateData.avatarAdharCard} target="_blank" rel="noopener noreferrer">
+                      <a href={certificateData.avatarAdharCard} target="_blank" rel="noopener noreferrer" className="flex justify-center">
                         <img src={certificateData.avatarAdharCard} alt="Aadhar" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
                       </a>
                     </div>
@@ -156,7 +164,7 @@ const CertificateVerificationModel = ({isOpen, onClose, certificateData={}}) => 
                   {certificateData.avatarIncome && (
                     <div className="text-center">
                       <p className="text-sm font-bold">Income Certificate</p>
-                      <a href={certificateData.avatarIncome} target="_blank" rel="noopener noreferrer">
+                      <a href={certificateData.avatarIncome} target="_blank" rel="noopener noreferrer" className="flex justify-center">
                         <img src={certificateData.avatarIncome} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
                       </a>
                     </div>
@@ -164,24 +172,40 @@ const CertificateVerificationModel = ({isOpen, onClose, certificateData={}}) => 
                   {certificateData.avatarPanCard && (
                     <div className="text-center">
                       <p className="text-sm font-bold">PAN Card</p>
-                      <a href={certificateData.avatarPanCard} target="_blank" rel="noopener noreferrer">
+                      <a href={certificateData.avatarPanCard} target="_blank" rel="noopener noreferrer" className="flex justify-center">
                         <img src={certificateData.avatarPanCard} alt="PAN" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
                       </a>
                     </div>
                   )}
-                  {certificateData.avatarAffidavit && (
+                  {certificateData.avatarCaste && (
                     <div className="text-center">
-                      <p className="text-sm font-bold">Affidavite Document</p>
-                      <a href={certificateData.avatarAffidavit} target="_blank" rel="noopener noreferrer">
-                        <img src={certificateData.avatarAffidavit} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
+                      <p className="text-sm font-bold">Caste Certificate</p>
+                      <a href={certificateData.avatarCaste} target="_blank" rel="noopener noreferrer" className="flex justify-center">
+                        <img src={certificateData.avatarCaste} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition bg-red-400 p-1" />
                       </a>
                     </div>
                   )}
-                  {certificateData.certificatePdf && (
+                  {certificateData.avatarResidential && (
                     <div className="text-center">
-                      <p className="text-sm font-bold"> Document</p>
-                      <a href={certificateData.certificatePdf} target="_blank" rel="noopener noreferrer">
-                        <img src={certificateData.certificatePdf} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
+                      <p className="text-sm font-bold">Resirential</p>
+                      <a href={certificateData.avatarResidential} target="_blank" rel="noopener noreferrer" className="flex justify-center">
+                        <img src={certificateData.avatarResidential} alt="Aadhar" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
+                      </a>
+                    </div>
+                  )}
+                  {certificateData.avatar10thMarksheet && (
+                    <div className="text-center">
+                      <p className="text-sm font-bold">10th Marksheet</p>
+                      <a href={certificateData.avatar10thMarksheet} target="_blank" rel="noopener noreferrer" className="flex justify-center">
+                        <img src={certificateData.avatar10thMarksheet} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
+                      </a>
+                    </div>
+                  )}
+                  {certificateData.avatar12thMarksheet && (
+                    <div className="text-center">
+                      <p className="text-sm font-bold">12th Marksheet</p>
+                      <a href={certificateData.avatar12thMarksheet} target="_blank" rel="noopener noreferrer" className="flex justify-center">
+                        <img src={certificateData.avatar12thMarksheet} alt="PAN" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
                       </a>
                     </div>
                   )}

@@ -7,7 +7,7 @@ import SpinnerLoader from "../../utility/SpinnerLoader";
 export default function Contact() {
     const [loading, setLoading] = useState(false);
     const form = useRef(null);
-    console.log(form);
+    // console.log(form);
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -20,19 +20,19 @@ export default function Contact() {
         }
 
         emailjs
-        .sendForm("service_shadr0o", "template_mj7rlbd", form.current, {
+        .sendForm(`${import.meta.env.VITE_SERVICE_ID}`, `${import.meta.env.VITE_TEMPLATE_ID}`, form.current, {
             publicKey: `${import.meta.env.VITE_PUBLIC_KEY}`,
         })
         .then(
             (result) => {
             e.target.reset();
             setLoading(false); 
-            toast.success("Form submit successfully");
+            toast.success("Query form submit successfully");
             },
             (error) => {
             // console.log("FAILED...", error.text);
             setLoading(false); 
-            toast.error("Form not submit successfully");
+            toast.error("Query form not submit successfully");
             }
         );
     };
