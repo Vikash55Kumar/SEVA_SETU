@@ -74,13 +74,42 @@ const googleAuth = asyncHandler(async (req, res) => {
     }
 });
 
+// const generateOtrId = (fullName, state, country, aadharNumber) => {
+//     if (!fullName || !state || !country || !aadharNumber) {
+//         throw new Error("Missing required fields to generate OTR");
+//     }
+
+//     // Extract initials from full name
+//     const nameInitials = fullName.split(" ").map(word => word[0]).join("").toUpperCase();
+
+//     // Get first 3 letters of state and country
+//     const stateCode = state.substring(0, 3).toUpperCase();
+//     const countryCode = country.substring(0, 3).toUpperCase();
+
+//     // Take last 4 digits of Aadhaar number
+//     const aadharLast4 = aadharNumber.slice(-4);
+
+//     // Generate a 3-digit random number
+//     const randomNum = Math.floor(100 + Math.random() * 900); // 100-999
+
+//     // Combine everything to form the OTR ID
+//     const otrId = `${nameInitials}${stateCode}${countryCode}${aadharLast4}${randomNum}`;
+
+//     return otrId;
+// };
+
 const generateOtrId = (fullName, state, country, aadharNumber) => {
     if (!fullName || !state || !country || !aadharNumber) {
         throw new Error("Missing required fields to generate OTR");
     }
 
-    // Extract initials from full name
-    const nameInitials = fullName.split(" ").map(word => word[0]).join("").toUpperCase();
+    // Extract initials from full name (max 3 letters)
+    const nameInitials = fullName
+        .split(" ")
+        .map(word => word[0]) // Get first letter of each word
+        .join("")
+        .substring(0, 3) // Limit to 3 initials
+        .toUpperCase();
 
     // Get first 3 letters of state and country
     const stateCode = state.substring(0, 3).toUpperCase();
@@ -89,11 +118,11 @@ const generateOtrId = (fullName, state, country, aadharNumber) => {
     // Take last 4 digits of Aadhaar number
     const aadharLast4 = aadharNumber.slice(-4);
 
-    // Generate a 3-digit random number
-    const randomNum = Math.floor(100 + Math.random() * 900); // 100-999
+    // Generate a timestamp-based unique value
+    const timestamp = Date.now().toString().slice(-5); // Last 5 digits of timestamp
 
     // Combine everything to form the OTR ID
-    const otrId = `${nameInitials}${stateCode}${countryCode}${aadharLast4}${randomNum}`;
+    const otrId = `${nameInitials}${stateCode}${countryCode}${aadharLast4}${timestamp}`;
 
     return otrId;
 };
@@ -113,9 +142,9 @@ const registerUser = asyncHandler(async (req, res) => {
     
     const existedUser = await User.findOne({ phoneNumber});
 
-    if (existedUser) {
-        throw new ApiError(409, "User with  phoneNumber already exists");
-    }
+    // if (existedUser) {
+    //     throw new ApiError(409, "User with  phoneNumber already exists");
+    // }
 
     if (!(password === confirmPassword)) {
         throw new ApiError(400, "Password and Confirm password do not match");
