@@ -78,11 +78,13 @@ function ApplyCertificate({ userProfile }) {
             setFormData({ avatarAffidavit: "" });
             setLoading(false); 
             nevigate("/userDashboard")
-            
-        } 
+        } else {
+          toast.error(response.message || "Certificate register failed");
+          setLoading(false); 
+        }
       } catch (err) {
           console.log("error 2 ", err);
-          toast.error(err || "Certificate register failed");
+          toast.error(err.message || "Certificate register failed");
           setLoading(false); 
       }    
   };

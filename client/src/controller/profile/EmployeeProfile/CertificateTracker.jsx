@@ -4,19 +4,38 @@ import '../profile.css';
 import moment from "moment";
 import CertificateVerificationModel from "./CertificateVerificationModel";
 
-const CertificateTracker = React.memo(function Profile({employeeProfile = {}, certificateDetail=[]}) {
+const CertificateTracker = React.memo(function Profile({employeeProfile = {}, userDetail=[], certificateDetail=[]}) {
   // console.log("user",certificateDetail);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCertificateData, setIsCertificateData] = useState("")
-
+  const [isUserData, setIsUserData] = useState("")
   
   // export default function employeeProfile({ employeeProfile = {} }) {
   const { fullName, email, provider, avatar, employeeId } = employeeProfile || {}; 
   
+  // const handleEditClick = useCallback((data) => {
+  //   setIsCertificateData(data)
+  //   setIsModalOpen(true)
+  // }, []);
+
   const handleEditClick = useCallback((data) => {
-    setIsCertificateData(data)
-    setIsModalOpen(true)
-  }, []);
+    setIsCertificateData(data);
+  
+    // Ensure `userDetail` is an array before filtering
+    if (Array.isArray(userDetail) && Array.isArray(data.owner)) {
+      const filterUser = userDetail.filter((user) =>
+        data.owner.some(ownerId => ownerId === user._id)
+      );
+  
+      // console.log("Filtered User:", filterUser);
+      setIsUserData(filterUser);  // Set the filtered user data
+    } else {
+      console.warn("Invalid userDetail or owner data");
+    }
+  
+    setIsModalOpen(true);
+  }, [userDetail]); // Depend on `userDetail`
+  
 
   return (
     <>
@@ -87,7 +106,7 @@ const CertificateTracker = React.memo(function Profile({employeeProfile = {}, ce
         </div>
       </div>
     </div>
-    <CertificateVerificationModel certificateData={isCertificateData} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    <CertificateVerificationModel certificateData={isCertificateData} userData={isUserData} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 })

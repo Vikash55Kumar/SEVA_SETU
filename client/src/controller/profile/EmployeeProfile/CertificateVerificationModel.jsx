@@ -7,17 +7,18 @@ import { toast } from "react-toastify";
 import SpinnerLoader from "../../../utility/SpinnerLoader";
 import FinalCertificate from "../../../dwnCert/FinalCertificate";
 import { updateCertificateVerification } from "../../../actions/certificateReportAction";
-const CertificateVerificationModel = ({isOpen, onClose, certificateData={}, userData={}}) => {
+const CertificateVerificationModel = ({isOpen, onClose, certificateData={}, userData=[]}) => {
+console.log(userData);
 
   if (!isOpen) return null;
+  const user = userData.length > 0 ? userData[0] : null;
   const date= Date()
   const [pdfFile, setPdfFile] = useState(null);
   const dispatch = useDispatch();
   const [isVerified] = useState(certificateData?.isVerified?.toLowerCase() === "verified");
   const [loading, setLoading] = useState(false); // Loading state to manage spinner visibility
   const [certificateNumber, setCertificateNumber] = useState("")
-  const [certificatePath, setCertificatePath] = useState("")
-
+  
   const handlePdfGenerated = async (pdfFile, certificateId) => {
     if (!pdfFile) return;
     setPdfFile(pdfFile);
@@ -34,15 +35,6 @@ const CertificateVerificationModel = ({isOpen, onClose, certificateData={}, user
     formData.append("certificateId", certificateData._id);
     formData.append("certificateNumber", certificateNumber);
     formData.append("isVerified", "Verified")
-
-  //   const emailForm = {
-  //     email:certificateData.email,
-  //     fullName:certificateData.fullName, 
-  //     certificateNumber, 
-  //     issueDate:moment(date).format('DD-MM-YYYY'), 
-  //     certificatePath: response.data.certificatePdf
-  // };
-  // console.log(emailForm, certificatePath);
   
     setLoading(true);
     // console.log(certificateData.otrId, "Verified")
@@ -122,7 +114,7 @@ const CertificateVerificationModel = ({isOpen, onClose, certificateData={}, user
                       </p>
                       <p className={`text-lg font-semibold ${isVerified ? "text-green-600" : "text-red-500"}`}>
                           {isVerified ? `✅ ${certificateData.isVerified}` : `❌ ${certificateData.isVerified}`}
-                      </p>                  
+                      </p>      
                     </div>
                 </div>
 
@@ -138,7 +130,7 @@ const CertificateVerificationModel = ({isOpen, onClose, certificateData={}, user
                   <p><strong>Adhar Number:</strong> {certificateData.aadharNumber}</p>
                   <p><strong>Gender:</strong> {certificateData.gender}</p>
                   <p><strong>Religion:</strong> {certificateData.religion}</p>
-                  <p><strong>Cast:</strong> {certificateData.caste}</p>
+                  <p><strong>Caste:</strong> {certificateData.caste}</p>
                   <p className="col-span-2"><strong>Address:</strong> {certificateData.address}</p>
                 </div>
         
@@ -153,61 +145,33 @@ const CertificateVerificationModel = ({isOpen, onClose, certificateData={}, user
                       </a>
                     </div>
                   )}
-                  {certificateData.avatarAdharCard && (
-                    <div className="text-center">
-                      <p className="text-sm font-bold">Aadhar Card</p>
-                      <a href={certificateData.avatarAdharCard} target="_blank" rel="noopener noreferrer" className="flex justify-center">
-                        <img src={certificateData.avatarAdharCard} alt="Aadhar" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
-                      </a>
-                    </div>
-                  )}
-                  {certificateData.avatarIncome && (
-                    <div className="text-center">
-                      <p className="text-sm font-bold">Income Certificate</p>
-                      <a href={certificateData.avatarIncome} target="_blank" rel="noopener noreferrer" className="flex justify-center">
-                        <img src={certificateData.avatarIncome} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
-                      </a>
-                    </div>
-                  )}
-                  {certificateData.avatarPanCard && (
-                    <div className="text-center">
-                      <p className="text-sm font-bold">PAN Card</p>
-                      <a href={certificateData.avatarPanCard} target="_blank" rel="noopener noreferrer" className="flex justify-center">
-                        <img src={certificateData.avatarPanCard} alt="PAN" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
-                      </a>
-                    </div>
-                  )}
-                  {certificateData.avatarCaste && (
-                    <div className="text-center">
-                      <p className="text-sm font-bold">Caste Certificate</p>
-                      <a href={certificateData.avatarCaste} target="_blank" rel="noopener noreferrer" className="flex justify-center">
-                        <img src={certificateData.avatarCaste} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition bg-red-400 p-1" />
-                      </a>
-                    </div>
-                  )}
-                  {certificateData.avatarResidential && (
-                    <div className="text-center">
-                      <p className="text-sm font-bold">Resirential</p>
-                      <a href={certificateData.avatarResidential} target="_blank" rel="noopener noreferrer" className="flex justify-center">
-                        <img src={certificateData.avatarResidential} alt="Aadhar" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
-                      </a>
-                    </div>
-                  )}
-                  {certificateData.avatar10thMarksheet && (
-                    <div className="text-center">
-                      <p className="text-sm font-bold">10th Marksheet</p>
-                      <a href={certificateData.avatar10thMarksheet} target="_blank" rel="noopener noreferrer" className="flex justify-center">
-                        <img src={certificateData.avatar10thMarksheet} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
-                      </a>
-                    </div>
-                  )}
-                  {certificateData.avatar12thMarksheet && (
-                    <div className="text-center">
-                      <p className="text-sm font-bold">12th Marksheet</p>
-                      <a href={certificateData.avatar12thMarksheet} target="_blank" rel="noopener noreferrer" className="flex justify-center">
-                        <img src={certificateData.avatar12thMarksheet} alt="PAN" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
-                      </a>
-                    </div>
+                  
+                  {user ? (
+                    <>
+                      {user.avatarAdharCard && (
+                        <ImageSection title="Aadhar Card" src={user.avatarAdharCard} />
+                      )}
+                      {user.avatarIncome && (
+                        <ImageSection title="Income Certificate" src={user.avatarIncome} />
+                      )}
+                      {user.avatarPanCard && (
+                        <ImageSection title="PAN Card" src={user.avatarPanCard} />
+                      )}
+                      {user.avatarCaste && (
+                        <ImageSection title="Caste Certificate" src={user.avatarCaste} extraClass="bg-red-400 p-1" />
+                      )}
+                      {user.avatarResidential && (
+                        <ImageSection title="Residential Certificate" src={user.avatarResidential} />
+                      )}
+                      {user.avatar10thMarksheet && (
+                        <ImageSection title="10th Marksheet" src={user.avatar10thMarksheet} />
+                      )}
+                      {user.avatar12thMarksheet && (
+                        <ImageSection title="12th Marksheet" src={user.avatar12thMarksheet} />
+                      )}
+                    </>
+                  ) : (
+                    <p className="text-center text-red-600">OTR file not available</p>
                   )}
                 </div>
         
@@ -229,5 +193,15 @@ const CertificateVerificationModel = ({isOpen, onClose, certificateData={}, user
 </>
   );
 };
+
+const ImageSection = ({ title, src, extraClass = "" }) => (
+  <div className="text-center">
+    <p className="text-sm font-bold">{title}</p>
+    <a href={src} target="_blank" rel="noopener noreferrer" className="flex justify-center">
+      <img src={src} alt={title} className={`w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition ${extraClass}`} />
+    </a>
+    <p className="text-green-600">✅ OTR Verified</p>
+  </div>
+);
 
 export default CertificateVerificationModel;

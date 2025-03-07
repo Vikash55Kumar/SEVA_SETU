@@ -5,7 +5,7 @@ import moment from "moment";
 import EmployeeModel from "./EmployeeModel";
 
 const EmployeeTracker = React.memo(function Profile({profile = {}, adminProfile = {}, employeeDetail=[]}) {
-  console.log("user",employeeDetail);
+  // console.log("user",employeeDetail);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEmployeeData, setIsEmployeeData] = useState("")
 
@@ -66,22 +66,22 @@ const EmployeeTracker = React.memo(function Profile({profile = {}, adminProfile 
                   <TableHead>
                       <TableHeadCell>Avatar</TableHeadCell>
                       <TableHeadCell>Date</TableHeadCell>
-                      <TableHeadCell>Full Name</TableHeadCell>
-                      <TableHeadCell>Email</TableHeadCell>
-                      <TableHeadCell>Employee ID</TableHeadCell>
-                      <TableHeadCell>Deginated At</TableHeadCell>
+                      <TableHeadCell className="px-0 text-center">Full Name</TableHeadCell>
+                      <TableHeadCell className="pl-14 ">Email</TableHeadCell>
+                      <TableHeadCell className="pl-0">Employee ID</TableHeadCell>
+                      <TableHeadCell className="px-0">Deginated At</TableHeadCell>
                       <TableHeadCell> View </TableHeadCell>
                   </TableHead>
 
                   <TableBody className="divide-y ">              
                       {employeeDetail.map((employee, index) => (
-                        <TableRow key={index} className="bg-white border-gray-300">
+                        <TableRow key={index} className="bg-white border-gray-300 ">
                             <TableCell className="text-black my-0 py-0"><img src={employee.avatar} style={{width:"50px", height:"50px", borderRadius:"50%"}} /> </TableCell>
-                            <TableCell className="text-black font-bold">{moment(employee.createdAt).format('DD-MM-YYYY')}</TableCell>
-                            <TableCell className="text-black">{employee.fullName}</TableCell>
+                            <TableCell className="text-black px-2 py-1 text-center">{moment(employee.createdAt).format('DD-MM-YYYY')}</TableCell>
+                            <TableCell className="text-black px-2 text-center">{employee.fullName}</TableCell>
                             <TableCell className="text-black font-medium">{employee.email}</TableCell>
-                            <TableCell className="text-black text-center">{employee.employeeId}</TableCell>
-                            <TableCell className="text-black text-center">{employee.division}</TableCell>
+                            <TableCell className="text-black text-left px-0">{employee.employeeId}</TableCell>
+                            <TableCell className="text-black text-center px-0">{employee.division}</TableCell>
                             <TableCell>
                                 <a className="font-medium text-cyan-600 hover:underline cursor-pointer" onClick={() => handleEditClick(employee)}  >
                                     View

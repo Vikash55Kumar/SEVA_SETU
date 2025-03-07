@@ -15,7 +15,7 @@ const UserDashboard = ({userProfile={}, certificateDetail=[]}) => {
       case "apply":
         return <ApplyCertificate userProfile={userProfile} />;
       case "status":
-        return <CertificateStatus certificateDetail={certificateDetail} />;
+        return <CertificateStatus certificateDetail={certificateDetail} userProfile={userProfile} />;
       default:
         return <UserProfile userProfile={userProfile} />;
     }
