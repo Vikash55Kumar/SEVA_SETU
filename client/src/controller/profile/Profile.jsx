@@ -42,7 +42,7 @@ const Profile = React.memo(function Profile({profile = {}, adminProfile = {}}) {
               <div className="profile-details">
                 <li><b>Created: </b> {provider} </li>
                 <li><b>Date of Account Creation:</b> {new Date(createdAt).toLocaleDateString()} </li>
-                { provider=="Employee" ? (
+                { provider==="Employee" ? (
                 <li><b>Today Deginated At:</b> {profile.division} </li>
                 ) :""}
               </div>

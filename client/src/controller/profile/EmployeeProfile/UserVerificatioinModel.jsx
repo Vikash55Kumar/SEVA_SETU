@@ -96,37 +96,75 @@ const UserVerificatioinModel = ({isOpen, onClose, user={}}) => {
                   <p><strong>Father OTR:</strong> {user.fatherOtr || "N/A"}</p>
                   <p><strong>Mother OTR:</strong> {user.motherOtr || "N/A"}</p>
                   <p><strong>Religion:</strong> {user.religion}</p>
-                  <p><strong>Cast:</strong> {user.cast}</p>
+                  <p><strong>Caste:</strong> {user.caste}</p>
                   <p className="col-span-2"><strong>Address:</strong> {user.address}</p>
                 </div>
         
                 {/* Uploaded Documents */}
                 <h3 className="text-lg font-semibold text-gray-800 border-b pb-2 mt-4">Uploaded Documents</h3>
                 <div className="grid grid-cols-3 gap-4 mt-3">
+                  
                   {user.avatarAdharCard && (
-                    <div className="text-center">
-                      <p className="text-sm font-bold">Aadhar Card</p>
+                    <div className="flex flex-col justify-center">
+                      <p className="text-sm font-bold mb-2">Aadhar Card</p>
                       <a href={user.avatarAdharCard} target="_blank" rel="noopener noreferrer">
                         <img src={user.avatarAdharCard} alt="Aadhar" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
                       </a>
                     </div>
                   )}
                   {user.avatarIncome && (
-                    <div className="text-center">
-                      <p className="text-sm font-bold">Income Certificate</p>
+                    <div className="flex flex-col justify-center">
+                      <p className="text-sm font-bold mb-2">Income Certificate</p>
                       <a href={user.avatarIncome} target="_blank" rel="noopener noreferrer">
                         <img src={user.avatarIncome} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
                       </a>
                     </div>
                   )}
                   {user.avatarPanCard && (
-                    <div className="text-center">
-                      <p className="text-sm font-bold">PAN Card</p>
+                    <div className="flex flex-col justify-center">
+                      <p className="text-sm font-bold mb-2">PAN Card</p>
                       <a href={user.avatarPanCard} target="_blank" rel="noopener noreferrer">
                         <img src={user.avatarPanCard} alt="PAN" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
                       </a>
                     </div>
                   )}
+
+                  {user.avatarCaste && (
+                    <div className="flex flex-col justify-center">
+                      <p className="text-sm font-bold mb-2">Caste Certificate</p>
+                      <a href={user.avatarCaste} target="_blank" rel="noopener noreferrer">
+                        <img src={user.avatarCaste} alt="Caste" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
+                      </a>
+                    </div>
+                  )}
+
+                  {user.avatarResidential && (
+                    <div className="flex flex-col justify-center">
+                      <p className="text-sm font-bold mb-2">Residential Certificate</p>
+                      <a href={user.avatarResidential} target="_blank" rel="noopener noreferrer">
+                        <img src={user.avatarResidential} alt="Residential" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
+                      </a>
+                    </div>
+                  )}
+
+                  {user.avatar10thMarksheet && (
+                    <div className="flex flex-col justify-center">
+                      <p className="text-sm font-bold mb-2">10th Marksheet</p>
+                      <a href={user.avatar10thMarksheet} target="_blank" rel="noopener noreferrer">
+                        <img src={user.avatar10thMarksheet} alt="10th Marksheet" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
+                      </a>
+                    </div>
+                  )}
+
+                  {user.avatar12thMarksheet && (
+                    <div className="flex flex-col justify-center">
+                      <p className="text-sm font-bold mb-2">12th Marksheet</p>
+                      <a href={user.avatar12thMarksheet} target="_blank" rel="noopener noreferrer">
+                        <img src={user.avatar12thMarksheet} alt="12th Marksheet" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition" />
+                      </a>
+                    </div>
+                  )}
+
                 </div>
         
                 {/* Action Buttons */}
