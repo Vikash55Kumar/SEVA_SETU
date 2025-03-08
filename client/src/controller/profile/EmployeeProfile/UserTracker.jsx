@@ -64,7 +64,7 @@ const UserTracker = React.memo(function Profile({profile = {}, userDetail=[]}) {
                   </TableHead>
 
                   <TableBody className="divide-y ">              
-                      {userDetail.map((user, index) => (
+                      {userDetail.slice().reverse().map((user, index) => (
                         <TableRow key={index} className="bg-white border-gray-300">
                             <TableCell className="text-black my-0 py-0"><img src={user.avatar} style={{width:"50px", height:"50px", borderRadius:"50%"}} /> </TableCell>
                             <TableCell className="text-black font-bold">{moment(user.createdAt).format('DD-MM-YYYY')}</TableCell>

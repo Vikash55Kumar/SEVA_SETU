@@ -254,7 +254,7 @@ export default function Dashboard({ adminProfile = {} }) {
 
   return (
     <div className="das">
-      <h1 style={{fontSize:"2rem", margin:"1rem"}}>Revenue Department {stateTitle}</h1>
+      <h1 style={{fontSize:"2rem", textAlign:"center", margin:"1rem"}}>Revenue Department {stateTitle}</h1>
 
       <div className="dashboard">
         <h2 style={{fontSize:"2rem", margin:"1rem"}}>{title}</h2>
@@ -299,6 +299,14 @@ export default function Dashboard({ adminProfile = {} }) {
           title2={title2} 
         />
       </section>
+
+      <div className="flex h-screen w-full justify-center">
+        <iframe
+          src="/animated_chart.html" // Ensure the file is inside 'public'
+          className="flex justify-center w-full h-auto border-none"
+          title="Animated Chart"
+        ></iframe>
+      </div>
     </div>
   );
 };

@@ -262,7 +262,7 @@ export default function CastCertificate({ adminProfile = {} }) {
 
   return (
     <div className="report">
-      <h1 style={{fontSize:"2rem", margin:"1rem"}}>Revenue Department {stateTitle}</h1>
+      <h1 style={{fontSize:"2rem", textAlign:"center", margin:"1rem"}}>Revenue Department {stateTitle}</h1>
       <div className="dashboard">
         <h2 style={{fontSize:"2rem", margin:"1rem"}}>{title}</h2>
         <div className="metrics-container">

@@ -62,7 +62,7 @@ const FinalCertificate = React.memo(function FinalCertificate({onPdfGenerated, c
         </tr>
         <tr>
           <td colSpan="3" className="border border-black p-2">
-            <h4 className="text-xl font-bold">{certificateData.caste} CERTIFICATE</h4>
+            <h4 className="text-xl font-bold">{certificateData.certificateType}</h4>
             <h4>For applying for application to Posts under the Government of India</h4>
           </td>
         </tr>
@@ -89,14 +89,14 @@ const FinalCertificate = React.memo(function FinalCertificate({onPdfGenerated, c
             </table>
             <p className="m-6 text-sm text-justify leading-relaxed font-sans">
               This is to certify that <span className="font-bold">{certificateData.fullName}</span> D/o <span className="font-bold mr-2">{certificateData.fatherName}</span>
-              R/o <span className="font-bold">{certificateData.address} 110053 INDIA</span> belongs to the
+              R/o <span className="font-bold">{certificateData.address} INDIA</span> belongs to the
               <span className="font-bold mr-2">NAI</span> community and is recognized as Other Backward Class under the Government of India,
               Ministry of Social Justice and Empowerment.
               <br /><br />
-              <span className="font-bold">{certificateData.fullName}</span> and her family ordinarily reside at <span className="font-bold">{certificateData.address} 110053 INDIA</span>.
+              <span className="font-bold">{certificateData.fullName}</span> and her family ordinarily reside at <span className="font-bold">{certificateData.address} INDIA</span>.
               <br /><br />
               This certificate is issued on the basis of {certificateData.caste} certificate issued to <span className="font-bold mr-2">{certificateData.fullName}</span> 
-              R/o <span className="font-bold">{certificateData.address} 110053 INDIA</span> belongs to the <span className="font-bold mr-2">NAI</span>
+              R/o <span className="font-bold">{certificateData.address} INDIA</span> belongs to the <span className="font-bold mr-2">NAI</span>
               community of <span className="font-bold">DELHI</span> State wide certificate no <span className="font-bold">36968</span> dated
               <span className="font-bold ml-2">{moment(date).format('DD/MM/YYYY')}</span> issued by the <span className="font-bold">TEHSILDAR NORTH EAST DISTRICT</span>.
               <br /><br />

@@ -6,11 +6,11 @@ import ApiResponse from "../utils/ApiResponse.js";
 import { Certificate } from "../models/certificate.model.js";
 
 const registerCertificate = asyncHandler(async (req, res) => {
-    const { aadharNumber, fullName, email, otrId, phoneNumber, caste, dob, motherName, fatherName, gender, religion, address } = req.body;
+    const { aadharNumber, fullName, email, otrId, phoneNumber, caste, dob, motherName, fatherName, gender, religion, address, certificateType } = req.body;
     
-    console.log(aadharNumber, fullName, email, otrId, phoneNumber, caste, dob, motherName, fatherName, gender, religion, address);
+    console.log(aadharNumber, fullName, email, otrId, phoneNumber, caste, dob, motherName, fatherName, gender, religion, address, certificateType);
 
-    if ([aadharNumber, fullName, email, otrId, phoneNumber, caste, dob, motherName, fatherName, gender, religion, address].some((field) => field?.trim() === "")) {
+    if ([aadharNumber, fullName, email, otrId, phoneNumber, caste, dob, motherName, fatherName, gender, religion, address, certificateType].some((field) => field?.trim() === "")) {
         throw new ApiError(400, "All fields are required");
     }    
 
@@ -21,17 +21,35 @@ const registerCertificate = asyncHandler(async (req, res) => {
         throw new ApiError(409, "You are not authorize user");
     }
 
-    const avatarAffidavitLocalPath = req.files?.avatarAffidavit[0]?.path;
-    console.log(avatarAffidavitLocalPath);
+    // const avatarAffidavitLocalPath = req.files?.avatarAffidavit[0]?.path;
+    // console.log(avatarAffidavitLocalPath);
     
-    if (!avatarAffidavitLocalPath) {
-        throw new ApiError(400, "Image file is required")
+    // if (!avatarAffidavitLocalPath) {
+    //     throw new ApiError(400, "Image file is required")
+    // }
+
+    // const avatarAffidavit = await uploadOnCloudinary(avatarAffidavitLocalPath)
+
+    // if (!avatarAffidavit) {
+    //     throw new ApiError(400, "Image file is required")
+    // }
+
+    const uploadedFiles = {}; // Object to store uploaded image URLs
+
+    const fileFields = ["avatarAffidavit", "avatarSelfApproval"];
+
+    for (const field of fileFields) {
+        if (req.files?.[field]?.length) {
+            const filePath = req.files[field][0].path;
+            const uploadResponse = await uploadOnCloudinary(filePath);
+            if (uploadResponse) {
+                uploadedFiles[field] = uploadResponse.url;
+            }
+        }        
     }
 
-    const avatarAffidavit = await uploadOnCloudinary(avatarAffidavitLocalPath)
-
-    if (!avatarAffidavit) {
-        throw new ApiError(400, "Image file is required")
+    if (!uploadedFiles.avatarAffidavit || !uploadedFiles.avatarSelfApproval) {
+        throw new ApiError(400, "avatarAffidavit or avatarSelfApproval are required");
     }
     const certificate = await Certificate.create({
         aadharNumber,
@@ -46,8 +64,9 @@ const registerCertificate = asyncHandler(async (req, res) => {
         religion, 
         address, 
         phoneNumber,
+        certificateType,
         avatar:user.avatar,
-        avatarAffidavit:avatarAffidavit.url || ""
+        ...uploadedFiles,
     });
 
     const createdUser = await certificate.save();

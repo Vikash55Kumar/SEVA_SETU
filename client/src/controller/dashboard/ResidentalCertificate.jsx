@@ -264,7 +264,7 @@ export default function ResidentialCertificate({ adminProfile = {} }) {
 
   return (
     <div className="report">
-      <h1 style={{fontSize:"2rem", margin:"1rem"}}>Revenue Department {stateTitle}</h1>
+      <h1 style={{fontSize:"2rem", textAlign:"center", margin:"1rem"}}>Revenue Department {stateTitle}</h1>
       <div className="dashboard">
         <h2 style={{fontSize:"2rem", margin:"1rem"}}>Forms Monitoring Dashboard - Residential Certificate</h2>
         <div className="metrics-container">

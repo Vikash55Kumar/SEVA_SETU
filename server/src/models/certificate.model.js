@@ -84,6 +84,9 @@ const certificateSchema = new Schema(
         avatarAffidavit: {
             type: String,
         },   
+        avatarSelfApproval: {
+            type: String,
+        }, 
         avatarAdharCard: {
             type: String,
         },

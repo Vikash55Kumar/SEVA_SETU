@@ -84,11 +84,11 @@ const CertificateTracker = React.memo(function Profile({employeeProfile = {}, us
                   </TableHead>
 
                   <TableBody className="divide-y ">              
-                      {certificateDetail.map((certificate, index) => (
+                      {certificateDetail.slice().reverse().map((certificate, index) => (
                         <TableRow key={index} className="bg-white border-gray-300">
                             {/* <TableCell className="text-black my-0 py-0"><img src={certificate.avatar} style={{width:"50px", height:"50px", borderRadius:"50%"}} /> </TableCell> */}
                             <TableCell className="text-black font-bold">{moment(certificate.createdAt).format('DD-MM-YYYY')}</TableCell>
-                            <TableCell className="text-black">{certificate.fullName}</TableCell>
+                            <TableCell className="text-black p-0">{certificate.fullName}</TableCell>
                             <TableCell className="text-black font-medium">{certificate.fatherName}</TableCell>
                             <TableCell className="text-black font-medium">{certificate.certificateType}</TableCell>
                             <TableCell className="text-black text-center">{certificate.isVerified}</TableCell>

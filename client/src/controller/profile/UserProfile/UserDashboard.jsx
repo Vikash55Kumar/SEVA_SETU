@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import UserSidebar from "./UserSlider";
 import UserProfile from "./UserProfile";
-import ApplyCertificate from "./ApplyCertificate";
+import ApplyCertificate from "./ApplyCasteCertificate";
 import CertificateStatus from "./CertificateStatus";
+import ApplyIncomeCertificate from "./ApplyResidentialCertificate";
+import CertificateType from "./CertificateType";
 
 const UserDashboard = ({userProfile={}, certificateDetail=[]}) => {
   const [activeSection, setActiveSection] = useState("profile");
@@ -13,7 +15,7 @@ const UserDashboard = ({userProfile={}, certificateDetail=[]}) => {
       case "profile":
         return <UserProfile userProfile={userProfile} />;
       case "apply":
-        return <ApplyCertificate userProfile={userProfile} />;
+        return <CertificateType userProfile={userProfile}/>;
       case "status":
         return <CertificateStatus certificateDetail={certificateDetail} userProfile={userProfile} />;
       default:

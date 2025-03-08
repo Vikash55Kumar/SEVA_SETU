@@ -8,7 +8,7 @@ const UserSidebar = ({ userProfile={}, setActiveSection, activeSection }) => {
     ];
   
     return (
-      <div className="w-72 bg-gray-900 text-white h-full shadow-md flex flex-col">
+      <div className="w-74 bg-gray-900 text-white h-full shadow-md flex flex-col">
         {/* User Info */}
         <h2 className="text-2xl text-center font-bold border-b border-black border-4 mx-2 rounded-sm bg-white text-black p-1">OTR Portal</h2>
         

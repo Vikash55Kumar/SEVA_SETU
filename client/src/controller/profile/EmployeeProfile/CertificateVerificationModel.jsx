@@ -110,7 +110,7 @@ console.log(userData);
                     {/* Verification Status & OTR ID */}
                     <div className="text-center">
                       <p className="text-gray-700 font-medium text-md mt-1">
-                          <span className="font-bold">Type:</span> Caste Certificate
+                          <span className="font-bold">Type:</span> {certificateData.certificateType}
                       </p>
                       <p className={`text-lg font-semibold ${isVerified ? "text-green-600" : "text-red-500"}`}>
                           {isVerified ? `✅ ${certificateData.isVerified}` : `❌ ${certificateData.isVerified}`}
@@ -139,9 +139,18 @@ console.log(userData);
                 <div className="grid grid-cols-3 gap-4 mt-3">
                   {certificateData.avatarAffidavit && (
                     <div className="text-center">
-                      <p className="text-sm font-bold">Affidavite Document</p>
+                      <p className="text-sm font-bold"> Document</p>
                       <a href={certificateData.avatarAffidavit} target="_blank" rel="noopener noreferrer" className="flex justify-center">
                         <img src={certificateData.avatarAffidavit} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition bg-red-400 p-1" />
+                      </a>
+                    </div>
+                  )}
+
+                  {certificateData.avatarSelfApproval && (
+                    <div className="text-center">
+                      <p className="text-sm font-bold">Self Decleration</p>
+                      <a href={certificateData.avatarSelfApproval} target="_blank" rel="noopener noreferrer" className="flex justify-center">
+                        <img src={certificateData.avatarSelfApproval} alt="Income" className="w-24 h-24 border shadow-md cursor-pointer hover:scale-105 transition bg-red-400 p-1" />
                       </a>
                     </div>
                   )}
