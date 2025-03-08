@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Modify Chatbot Button */
+.jz-chatbot-toogler #jz-toggle-bot {
+    border-radius: 50px !important;  /* Ensure it's circular */
+    background-color: #2563eb !important; /* Set to a primary blue color */
+    padding: 12px !important;
+    width: 60px !important; /* Adjust size */
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    border: none !important;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+/* Icon inside the Chatbot Button */
+.jz-chatbot-toogler #jz-toggle-bot img {
+    width: 32px !important; /* Adjust the size of the icon */
+    height: 32px !important;
+    filter: brightness(0) invert(1); /* Make the icon white */
+}
+
+/* Hover effect */
+.jz-chatbot-toogler #jz-toggle-bot:hover {
+    transform: scale(1.1) !important; /* Slightly enlarge on hover */
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3) !important;
+    background-color: #1e40af !important; /* Darker shade on hover */
+}
