@@ -344,8 +344,8 @@ const getUserDetails = asyncHandler(async (req, res) => {
 });
 
 const sendMail = asyncHandler(async (req, res) => {
-    const { email, fullName, certificateNumber,issueDate, certificatePath } = req.body;
-    console.log(email, fullName, certificateNumber,issueDate, certificatePath);
+    const { email, fullName, certificateNumber,issueDate, certificatePath, certificateType } = req.body;
+    console.log(email, fullName, certificateNumber,issueDate, certificatePath, certificateType);
 
     const transporter = nodemailer.createTransport({
        service: "gmail",
@@ -358,19 +358,19 @@ const sendMail = asyncHandler(async (req, res) => {
    const mailOptions = {
         from: process.env.NODE_MAIL,
         to: email,
-        subject: "Your Caste Certificate is Ready – Seva Setu Portal",
-        text: `Dear ${fullName},\n\nYour Caste Certificate is attached.\n\nBest Regards,\nSeva Setu Team`,
+        subject: `Your certificate is Ready – Seva Setu Portal`,
+        text: `Dear ${fullName},\n\nYour certificate is attached.\n\nBest Regards,\nSeva Setu Team`,
         html: `
             <p>Dear <b>${fullName}</b>,</p>
-            <p>We are pleased to inform you that your <b>Caste Certificate</b> has been successfully processed.</p>
+            <p>We are pleased to inform you that your <b>Certificate</b> has been successfully processed.</p>
             <p><b>Certificate Number:</b> ${certificateNumber}</p>
             <p><b>Issued Date:</b> ${issueDate}</p>
-            <p>You can also download your certificate anytime by logging into <a href="https://www.sevasetu.com/login">Seva Setu</a>.</p>
+            <p>You can also download your certificate anytime by logging into <a href="https://www.sevasetu.com/userLogin">Seva Setu</a>.</p>
             <p>Best Regards,<br><b>Seva Setu Support Team</b></p>
         `,
         attachments: [
             {
-                filename: "Caste_Certificate.pdf",
+                filename: `certificate.pdf`,
                 path: certificatePath,  // Path to the PDF file
                 contentType: "application/pdf"
             }

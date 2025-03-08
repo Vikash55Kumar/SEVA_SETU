@@ -298,7 +298,7 @@ function ApplyResidentialCertificate({ userProfile }) {
                 }}
                 className="w-5 h-5"
               />
-              <label className="text-gray-700">I accept self decleration <a href="#" className="text-blue-500">Download Self decleration</a></label>
+              <label className="text-gray-700">I accept self decleration <a href="/Self-Approved.pdf" className="text-blue-500">Download Self decleration</a></label>
             </div>
 
             {disableSelf && (

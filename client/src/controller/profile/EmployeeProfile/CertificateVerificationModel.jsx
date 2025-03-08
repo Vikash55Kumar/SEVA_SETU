@@ -35,6 +35,8 @@ console.log(userData);
     formData.append("certificateId", certificateData._id);
     formData.append("certificateNumber", certificateNumber);
     formData.append("isVerified", "Verified")
+    formData.append("certificateType", certificateData.certificateType)
+  console.log(certificateData.certificateType);
   
     setLoading(true);
     // console.log(certificateData.otrId, "Verified")
