@@ -84,7 +84,8 @@ cron.schedule('0 */12 * * *', () => {
 export function SocketHandler(server) {
   const io = new Server(server, {
     cors: {
-      origin: [process.env.CORS_ORIGIN || "https://seva-setu.netlify.app"],
+      // origin: process.env.CORS_ORIGIN || "https://seva-setu.netlify.app",
+      origin: process.env.CORS_ORIGIN || "https://sevasetu.ecovix.online",
       // origin: "http://localhost:5173", // Update with your frontend's URL
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       credentials: true,
