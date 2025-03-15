@@ -1,89 +1,3 @@
-// import dotenv from 'dotenv';
-// dotenv.config({path: './.env'});
-// import { Server } from 'socket.io';
-
-// // Mock employee data
-// let employeeData = [
-//   { id: 1, target: 100, verified: 20 },
-
-// ];
-
-// let formStatistics = {
-//   totalForms: 15880,
-//   pendingForms: 6530,
-//   processedForms: 9700,
-//   rejectedForms: 1000,
-// };
-
-// // map
-// let formData = [
-//   { name: 'Cast Certificate', FormsReceived: 4200, PendingForms: 2240, ProcessedForms: 2879, rejectedForms: 81 },
-//   { name: 'Income Certificate', FormsReceived: 7800, PendingForms: 4200, ProcessedForms: 3579, rejectedForms: 1021 },
-//   { name: 'Birth Certificate', FormsReceived: 7000, PendingForms: 5150, ProcessedForms: 3439, rejectedForms: 411 },
-//   { name: 'Residential Certificate', FormsReceived: 6300, PendingForms: 5060, ProcessedForms: 1423, rejectedForms: 234 },
-// ];
-
-// // Setup WebSocket connection for real-time updates
-// export function SocketHandler(server) {
-//   const io = new Server(server, {
-//     cors: {
-//       origin: process.env.CORS_ORIGIN || "https://seva-setu.netlify.app",
-//       methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//       credentials: true,
-//     },
-//   });
-
-//   io.on('connection', (socket) => {
-//     console.log('Client connected');
-
-//     // Send the initial employee data when a client connects
-//     socket.emit('employeeUpdate', employeeData);
-//     socket.emit('formStatisticsUpdate', formStatistics);
-
-
-//     // Example: Update employee data and broadcast changes every 5 seconds
-//     setInterval(() => {
-
-//       employeeData = employeeData.map(employee => {
-//         // Simulate changes in verified forms
-//         employee.verified = Math.min(employee.verified + Math.floor(Math.random() * 2), employee.target);
-//         return employee;
-//       });
-
-//       // Simulate dynamic updates for form statistics
-//       formStatistics = {
-//         totalForms: formStatistics.totalForms + Math.floor(Math.random() * 10),
-//         pendingForms: formStatistics.pendingForms + Math.floor(Math.random() * 5),
-//         processedForms: formStatistics.processedForms + Math.floor(Math.random() * 5),
-//         rejectedForms: formStatistics.rejectedForms + Math.floor(Math.random() * 2),
-//       };
-
-//       // Simulate dynamic updates for form statistics
-//       formData = formData.map(form => {
-//         form.FormsReceived += Math.floor(Math.random() * 10);  // Randomly increase FormsReceived
-//         form.PendingForms = Math.min(form.PendingForms + Math.floor(Math.random() * 3)); // Random updates to pending forms
-//         form.ProcessedForms = Math.min(form.FormsReceived, form.ProcessedForms + Math.floor(Math.random() * 5)); // Processed forms
-//         form.rejectedForms = Math.min(form.FormsReceived, form.rejectedForms + Math.floor(Math.random() * 2)); // Rejected forms
-//         return form;
-//       });
-
-
-//       // Send updated data to all clients
-//       io.emit('employeeUpdate', employeeData);
-//       io.emit('formStatisticsUpdate', formStatistics);
-//       io.emit('mapformStatisticsUpdate', formData);
-//     }, 5000);
-
-//     socket.on('disconnect', () => {
-//       console.log('Client disconnected');
-//     });
-//   });
-// }
-
-
-
-
-
 import dotenv from 'dotenv';
 dotenv.config({ path: './.env' });
 import { Server } from 'socket.io';
@@ -170,7 +84,7 @@ cron.schedule('0 */12 * * *', () => {
 export function SocketHandler(server) {
   const io = new Server(server, {
     cors: {
-      origin: process.env.CORS_ORIGIN || "https://seva-setu.netlify.app",
+      origin: [process.env.CORS_ORIGIN || "https://seva-setu.netlify.app"],
       // origin: "http://localhost:5173", // Update with your frontend's URL
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       credentials: true,

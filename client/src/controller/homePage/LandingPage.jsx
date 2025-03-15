@@ -122,6 +122,23 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Video */}
+      <section id="video" class="text-center w-full wow fadeInUp">
+        <div class="overlay">
+          <h2 className="text-3xl font-bold my-4 text-gray-800">Gallery Video Seva Setu</h2>
+          <div class="flex container-fluid justify-center container-full">
+            <div class="row">
+              {/* <!-- Video Element --> */}
+              <video autoPlay  loop muted controls class="w-full max-w-4xl rounded-lg shadow-lg">
+                <source src="/sevaSetu.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };
