@@ -11,7 +11,6 @@ import TermService from './controller/term/TermService';
 import Dashboard from './controller/dashboard/Dashboard';
 import Certificate from './controller/certificate/Certificate';
 import Contact from './controller/contact/Contact';
-// import CertificateForm from './controller/certificate/CertificateForm';
 import ForgotPassword from './controller/user/ForgotPassword';
 import NotFound from './utility/NotFound';
 import GoogleLogin from './utility/GoogleLogin';
@@ -38,13 +37,11 @@ import UserLogin from './controller/user/UserLogin.jsx';
 import {ReportList} from './controller/report/ReportList';
 import ReportDashboard from './controller/report/ReportDashboard';
 import CasteCertificateForm from './controller/certificate/CasteFormCertificate';
-// import Form from './controller/certificate/Form';
 import CertificateDashboard from './controller/resourceDashboard/CertificateDashboard';
 import EmployCertificateDashboard from './controller/resourceDashboard/EmployCertificateDashboard';
 import FinalCertificate from './dwnCert/FinalCertificate';
 import ReportModelView from './controller/report/ReportModelView';
 import EmployeeTracker from './controller/profile/AdminProfile/EmployeeTracker.jsx';
-import EmployeeModel from './controller/profile/AdminProfile/EmployeeModel.jsx';
 import ResourceAllocationComponent from './controller/resourceDashboard/ResourceAllocation.jsx';
 import { getUserDetails, loadUser } from './actions/userAction.js';
 import UserTracker from './controller/profile/EmployeeProfile/UserTracker.jsx';
@@ -55,8 +52,7 @@ import OtrRegestration from './controller/user/OtrRegestration.jsx';
 import RefundPolicy from './controller/term/RefundPolicy.jsx';
 import { Privacy } from './controller/term/Privacy.jsx';
 import SpinnerLoader from './utility/SpinnerLoader.jsx';
-
-// import ReportPdf from './controller/report/ReportPdf';
+import DigitalDelivery from './controller/term/DigitalDelivery.jsx';
 
 function App() {
   const dispatch = useDispatch();
@@ -93,7 +89,6 @@ function App() {
   const {certificateDetail} = useSelector((state) => state.certificateDetail);
   
   const { loading } = useSelector((state) => state.loading);
-  console.log("user",loading, "employee", "admin");
 
   const districts = [
     {
@@ -228,7 +223,6 @@ function App() {
         draggable
         pauseOnHover
       />
-      {/* <SpinnerLoader /> */}
       <SocketProvider>
         <Router>
         {loading ? <SpinnerLoader /> : (
@@ -238,7 +232,6 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/dashboard' element={isAuthenticated ? <Dashboard adminProfile={admin?.data || null} /> : <EmployeeLogin /> } />
             <Route path='/certificate' element={isAuthenticated ? <Certificate /> : <EmployeeLogin />} />
-            {/* <Route path='/certificateForm' element={<CertificateForm />} /> */}
             <Route path='/otrRegestration' element={<OtrRegestration />} />
             <Route path='/profile'  element={<Profile profile={employee?.data || null} adminProfile={admin?.data || null} />}/>
             <Route path='/employeeTracker' element={<EmployeeTracker profile={employee?.data || null} adminProfile={admin?.data || null} employeeDetail={employeeDetail.data} />}/>
@@ -253,8 +246,8 @@ function App() {
             <Route path='/term' element={<TermService />} />
             <Route path='/privacy' element={<Privacy />} />
             <Route path='/refund' element={<RefundPolicy />} />
+            <Route path='/digitalPolicy' element={<DigitalDelivery />} />
             <Route path='/userLogin' element={<UserLogin />} />
-            {/* <Route path='/form' element={<Form /> } /> */}
             <Route path='/casteForm' element={<CasteCertificateForm />} />
             <Route path='/casteCertificate' element={<CastCertificate adminProfile={admin?.data || null} />} />
             <Route path='/incomeCertificate' element={<IncomeCertificate adminProfile={admin?.data || null} />} />

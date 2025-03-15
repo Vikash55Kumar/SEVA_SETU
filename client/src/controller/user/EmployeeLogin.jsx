@@ -100,7 +100,7 @@ export default function EmployeeLogin() {
                         </form>
                     </>
                 )}
-                <p>Testing purpose only: &nbsp; Id:-EMPD101 &nbsp; password:-vikash</p>
+                {/* <p>Testing purpose only: &nbsp; Id:-EMPD101 &nbsp; password:-vikash</p> */}
             </div>
 
         </div>

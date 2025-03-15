@@ -16,7 +16,7 @@ export function Privacy() {
             </div>
             
             <div className="prose max-w-none">
-              <p className="text-gray-600 mb-4">Last Updated: March 15, 2024</p>
+              <p className="text-gray-600 mb-4">Last Updated: March 10, 2024</p>
               
               <p className="text-gray-700 mb-6">At ImageAI, we take your privacy seriously. This policy explains how we collect, use, and protect your personal information.</p>
               
@@ -53,8 +53,8 @@ export function Privacy() {
               <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">5. Contact Us</h2>
               <p className="text-gray-700">
                 If you have questions about our privacy policy, please contact us at{' '}
-                <a href="mailto:support@imageai.com" className="text-purple-600 hover:text-purple-700">
-                  support@imageai.com
+                <a href="mailto:sevasetuteam@gmail.com" className="text-purple-600 hover:text-purple-700">
+                sevasetuteam@gmail.com
                 </a>
               </p>
             </div>

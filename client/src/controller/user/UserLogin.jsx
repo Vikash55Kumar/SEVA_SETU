@@ -82,7 +82,7 @@ export default function UserLogin() {
                         </form>
                     </>
                 )}
-                <p>Testing purpose only: &nbsp; Id:-UBR1424 &nbsp; password:-9135873454</p>
+                {/* <p>Testing purpose only: &nbsp; Id:-UBR1424 &nbsp; password:-9135873454</p> */}
             </div>
         </div>
     );
