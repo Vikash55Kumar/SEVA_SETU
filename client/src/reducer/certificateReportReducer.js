@@ -5,8 +5,6 @@ import {
     
 } from "../constants/userConstants";
 
-
-
 export const getCertificateReducer = (state = {certificateDetail : {}}, action) => {
   switch (action.type) {
 

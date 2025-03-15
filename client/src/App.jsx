@@ -37,7 +37,6 @@ import EmployeeSignup from './controller/user/EmployeeSignup.jsx';
 import UserLogin from './controller/user/UserLogin.jsx';
 import {ReportList} from './controller/report/ReportList';
 import ReportDashboard from './controller/report/ReportDashboard';
-// import PrivacyPolicy from './controller/term/PrivacyPolicy';
 import CasteCertificateForm from './controller/certificate/CasteFormCertificate';
 // import Form from './controller/certificate/Form';
 import CertificateDashboard from './controller/resourceDashboard/CertificateDashboard';
@@ -53,6 +52,9 @@ import UserDashboard from './controller/profile/UserProfile/UserDashboard.jsx';
 import { getCertificateDetails } from './actions/certificateReportAction.js';
 import CertificateTracker from './controller/profile/EmployeeProfile/CertificateTracker.jsx';
 import OtrRegestration from './controller/user/OtrRegestration.jsx';
+import RefundPolicy from './controller/term/RefundPolicy.jsx';
+import { Privacy } from './controller/term/Privacy.jsx';
+import SpinnerLoader from './utility/SpinnerLoader.jsx';
 
 // import ReportPdf from './controller/report/ReportPdf';
 
@@ -84,13 +86,14 @@ function App() {
 
   const { employeeDetail} = useSelector((state) => state.employeeDetail);
 
-  const { admin} = useSelector((state) => state.admin);
+  const { admin } = useSelector((state) => state.admin);
 
   const {report} = useSelector((state) => state.report);
 
   const {certificateDetail} = useSelector((state) => state.certificateDetail);
   
-  // console.log("hee : ",userDetail?.data);
+  const { loading } = useSelector((state) => state.loading);
+  console.log("user",loading, "employee", "admin");
 
   const districts = [
     {
@@ -228,6 +231,8 @@ function App() {
       {/* <SpinnerLoader /> */}
       <SocketProvider>
         <Router>
+        {loading ? <SpinnerLoader /> : (
+          <>
           <Navbar adminProfile={admin?.data || null} employeeProfile={employee?.data} userProfile={user?.data} />
           <Routes>
             <Route path='/' element={<Home />} />
@@ -246,7 +251,8 @@ function App() {
             <Route path="/google-login" element={<GoogleLogin />} />
             <Route path='/forgot' element={<ForgotPassword /> } />
             <Route path='/term' element={<TermService />} />
-            {/* <Route path='/privacy' element={<PrivacyPolicy />} /> */}
+            <Route path='/privacy' element={<Privacy />} />
+            <Route path='/refund' element={<RefundPolicy />} />
             <Route path='/userLogin' element={<UserLogin />} />
             {/* <Route path='/form' element={<Form /> } /> */}
             <Route path='/casteForm' element={<CasteCertificateForm />} />
@@ -271,6 +277,8 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          </>
+        )}
         </Router>
       </SocketProvider>
     </>

@@ -42,22 +42,6 @@ function HomePage() {
           </marquee>
         </div>
       </div>
-
-      {/* welcome section */}
-      <div className="welcomeSection">
-        <h1>Welcome to the Certificate Issuance System</h1>
-        <p>Our system simplifies and streamlines the certificate 
-          issuance process, ensuring efficiency and transparency.
-        </p>
-      </div>
-
-
-
-      {/* Uncomment and add Mapbox if necessary */}
-      {/* <section className="interactive-map">
-        <h2>Subdivision Status Map</h2>
-        <Mapbox />
-      </section> */}
     </div>
   );
 }

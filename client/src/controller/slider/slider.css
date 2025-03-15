@@ -7,8 +7,7 @@
   }
   
   .swiper {
-    margin-top: 0px;
-    width: 90%;
+    width: 100%;
     height: 60vh;
   }
   
@@ -31,14 +30,6 @@
     object-fit: cover;
     border-radius: 10px;
     /* transition: transform 0.5s ease-in-out; */
-  }
-  
-  /* .swiper-slide img:hover {
-    transform: scale(1.05);
-  } */
-  
-  .mySwiper {
-    padding: 20px;
   }
   
   .swiper-pagination-fraction,

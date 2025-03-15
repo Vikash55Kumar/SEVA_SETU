@@ -3,6 +3,7 @@ import { adminReducer, reportReducer } from "./reducer/adminReducer";
 import { employeeReducer, getEmployeeReducer } from "./reducer/employeeReducer";
 import userReducer, { getUserReducer } from "./reducer/userReducer";
 import { getCertificateReducer } from "./reducer/certificateReportReducer";
+import loadingReducer from "./reducer/loadingReaducer";
 
 const store = configureStore ({
     reducer : {
@@ -12,7 +13,8 @@ const store = configureStore ({
         employeeDetail:getEmployeeReducer,
         admin:adminReducer,
         report:reportReducer,
-        certificateDetail:getCertificateReducer
+        certificateDetail:getCertificateReducer,
+        loading:loadingReducer
     }
 })
 

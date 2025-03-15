@@ -17,6 +17,7 @@
     border: none !important;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2) !important;
     transition: all 0.3s ease-in-out !important;
+    /* margin-bottom: 2rem; */
 }
 
 /* Icon inside the Chatbot Button */

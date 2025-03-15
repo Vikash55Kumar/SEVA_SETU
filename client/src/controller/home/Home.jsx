@@ -4,7 +4,7 @@ import Slider from '../slider/Slider'
 import QuickLink from '../homePage/QuickLink'
 import JoyzChatbot from '../Testing/Testing2'
 // import Profile from '../profile/Profile'
-
+import LandingPage from "../homePage/LandingPage"
 
 export default function Home() {
 
@@ -12,8 +12,9 @@ export default function Home() {
     <div>
       <HomePage />
       <Slider />
-      <QuickLink />
+      <LandingPage />
       <JoyzChatbot />
+      {/* <QuickLink /> */}
     </div>
   )
 }

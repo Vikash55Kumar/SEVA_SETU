@@ -1,45 +1,88 @@
-import React from 'react'
-import "./TermService.css"
-
+import React from 'react';
 
 const TermService = () => {
   return (
-    <div className="terms-container">
-        <h1>Terms of Service</h1>
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+          <div className="p-8">
+            <div className="flex items-center mb-6">
+              <div className="bg-purple-100 rounded-lg p-3">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <h1 className="ml-4 text-3xl font-bold text-gray-900">Terms & Conditions</h1>
+            </div>
 
-        <h2>1. Acceptance of Terms</h2>
-        <p>By accessing and using our website, you agree to comply with and be bound by the following terms and conditions. If you do not agree to these terms, please do not use our website.</p>
+            <div className="prose max-w-none">
+              <p className="text-gray-600 mb-4">Last Updated: March 15, 2024</p>
 
-        <h2>2. Description of Service</h2>
-        <p>Our website provides a platform for real-time monitoring and management of caste and other certificate issuance by the Revenue Department. The service is designed to enhance efficiency, transparency, and accountability in resource allocation and application processing.</p>
+              <p className="text-gray-700 mb-6">
+                Welcome to ImageAI. By using our platform, you agree to these terms and conditions.
+              </p>
 
-        <h2>3. User Responsibilities</h2>
-        <p>You agree to use the website only for lawful purposes and in a manner that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the website. You are responsible for maintaining the confidentiality of your account information, including your username and password, and for all activities that occur under your account.</p>
+              <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">1. Use of Service</h2>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>You must be at least 18 years old to use this service</li>
+                <li>You agree to provide accurate and complete information</li>
+                <li>You are responsible for maintaining account security</li>
+                <li>Misuse of the platform may result in account termination</li>
+              </ul>
 
-        <h2>4. Data Collection and Privacy</h2>
-        <p>We are committed to protecting your privacy. Any personal information you provide or that is collected through your use of the website will be handled in accordance with our Privacy Policy. We may collect and use data to improve the performance and functionality of the website. However, all data will be anonymized and aggregated to ensure your privacy is maintained.</p>
+              <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">2. Subscription & Payments</h2>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>Subscription fees are billed in advance</li>
+                <li>Payments are processed securely via our payment partners</li>
+                <li>Prices may change with notice to users</li>
+                <li>Refunds are subject to our refund policy</li>
+              </ul>
 
-        <h2>5. Intellectual Property</h2>
-        <p>All content, trademarks, logos, and other intellectual property displayed on the website are the property of their respective owners. You may not use, reproduce, distribute, or create derivative works from any content on the website without our express written consent. Any feedback or suggestions you provide regarding the website may be used by us without any obligation to compensate you.</p>
+              <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">3. Content & Copyright</h2>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>You retain rights to your input prompts</li>
+                <li>Generated images are subject to our usage terms</li>
+                <li>Do not generate illegal or prohibited content</li>
+                <li>We may terminate accounts violating these terms</li>
+              </ul>
 
-        <h2>6. Limitation of Liability</h2>
-        <p>We strive to provide accurate and up-to-date information on our website, but we make no warranties or representations regarding the accuracy, reliability, or completeness of any information provided. We shall not be liable for any direct, indirect, incidental, or consequential damages arising from the use or inability to use the website, even if we have been advised of the possibility of such damages.</p>
+              <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">4. Limitation of Liability</h2>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>Service provided "as is" without warranties</li>
+                <li>We are not liable for generated content</li>
+                <li>User responsible for content compliance</li>
+                <li>We may modify or terminate services</li>
+              </ul>
 
-        <h2>7. Modifications to the Service</h2>
-        <p>We reserve the right to modify, suspend, or discontinue any part of the website at any time without notice. We will not be liable to you or any third party for any modification, suspension, or discontinuation of the website.</p>
+              <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">5. Privacy & Data</h2>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>We collect and process data as per our Privacy Policy</li>
+                <li>You agree to our data handling practices</li>
+                <li>We implement reasonable security measures</li>
+              </ul>
 
-        <h2>8. Governing Law</h2>
-        <p>These terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law principles. Any disputes arising out of or related to these terms shall be resolved exclusively in the courts of [Your Jurisdiction].</p>
+              <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">6. Changes to Terms</h2>
+              <p className="text-gray-700">
+                We may update these terms with notice to users. Continued use of the service constitutes acceptance of new terms.
+              </p>
 
-        <h2>9. Changes to the Terms of Service</h2>
-        <p>We reserve the right to update or modify these terms at any time. Any changes will be posted on this page, and it is your responsibility to review these terms periodically. Your continued use of the website after any changes signifies your acceptance of the updated terms.</p>
-
-        <h2>10. Contact Information</h2>
-        <p>If you have any questions or concerns about these terms, please contact us at [Your Contact Information].</p>
-        <br/><br/> <br/> <br/> <br/>    
+              <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">7. Contact Us</h2>
+              <p className="text-gray-700">
+                For any questions about our terms, please contact us at{' '}
+                <a href="mailto:support@imageai.com" className="text-purple-600 hover:text-purple-700">
+                  support@imageai.com
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
 
+
 export default React.memo(TermService)
+
+
