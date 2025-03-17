@@ -124,14 +124,14 @@ const LandingPage = () => {
       </section>
 
       {/* Video */}
-      <section id="video" class="text-center w-full wow fadeInUp">
-        <div class="overlay">
+      <section id="video" className="text-center w-full wow fadeInUp">
+        <div className="overlay">
           <h2 className="text-3xl font-bold my-4 text-gray-800">Gallery Video Seva Setu</h2>
-          <div class="flex container-fluid justify-center container-full">
-            <div class="row">
+          <div className="flex container-fluid justify-center container-full">
+            <div className="row">
               {/* <!-- Video Element --> */}
-              <video autoPlay  loop muted controls class="w-full max-w-4xl rounded-lg shadow-lg">
-                <source src="/sevaSetu.mp4" type="video/mp4" />
+              <video autoPlay  loop muted controls className="w-full max-w-4xl rounded-lg shadow-lg">
+                <source src="https://res.cloudinary.com/dmm3jevkq/video/upload/v1742237413/Seva%20Setu/sevaSetu_eco0zb.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
