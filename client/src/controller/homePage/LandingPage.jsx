@@ -131,7 +131,7 @@ const LandingPage = () => {
             <div className="row">
               {/* <!-- Video Element --> */}
               <video autoPlay  loop muted controls className="w-full max-w-4xl rounded-lg shadow-lg">
-                <source src="https://res.cloudinary.com/dmm3jevkq/video/upload/v1742237413/Seva%20Setu/sevaSetu_eco0zb.mp4" type="video/mp4" />
+                <source src="https://res.cloudinary.com/dmm3jevkq/video/upload/v1743191428/sevasetu/sevaSetu_dxgjw9.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
