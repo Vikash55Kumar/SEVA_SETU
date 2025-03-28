@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import "./auth.css";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import googleImg from "../../assets/google.png";
 import { toast } from 'react-toastify';
 import SpinnerLoader from '../../utility/SpinnerLoader';
 import logo from "../../assets/logo.png"

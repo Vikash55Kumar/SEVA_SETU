@@ -13,7 +13,6 @@ import Certificate from './controller/certificate/Certificate';
 import Contact from './controller/contact/Contact';
 import ForgotPassword from './controller/user/ForgotPassword';
 import NotFound from './utility/NotFound';
-import GoogleLogin from './utility/GoogleLogin';
 import Home from './controller/home/Home';
 import Profile from './controller/profile/Profile';
 import { SocketProvider } from './utility/SocketContext';
@@ -241,7 +240,6 @@ function App() {
             <Route path='/employeeLogin' element={!isAuthenticated ? <EmployeeLogin /> : <Home/>} />
             <Route path='/adminLogin' element={<AdminLogin /> } />
             <Route path='/employeeSignup' element={<EmployeeSignup />} />
-            <Route path="/google-login" element={<GoogleLogin />} />
             <Route path='/forgot' element={<ForgotPassword /> } />
             <Route path='/term' element={<TermService />} />
             <Route path='/privacy' element={<Privacy />} />

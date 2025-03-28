@@ -3,7 +3,6 @@ import "./auth.css";
 import { useDispatch } from 'react-redux';
 import { login } from '../../actions/employeeAction';
 import { useNavigate } from 'react-router-dom';
-import googleImg from "../../assets/google.png";
 import { toast } from 'react-toastify';
 import SpinnerLoader from '../../utility/SpinnerLoader';
 import logo from "../../assets/logo.png"
@@ -44,12 +43,6 @@ export default function EmployeeLogin() {
         }
     };
 
-    // const handleGoogleLogin = () => {
-    //     setLoading(true);
-    //     // window.location.href = 'https://seva-setu.onrender.com/api/v1/users/auth/google';
-    //     window.location.href=`${import.meta.env.VITE_GOOGLE_URL}`
-    // };
-
     return (
         <div className="account-set-main">
             <div className="login-container">
@@ -62,14 +55,6 @@ export default function EmployeeLogin() {
                         </div>
 
                         <h3 style={{fontSize:"2rem", marginBottom:"1rem"}}>Employee Login on SevaSetu</h3>
-
-                        {/* <div id="auth-account">
-                            <a onClick={handleGoogleLogin}>
-                                <img src={googleImg} alt="Google Icon" />
-                                <div>Continue with Google</div>
-                            </a>
-                            <p className="mt-2">—— <b>Or</b> ——</p>
-                        </div> */}
 
                         <form onSubmit={handleLogin}>
                             <div className="form-group-2">

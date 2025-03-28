@@ -45,7 +45,6 @@ console.log(userData);
         console.log(response);
         
         if (response.status === 200) {
-            toast.success(response.message || "Certification Verification Status Update Successfully!");
             
             const emailForm = {
               email: certificateData.email,
@@ -59,6 +58,7 @@ console.log(userData);
             console.log(emailForm);
             
             await dispatch(sendMail(emailForm))
+            toast.success(response.message || "Certification Verification Status Update Successfully!");
             setLoading(false); // Hide spinner after successful login            
         } else {
             toast.error(response?.data?.message || "Verification failed!", 'error');

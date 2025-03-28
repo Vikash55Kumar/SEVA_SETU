@@ -29,74 +29,50 @@ const generateAccessAndRefreshTokens = async (userId) => {
     }
 };
 
-const googleAuth = asyncHandler(async (req, res) => {
-    console.log("Received request for Google auth");
-    console.log("Request body:", req.body);
+// const googleAuth = asyncHandler(async (req, res) => {
+//     console.log("Received request for Google auth");
+//     console.log("Request body:", req.body);
 
-    const { accessToken, refreshToken } = req.body;
+//     const { accessToken, refreshToken } = req.body;
 
-    if (!accessToken || !refreshToken) {
-        console.log("Missing tokens");
-        return res.status(400).json(new ApiResponse(400, null, "Tokens are required"));
-    }
-
-    try {
-        const decodedAccessToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-        const decodedRefreshToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
-
-        const user = await User.findById(decodedAccessToken._id);
-
-        if (!user) {
-            console.log("User not found");
-            return res.status(401).json(new ApiResponse(401, null, "User not found"));
-        }
-
-        console.log('Stored Refresh Token:', user.refreshToken);
-
-        if (user.refreshToken !== refreshToken) {
-            console.log("Invalid refresh token");
-            return res.status(401).json(new ApiResponse(401, null, "Invalid refresh token"));
-        }
-
-        const newAccessToken = user.generateAccessToken();
-        const newRefreshToken = user.generateRefreshToken();
-
-        user.refreshToken = newRefreshToken;
-        await user.save();
-
-        console.log("User authenticated successfully");
-        return res.status(200).json(
-            new ApiResponse(200, { user, accessToken: newAccessToken, refreshToken: newRefreshToken }, "User logged in successfully")
-        );
-    } catch (error) {
-        console.error('Token verification error:', error);
-        return res.status(401).json(new ApiResponse(401, null, "Invalid tokens"));
-    }
-});
-
-// const generateOtrId = (fullName, state, country, aadharNumber) => {
-//     if (!fullName || !state || !country || !aadharNumber) {
-//         throw new Error("Missing required fields to generate OTR");
+//     if (!accessToken || !refreshToken) {
+//         console.log("Missing tokens");
+//         return res.status(400).json(new ApiResponse(400, null, "Tokens are required"));
 //     }
 
-//     // Extract initials from full name
-//     const nameInitials = fullName.split(" ").map(word => word[0]).join("").toUpperCase();
+//     try {
+//         const decodedAccessToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+//         const decodedRefreshToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
 
-//     // Get first 3 letters of state and country
-//     const stateCode = state.substring(0, 3).toUpperCase();
-//     const countryCode = country.substring(0, 3).toUpperCase();
+//         const user = await User.findById(decodedAccessToken._id);
 
-//     // Take last 4 digits of Aadhaar number
-//     const aadharLast4 = aadharNumber.slice(-4);
+//         if (!user) {
+//             console.log("User not found");
+//             return res.status(401).json(new ApiResponse(401, null, "User not found"));
+//         }
 
-//     // Generate a 3-digit random number
-//     const randomNum = Math.floor(100 + Math.random() * 900); // 100-999
+//         console.log('Stored Refresh Token:', user.refreshToken);
 
-//     // Combine everything to form the OTR ID
-//     const otrId = `${nameInitials}${stateCode}${countryCode}${aadharLast4}${randomNum}`;
+//         if (user.refreshToken !== refreshToken) {
+//             console.log("Invalid refresh token");
+//             return res.status(401).json(new ApiResponse(401, null, "Invalid refresh token"));
+//         }
 
-//     return otrId;
-// };
+//         const newAccessToken = user.generateAccessToken();
+//         const newRefreshToken = user.generateRefreshToken();
+
+//         user.refreshToken = newRefreshToken;
+//         await user.save();
+
+//         console.log("User authenticated successfully");
+//         return res.status(200).json(
+//             new ApiResponse(200, { user, accessToken: newAccessToken, refreshToken: newRefreshToken }, "User logged in successfully")
+//         );
+//     } catch (error) {
+//         console.error('Token verification error:', error);
+//         return res.status(401).json(new ApiResponse(401, null, "Invalid tokens"));
+//     }
+// });
 
 const generateOtrId = (fullName, state, country, aadharNumber) => {
     if (!fullName || !state || !country || !aadharNumber) {
@@ -500,7 +476,6 @@ const verifyAadharOtp = asyncHandler(async (req, res) => {
 
 });
 
-
 const updateAccountDetails = asyncHandler( async(req, res) => {
     const {phoneNumber, otrId} = req.body
 
@@ -539,6 +514,6 @@ export {
     // updateUserAvatar,
     // updateUserCoverImage,
     // getUserChannelProfile,
-    googleAuth,
+    // googleAuth,
 
  };

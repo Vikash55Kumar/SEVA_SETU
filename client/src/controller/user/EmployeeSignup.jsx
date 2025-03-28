@@ -3,7 +3,6 @@ import "./auth.css"
 import { useDispatch} from 'react-redux';
 import { register } from '../../actions/employeeAction';
 import { useNavigate } from 'react-router-dom';
-import googleImg from "../../assets/google.png"
 import { toast } from 'react-toastify';
 import SpinnerLoader from '../../utility/SpinnerLoader';
 
@@ -86,14 +85,6 @@ export default function EmployeeSignup() {
       ) : (
         <>
           <h2 style={{fontSize:"2rem", marginBottom:"1rem"}}>Employee SignUp on SevaSetu</h2>
-            <h4 className="mt-2 mb-3">Have an account? <a href="/employeeLogin">Log In</a></h4>
-            <div id="auth-account">
-               <a onClick={handleGoogleLogin}>
-                    <img src={googleImg} alt="Google Icon" />
-                    <div>Continue with Google</div>
-                </a>
-              <p className="mt-2">—— <b>Or</b> ——</p>
-            </div>
             <form onSubmit={handleSignUp} className='form'>
               <div className="form-group-2">
                 <label htmlFor="name">Name:</label>
@@ -178,6 +169,7 @@ export default function EmployeeSignup() {
                 <button type="submit">Sign Up</button>
               </div>
             </form>
+            <h4 className="mt-2 mb-3">Have an account? <a href="/employeeLogin">Log In</a></h4>
         </>
       )}
       </div>

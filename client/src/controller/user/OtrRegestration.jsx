@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./OtrRegestration.css";
 import logo from "../../assets/logo.png"
 import { useDispatch } from "react-redux";
@@ -45,10 +45,11 @@ const OtrRegestration = () => {
   const [popupPhoneNumber, setPopupPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [referenceId, setReferenceId] = useState("");
-  const [isOtpPopupVisible, setIsOtpPopupVisible] = useState(false); // State to handle OTP popup visibility
+  const [isOtpPopup, setIsOtpPopup] = useState(false); // State to handle OTP popup visibility
   const [disableOTR, setDisableOTR] = useState(false);
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false); // Loading state to manage spinner visibility
+
 
   const handleChange = (e) => {
     // const { name, value } = e.target;
@@ -95,8 +96,11 @@ const OtrRegestration = () => {
       if (response?.data?.statusCode === 200) {
           
           setReferenceId(response?.data?.data.reference_id)
-          toast.success(response?.data?.message, 'OTP send Successfully');
+          toast.success(response?.data?.message, 'OTP send Successfully'); 
+          closePopup();  // Close the phone number popup **before** opening OTP popup
+          setIsOtpPopup(true)
           setLoading(false);
+
       } else {
           const errorMessage = response?.data?.message || "OTP request failed!";
           console.log("Error 1:", errorMessage);
@@ -110,8 +114,8 @@ const OtrRegestration = () => {
         setLoading(false);
     }
 
-    closePopup();
-    setIsOtpPopupVisible(true); // Open OTP popup after phone number submission
+    setLoading(false);
+
   };
 
   const handleAdharVerification = async(e) => {
@@ -163,7 +167,7 @@ const OtrRegestration = () => {
     }
 
     setOpen(true)
-    setIsOtpPopupVisible(false); // Close OTP popup after submitting
+    setIsOtpPopup(false); // Close OTP popup after submitting
   };
 
   const handleOtrSubmit = async(e) => {
@@ -638,8 +642,8 @@ const OtrRegestration = () => {
         )}
 
         {/* OTP Popup after Form Submit */}
-        {isOtpPopupVisible && (
-          <div className="popup-overlay" onClick={() => setIsOtpPopupVisible(false)}>
+        {isOtpPopup && (
+          <div className="popup-overlay">
             <div className="popup-content" onClick={(e) => e.stopPropagation()}>
               <p>Enter OTP sent to your Mobile Number:</p>
               <form onSubmit={handleAdharVerification}>

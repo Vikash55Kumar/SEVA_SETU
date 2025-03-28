@@ -3,7 +3,6 @@ import "./auth.css";
 import { useDispatch } from 'react-redux';
 import { login } from '../../actions/adminAction';
 import { useNavigate } from 'react-router-dom';
-import googleImg from "../../assets/google.png";
 import { toast } from 'react-toastify';
 import logo from "../../assets/logo.png"
 import SpinnerLoader from '../../utility/SpinnerLoader';
@@ -41,12 +40,6 @@ export default function AdminLogin() {
             setLoading(false); // Hide spinner after error
         }
     };
-
-    // const handleGoogleLogin = () => {
-    //     setLoading(true);
-    //     // window.location.href = 'https://seva-setu.onrender.com/api/v1/users/auth/google';
-    //     window.location.href=`${import.meta.env.VITE_GOOGLE_URL}`
-    // };
 
     return (
         <div className="account-set-main">

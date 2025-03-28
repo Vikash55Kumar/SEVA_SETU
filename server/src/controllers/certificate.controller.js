@@ -48,7 +48,7 @@ const registerCertificate = asyncHandler(async (req, res) => {
         }        
     }
 
-    if (!uploadedFiles.avatarAffidavit || !uploadedFiles.avatarSelfApproval) {
+    if (!uploadedFiles.avatarAffidavit) {
         throw new ApiError(400, "avatarAffidavit or avatarSelfApproval are required");
     }
     const certificate = await Certificate.create({

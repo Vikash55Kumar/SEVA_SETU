@@ -3,7 +3,6 @@ import "./auth.css"
 import { useDispatch} from 'react-redux';
 import { register } from '../../actions/userAction';
 import { useNavigate } from 'react-router-dom';
-import googleImg from "../../assets/google.png"
 import { toast } from 'react-toastify';
 import SpinnerLoader from '../../utility/SpinnerLoader';
 
@@ -61,13 +60,6 @@ export default function AdminSignup() {
         }
     };
 
-    // const handleGoogleLogin = () => {
-    //   setLoading(true);
-    //   // window.location.href = 'https://seva-setu.onrender.com/api/v1/users/auth/google';
-    //   window.location.href=`${import.meta.env.VITE_GOOGLE_URL}`
-    //   // window.location.href = '/api/v1/users/auth/google'
-    // };
-
   return (
 
     <div className="account-set-main">
@@ -79,10 +71,6 @@ export default function AdminSignup() {
           <h2 style={{fontSize:"2rem", marginBottom:"1rem"}}>Officer SignUp on SevaSetu</h2>
             <h4 className="mt-2 mb-3">Have an account? <a href="/login">Log In</a></h4>
             <div id="auth-account">
-               {/* <a onClick={handleGoogleLogin}>
-                    <img src={googleImg} alt="Google Icon" />
-                    <div>Continue with Google</div>
-                </a> */}
               <p className="mt-2">—— <b>Or</b> ——</p>
             </div>
             <form onSubmit={handleSignUp} className='form'>

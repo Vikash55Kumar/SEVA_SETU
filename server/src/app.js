@@ -3,7 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import passport from './utils/passport.js';
+// import passport from './utils/passport.js';
 import { createServer } from 'http';
 import { SocketHandler } from './utils/socketHandler.js';  // Import the WebSocket handler
 import adminRouter from './routes/admin.router.js'
@@ -23,8 +23,7 @@ SocketHandler(server);
 // CORS Setup
 app.use(cors({
   // origin: "http://localhost:5173",
-  // origin: process.env.CORES_ORIGIN || "https://seva-setu.netlify.app",
-  origin: process.env.CORES_ORIGIN || "https://sevasetu.ecovix.online",
+  origin: [process.env.CORES_ORIGIN || "https://sevasetu.ecovix.online"],
   methods: 'DELETE, POST, GET, PUT',
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'], 
   credentials: true,
@@ -73,8 +72,9 @@ app.use(session({
 }));
 
 // Initialize Google passport
-app.use(passport.initialize());
-app.use(passport.session());
+
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 
 // Routers import

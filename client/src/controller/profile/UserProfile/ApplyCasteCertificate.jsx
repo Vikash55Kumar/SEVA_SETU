@@ -95,7 +95,7 @@ function ApplyCasteCertificate({ userProfile }) {
       {loading ? (
           <SpinnerLoader /> 
       ) : (
-      <div className="w-full max-w-5xl bg-white p-8 pt-4 pb-0 shadow-lg mb-16 rounded-lg">
+      <div className="relative w-full max-w-5xl bg-white p-8 pt-4 pb-0 shadow-lg mb-16 rounded-lg">
         {/* Header */}
         <header className="flex flex-col items-center justify-center pb-2">
           <img src={logo} className="w-40" alt="Logo" />
