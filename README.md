@@ -174,7 +174,7 @@ Set Up Environment Variables::
 
 <hr/>
 
-  ## - 🔭 Projects Link: [Seva Setu](https://seva-setu.netlify.app/)
+  ## - 🔭 Projects Link: [Seva Setu](https://sevasetu.ecovix.online/)
 
 <div align="center"> 
   <a href="https://mernportfoliovikash.netlify.app/contact">
