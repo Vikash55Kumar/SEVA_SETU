@@ -48,4 +48,6 @@ router.route("/verifyAadharOtp").post(verifyAadharOtp)
 
 router.route("/refresh-token").post(refreshAccessToken)
 
+router.route("/active").get((req, res) => { res.send("active")});
+
 export default router;

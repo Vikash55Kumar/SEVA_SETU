@@ -265,6 +265,7 @@ function App() {
             <Route path='/resourceAllocation' element={<ResourceAllocationComponent employeeData={employeeDetail?.data} reportData={report?.data} />} />
             <Route path='/userDashboard' element={<UserDashboard userProfile={user?.data} certificateDetail={certificateDetail?.data} />} />
             <Route path='/certificateTracker' element={<CertificateTracker employeeProfile={employee?.data} userDetail={userDetail?.data} certificateDetail={certificateDetail?.data} />} />
+            <Route path="/sevasetu-active" element={<div>sevasetu active</div>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
